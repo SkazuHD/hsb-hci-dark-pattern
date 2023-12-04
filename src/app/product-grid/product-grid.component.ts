@@ -14,7 +14,8 @@ import {NgForOf} from "@angular/common";
   styleUrl: './product-grid.component.css'
 })
 export class ProductGridComponent implements OnInit{
-  constructor(private productService: ProductService) { }
+
+  private productService: ProductService = inject(ProductService);
   products: Product[];
 
   ngOnInit() {
