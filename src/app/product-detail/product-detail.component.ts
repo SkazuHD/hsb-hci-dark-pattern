@@ -38,10 +38,11 @@ export class ProductDetailComponent implements OnInit {
       .subscribe(
         (product) => {
           this.product = product;
+          if (!this.product) {
+            this.router.navigate(['/product']);
+          }
         },
       );
-    if (this.product === undefined) {
-      this.router.navigate(['/product']);
-    }
+
   }
 }

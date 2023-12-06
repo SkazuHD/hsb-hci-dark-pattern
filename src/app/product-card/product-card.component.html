@@ -1,8 +1,12 @@
-<div>
-  <p>{{product.id}}</p>
-  <img src="favicon.ico" alt="Product Image">
-  <p>{{product.name}}</p>
-  <p>{{product.price}}</p>
+<div class="cursor-pointer bg-cyan-950 text-slate-300 p-3 grid grid-cols-1">
+  <a (click)="navigateToProductDetails(product.id)" class="grid place-items-center">
+    <p>{{product.title}}</p>
+    <img alt="Product Image" [src]="product.image" class="h-56">
+    <p>{{product.description}}</p>
+    <p>{{product.price}}</p>
+    <span>{{product.rating.rate}} {{product.rating.count}}</span>
+
+  </a>
   <button mat-flat-button color="primary" (click)="navigateToProductDetails(product.id)">BUY</button>
 
 </div>
