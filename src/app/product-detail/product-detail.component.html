@@ -1,7 +1,19 @@
-<div *ngIf="product">
-  <h2>{{ product.title }}</h2>
+<div class="top-container">
+  <div class="search-container">
+    <input type="text" placeholder="Search...">
+    <button type="submit">Search</button>
+  </div>
+  <div class="other-container">
+    Warenkorb
+  </div>
+</div>
+<h2 style="margin-left: 50px;">{{ product.title }}</h2>
+<div *ngIf="product" class="middle">
   <img [src]="product.image" />
-  <p>{{ product.category }}</p>
-  <p>{{ product.description }}</p>
-  <p>Price: {{ product.price }}</p>
+    <div class ="description">
+    <p><button type="submit" style="background-color: #34db4d;">DIREKT KAUFEN</button></p>
+    <button type="submit" style="background-color: #6f6f6f;">in den Warenkorb</button>
+    <p>{{ product.description }}</p>
+    <p>Price: {{ product.price }}</p>
+  </div>
 </div>
