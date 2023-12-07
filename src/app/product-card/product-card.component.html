@@ -1,12 +1,16 @@
-<div class="cursor-pointer bg-cyan-950 text-slate-300 p-3 grid grid-cols-1">
-  <a (click)="navigateToProductDetails(product.id)" class="grid place-items-center">
-    <p>{{product.title}}</p>
-    <img alt="Product Image" [src]="product.image" class="h-56">
-    <p>{{product.description}}</p>
-    <p>{{product.price}}</p>
+<div class="  grid grid-cols-1 rounded-3xl p-6 cursor-pointer text-slate-950 bg-gray-100 hover:bg-cyan-950 hover:text-white transition-all min-h-full" >
+  <a (click)="navigateToProductDetails(product.id)" class="grid place-items-center gap-3">
+    <h3 class="font-bold text-xl text-center">{{product.title}}</h3>
+    <img alt="Product Image" [src]="product.image" class="h-56 bg-white p-6 rounded-3xl">
+    <p class="font-semibold text-xl">{{product.price}} €</p>
+    <app-star-rating [rating]="product.rating.rate" [ratingCount]="product.rating.count"></app-star-rating>
     <span>{{product.rating.rate}} {{product.rating.count}}</span>
 
   </a>
-  <button mat-flat-button color="primary" (click)="navigateToProductDetails(product.id)">BUY</button>
-
+  <button mat-flat-button color="primary" (click)="navigateToProductDetails(product.id)" class="self-end">
+    BUY
+  <mat-icon>
+    shopping_cart
+  </mat-icon>
+  </button>
 </div>
