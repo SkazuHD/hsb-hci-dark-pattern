@@ -2,13 +2,18 @@ import {Component, inject, Input} from '@angular/core';
 import {Product} from "../product.service";
 import {MatButtonModule} from "@angular/material/button";
 import {Router} from "@angular/router";
-
+import {MatChipsModule} from "@angular/material/chips";
+import {MatIconModule} from "@angular/material/icon";
+import {StarRatingComponent} from "../star-rating/star-rating.component";
 
 @Component({
   selector: 'app-product-card',
   standalone: true,
   imports: [
-    MatButtonModule
+    MatButtonModule,
+    MatChipsModule,
+    MatIconModule,
+    StarRatingComponent
   ],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.css'
