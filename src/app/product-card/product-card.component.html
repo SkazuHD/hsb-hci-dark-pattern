@@ -1,11 +1,12 @@
-<div class="grid grid-cols-1 rounded-3xl p-6 cursor-pointer text-slate-950 bg-custom_lavender-100 hover:bg-custom_gunmetal hover:text-white transition-all min-h-full" >
-  <a (click)="navigateToProductDetails(product.id)" class="grid place-items-center gap-3">
+<div class="grid  rounded-3xl p-6 cursor-pointer text-slate-950 bg-custom_lavender-100 hover:bg-custom_gunmetal hover:text-white transition-all min-h-full" >
+  <a (click)="navigateToProductDetails(product.id)" class="grid place-items-center gap-3 min-h-full">
     <h3 class="font-bold text-xl text-center">{{product.title}}</h3>
     <img alt="Product Image" [src]="product.image" class="h-56 bg-white p-6 rounded-3xl">
-    <p class="font-semibold text-3xl  flex gap-4"> <span class="text-lg line-through">{{product.price*3}}€ </span> <span class="text-custom_scarlet">{{product.price}} € </span></p>
+    <p class="font-semibold text-3xl  flex gap-4"> <span class="text-lg line-through">{{unDiscountedPrice}}€ </span> <span class="text-custom_scarlet">{{discountedPrice}} € </span></p>
     <app-star-rating [rating]="product.rating.rate" [ratingCount]="product.rating.count"></app-star-rating>
-    <span>{{product.rating.rate}} {{product.rating.count}}</span>
-
+    <ng-container *ngIf="product.count">
+      <p>Nur noch <span class="font-bold">{{product.count}}</span> verfügbar</p>
+    </ng-container>
   </a>
   <button mat-flat-button color="primary" (click)="navigateToProductDetails(product.id)" class="self-end">
     BUY
