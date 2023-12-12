@@ -26,13 +26,10 @@ export class ProductService {
   getProducts(): Observable<Product[]> {
     // Simulate an asynchronous operation with Observable.of
     return this.http.get('https://fakestoreapi.com/products') as Observable<Product[]>;
-
-
-
   }
 
   getProductById(id: number): Observable<Product | undefined> {
-   // const product = this.products.find(p => p.id === id);
+    // const product = this.products.find(p => p.id === id);
     //return of(product);
     return this.http.get('https://fakestoreapi.com/products/' + id) as Observable<Product>;
   }
