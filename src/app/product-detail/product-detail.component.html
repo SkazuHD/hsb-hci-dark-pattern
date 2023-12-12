@@ -1,7 +1,16 @@
 <div *ngIf="product">
-  <h2>{{ product.title }}</h2>
-  <img [src]="product.image" />
+  <h2 class="">{{ product.title }}</h2>
+  <div class="md:flex">
+    <img [src]="product.image" />
+    <div class="p-6 divide-y text-center ">
+      <div>
+        <button class="px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2 ">
+          in Warenkorb
+        </button>
+      </div>
+      <p >Price: {{ product.price }}</p>
+      <p>{{ product.description }}</p>
+    </div>
+  </div>
   <p>{{ product.category }}</p>
-  <p>{{ product.description }}</p>
-  <p>Price: {{ product.price }}</p>
 </div>
