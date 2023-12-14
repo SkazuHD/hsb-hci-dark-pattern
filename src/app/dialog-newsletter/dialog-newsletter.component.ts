@@ -1,11 +1,18 @@
 import {Component, inject, Input} from '@angular/core';
-import {MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle} from "@angular/material/dialog";
+import {
+  MatDialogActions,
+  MatDialogClose,
+  MatDialogContent,
+  MatDialogRef,
+  MatDialogTitle
+} from "@angular/material/dialog";
 import {MatButtonModule} from "@angular/material/button";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
 import {NgIf} from "@angular/common";
 import {DialogRef} from "@angular/cdk/dialog";
+import {of} from "rxjs";
 
 @Component({
   selector: 'app-dialog-newsletter',
@@ -25,12 +32,12 @@ import {DialogRef} from "@angular/cdk/dialog";
   styleUrl: './dialog-newsletter.component.css'
 })
 export class DialogNewsletterComponent {
-  private dialogRef: DialogRef<DialogNewsletterComponent> = inject(DialogRef);
+  private dialogRef: MatDialogRef<DialogNewsletterComponent, any> = inject(MatDialogRef);
   email = new FormControl('', [Validators.email, Validators.required]);
   public onSubmit() {
     if (this.email.value && this.email.valid) {
       //TODO : Save to User Profile
-      this.dialogRef.close()
+      this.dialogRef.close(this.email.value);
     } else {
       this.email.markAsTouched();
     }
