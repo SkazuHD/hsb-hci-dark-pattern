@@ -15,7 +15,7 @@ import {NgIf} from "@angular/common";
     MatChipsModule,
     MatIconModule,
     StarRatingComponent,
-    NgIf
+    NgIf,
   ],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.css'
