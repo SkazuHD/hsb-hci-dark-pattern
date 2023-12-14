@@ -1,0 +1,27 @@
+<div class="p-3">
+  <h1 mat-dialog-title class="text-center !text-3xl">Datenschutzzentrum</h1>
+  <div mat-dialog-content class="">
+    <p class="text-center">Hier können Sie Ihre Einstellungen zur Datenverarbeitung auf dieser Website anpassen.</p>
+      <form  [formGroup]="cookieForm" class="grid grid-cols-1 p-3 gap-6">
+        <ng-container *ngFor="let controlName of cookieForm.controls | keyvalue">
+          <div class="grid">
+          <mat-slide-toggle color="primary" [formControlName]="controlName.key">{{controlName.key}}</mat-slide-toggle>
+          <ng-container *ngIf="getFormControlByName(controlName.key).touched">
+            <mat-error *ngIf="getFormControlByName(controlName.key).status === 'INVALID'" class="text-custom_scarlet text-xs">
+              Dieses Feld ist erforderlich.
+            </mat-error>
+          </ng-container>
+          </div>
+        </ng-container>
+      </form>
+  </div>
+  <div mat-dialog-actions >
+    <div class="flex w-full justify-between">
+      <button mat-flat-button (click)="onCancel()">Close</button>
+      <div>
+      <button mat-flat-button color="primary" (click)="onSubmit()">Ok</button>
+      <button mat-flat-button class="!bg-green-600 !text-white" (click)="onAcceptAll()">Alle Aktzeptieren</button>
+      </div>
+    </div>
+  </div>
+</div>

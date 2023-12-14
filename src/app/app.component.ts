@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
+import {CookiesService} from "./cookies.service";
 import {animate, animateChild, group, query, style, transition, trigger} from "@angular/animations";
 
 @Component({
@@ -38,6 +39,11 @@ import {animate, animateChild, group, query, style, transition, trigger} from "@
     ])
   ]
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'Shop';
+  private CookiesService: CookiesService = inject(CookiesService);
+
+  ngOnInit(): void {
+    this.CookiesService.requestDialog();
+  }
 }
