@@ -23,7 +23,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 @Component({
   selector: 'app-login-screen',
   standalone: true,
-  imports: [FormsModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule, MatIconModule],
+  imports: [MatButtonModule,FormsModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule, MatIconModule],
   templateUrl: './login-screen.component.html',
   styleUrl: './login-screen.component.css'
 
