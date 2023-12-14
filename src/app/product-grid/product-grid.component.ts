@@ -2,6 +2,9 @@ import {Component, inject, OnInit} from '@angular/core';
 import {ProductCardComponent} from "../product-card/product-card.component";
 import {Product, ProductService} from "../product.service";
 import {NgForOf, NgIf} from "@angular/common";
+import {DialogNewsletterComponent} from "../dialog-newsletter/dialog-newsletter.component";
+import {MatDialog} from "@angular/material/dialog";
+import {NewsletterService} from "../newsletter.service";
 @Component({
   selector: 'app-product-grid',
   standalone: true,
@@ -17,10 +20,12 @@ export class ProductGridComponent implements OnInit{
 
 
   private productService: ProductService = inject(ProductService);
+  private newsLetterService: NewsletterService = inject(NewsletterService);
+
   products: Product[];
 
   ngOnInit() {
     this.productService.getProducts().subscribe(products => this.products = products);
+    this.newsLetterService.requestDialog();
   }
-
 }
