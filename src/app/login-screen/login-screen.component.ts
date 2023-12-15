@@ -38,4 +38,19 @@ export class LoginScreenComponent implements OnInit{
   passwordFormControl = new FormControl('', [Validators.required])
   matcher = new MyErrorStateMatcher();
   hide = true
+
+
+  ngOnInit(): void {
+    this.loginForm.addControl('email', this.emailFormControl)
+    this.loginForm.addControl('passwort', this.passwordFormControl)
+  }
+  onLogin(){
+    if(this.loginForm.valid){
+      if(this.userService.onLogin(this.emailFormControl.value ?? '',this.passwordFormControl.value ?? '')){
+        this.router.navigate(['/product'])
+      }
+    }
+  }
+
+
 }
