@@ -1,0 +1,53 @@
+<div class="p-3">
+  <h1 mat-dialog-title class="text-center !text-3xl">Cookies</h1>
+  <div mat-dialog-content class="">
+    <div class=" divide-custom_claret grid gap-3">
+      <div class="mb-3">
+        <p>
+          Für die Verbesserung und zur Finanzierung unseres Angebotes erheben und verarbeiten wir und unsere bis zu 152
+          Partner personenbezogene Daten. Dazu speichern wir Cookies auf Endgeräten,
+          nutzen persönliche Identifikationsmerkmale wie Gerätekennungen oder IP-Adressen und erfassen individuelles
+          Nutzungsverhalten.
+        </p>
+        <p>
+          Die Verarbeitungszwecke für diese Daten sind: personalisierte Werbung mit Profilbildung, externe Inhalte
+          anzeigen, technisch erforderliche Cookies (Sicherheit, Anmeldung, Kommentarbereich),
+          Push-Benachrichtigungen/Kommunikation, Optimierung des Angebots (Marktforschung, A/B-Testing,
+          Inhaltsempfehlungen).
+        </p>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6 divide-custom_claret md:divide-x-2">
+        <div class="grid gap-3 p-3 h-full">
+          <!--Free Access with Cookies and Ads -->
+          <h2 class="text-lg font-bold text-center">Kostenlos fortfahren...</h2>
+          <p>
+            Durch das Klicken des Buttons „Akzeptieren und weiter“ stimmen Sie der Verarbeitung der auf Ihrem Gerät bzw.
+            Ihrer Endeinrichtung gespeicherten Daten wie z.B.
+            persönlichen Identifikatoren oder IP-Adressen für diese Verarbeitungszwecke gem. § 25 Abs. 1 TTDSG sowie
+            Art. 6 Abs. 1 lit. a DSGVO zu.
+          </p>
+          <button mat-stroked-button color="primary" class="self-end" (click)="acceptCookies()">Akzeptieren und weiter
+          </button>
+          <p class="text-xs">
+            Mehr Infos zu Werbung und Tracking in unseren <a class="underline">Datenschutzhinweisen</a> und im
+            <a class="underline" (click)="navigateCookieSettings()">Datenschutzinformationszentrum.</a>
+          </p>
+        </div>
+        <div class="grid gap-3 p-3 h-full">
+          <!--Paid Access with less Cookies and no Ads -->
+          <h2 class="text-lg font-bold text-center text-custom_gunmetal">... mit Supreme Abo fortfahren</h2>
+          <p>
+            Oder nutzen Sie unseren Shop ohne Werbetracking und nahezu ohne Werbung, indem Sie abonnieren oder sich hier
+            mit ihrem bestehenden Abo
+            Informationen zur Datenverarbeitung im Abo finden Sie in unserer Datenschutzerklärung und in den FAQ.
+          </p>
+          <button mat-flat-button color="primary" class="self-end" (click)="navigateLogin()">Supreme Abo abschließen
+          </button>
+          <p class="text-xs">
+            Bereits Supreme Abonnent? <a class="underline" (click)="navigateLogin()">Hier einloggen.</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
