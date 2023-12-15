@@ -1,10 +1,5 @@
-<p>register-screen works!</p>
-
 <div class="bg-custom_lavender-200 w-max m-auto rounded-3xl grid place-items-center gap-y-5 p-6">
-    <div></div>
     <h3 class="font-bold text-3xl text-center">Registrierung</h3>
-
-
     <mat-stepper class="rounded-3xl" orientation="vertical" [linear]="isLinear" #stepper>
         <mat-step [stepControl]="nameGroup">
             <form [formGroup]="nameGroup">
@@ -112,7 +107,7 @@
         <mat-step>
             <ng-template matStepLabel>Fertig</ng-template>
 
-            <div class="gap-x-4">
+            <div class="flex gap-x-4">
                 <button mat-button matStepperPrevious>Zurück</button>
                 <button mat-button (click)="stepper.reset()">Reset</button>
                 <button mat-raised-button color="primary" (click)="onRegister()">Anmelden</button>

@@ -1,11 +1,14 @@
-<div class="bg-custom_lavender-200 w-max m-auto p-6 grid place-items-center rounded-3xl gap-y-2" >
+<div class="h-full grid place-items-center">
+
+<div class="bg-custom_lavender-200 w-max m-auto p-6 grid place-items-center rounded-3xl gap-3" >
   <h3 class="font-bold text-3xl text-center">Anmeldung</h3>
 
-  <form>
+  <form class="space-y-5">
     <mat-form-field class="w-full">
-      <mat-label>Email oder Userame</mat-label>
+      <mat-label>Email or Username</mat-label>
       <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
              placeholder="Ex.">
+        <mat-error *ngIf="emailFormControl.hasError('required')">Please enter a valid E-Mail or your Username</mat-error>
     </mat-form-field>
     <mat-form-field class="w-full">
       <mat-label>Enter your password</mat-label>
@@ -13,6 +16,9 @@
       <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
+      <mat-error *ngIf="passwordFormControl.hasError('required')">
+        Please enter your password
+        </mat-error>
     </mat-form-field>
   </form>
 
@@ -21,6 +27,4 @@
     <button mat-raised-button color="primary" (click)="onLogin()">Anmeldung</button>
   </div>
 </div>
-
-
-
+</div>
