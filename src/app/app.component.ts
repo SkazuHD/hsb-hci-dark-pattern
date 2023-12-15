@@ -1,12 +1,13 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {CommonModule, registerLocaleData} from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import {Router, RouterOutlet} from '@angular/router';
 import {CookiesService} from "./cookies.service";
 import {animate, animateChild, group, query, style, transition, trigger} from "@angular/animations";
 import localeDe from '@angular/common/locales/de';
 import localeDeExtra from '@angular/common/locales/extra/de';
 import {TopNavigationComponent} from "./top-navigation/top-navigation.component";
 import {BottomFooterComponent} from "./bottom-footer/bottom-footer.component";
+import {UserService} from "./user.service";
 
 @Component({
   selector: 'app-root',
@@ -46,9 +47,12 @@ import {BottomFooterComponent} from "./bottom-footer/bottom-footer.component";
 export class AppComponent implements OnInit{
   title = 'Shop';
   private CookiesService: CookiesService = inject(CookiesService);
+  private userServices: UserService = inject(UserService);
+  private router: Router = inject(Router);
 
   ngOnInit(): void {
     registerLocaleData(localeDe, 'de-DE', localeDeExtra);
     this.CookiesService.requestDialog();
+
   }
 }

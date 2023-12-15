@@ -12,7 +12,7 @@
     </mat-form-field>
     <mat-form-field class="w-full">
       <mat-label>Enter your password</mat-label>
-      <input matInput [formControl]="passwordFormControl"  [type]="hide ? 'password' : 'text'">
+      <input matInput [formControl]="passwordFormControl"  [type]="hide ? 'password' : 'text'" autocomplete="on" name="password">
       <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
