@@ -1,8 +1,4 @@
-<p>login-screen works!</p>
-
-
-
-<div class="bg-custom_lavender-200 w-1/4 m-auto h-1/3 grid place-items-center rounded-3xl gap-y-2" >
+<div class="bg-custom_lavender-200 w-max m-auto p-6 grid place-items-center rounded-3xl gap-y-2" >
   <h3 class="font-bold text-3xl text-center">Anmeldung</h3>
 
   <form>
@@ -20,9 +16,9 @@
     </mat-form-field>
   </form>
 
-  <div class="space-x-5">
-    <button mat-raised-button color="primary">Anmeldung</button>
-    <button mat-raised-button color="primary">Registrierung</button>
+  <div class="flex gap-3">
+    <button mat-raised-button color="primary" routerLink="/register">Registrierung</button>
+    <button mat-raised-button color="primary" (click)="onLogin()">Anmeldung</button>
   </div>
 </div>
 

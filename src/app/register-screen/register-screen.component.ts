@@ -17,22 +17,22 @@ export class RegisterScreenComponent {
   firstFormGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required],
   });
-  secondFormGroup = this._formBuilder.group({
+  usernameGroup = this._formBuilder.group({
     secondCtrl: ['', Validators.required],
   });
-  thirdFormGroup = this._formBuilder.group({
+  password1Group = this._formBuilder.group({
     thirdCtrl: ['', Validators.required],
   });
-  forthFormGroup = this._formBuilder.group({
+  password2Group = this._formBuilder.group({
     forthCtrl: ['', Validators.required],
   });
-  fifthFormGroup = this._formBuilder.group({
-    fifthCtrl: ['', Validators.required],
+  email1Group = this._formBuilder.group({
+    fifthCtrl: ['', [Validators.required, Validators.email]],
   });
-  sixthFormGroup = this._formBuilder.group({
-    sixthCtrl: ['', Validators.required],
+  email2Group = this._formBuilder.group({
+    sixthCtrl: ['', [Validators.required, Validators.email]],
   });
-  seventhFormGroup = this._formBuilder.group({
+  addresseGroup = this._formBuilder.group({
     seventhCtrl: ['', Validators.required],
     
   });
