@@ -5,11 +5,13 @@ import {CookiesService} from "./cookies.service";
 import {animate, animateChild, group, query, style, transition, trigger} from "@angular/animations";
 import localeDe from '@angular/common/locales/de';
 import localeDeExtra from '@angular/common/locales/extra/de';
+import {TopNavigationComponent} from "./top-navigation/top-navigation.component";
+import {BottomFooterComponent} from "./bottom-footer/bottom-footer.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet],
+  imports: [CommonModule, RouterOutlet, TopNavigationComponent, BottomFooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   animations: [
@@ -47,7 +49,6 @@ export class AppComponent implements OnInit{
 
   ngOnInit(): void {
     registerLocaleData(localeDe, 'de-DE', localeDeExtra);
-
     this.CookiesService.requestDialog();
   }
 }
