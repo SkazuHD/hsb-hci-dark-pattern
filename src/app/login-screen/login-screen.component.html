@@ -1,38 +1,30 @@
 <p>login-screen works!</p>
 
-<div class=" bg-custom_lavender-200 w-1/4 m-auto h-1/3 grid-rows-4 grid place-items-center rounded-3xl gap-y-2" >
-<h3 class="font-bold text-3xl text-center">Anmeldung</h3>
 
-  <div>
+
+<div class="bg-custom_lavender-200 w-1/4 m-auto h-1/3 grid place-items-center rounded-3xl gap-y-2" >
+  <h3 class="font-bold text-3xl text-center">Anmeldung</h3>
+
   <form>
-    <mat-form-field>
+    <mat-form-field class="w-full">
       <mat-label>Email</mat-label>
       <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
-             placeholder="Ex. pat@example.com">
-      
-      @if (emailFormControl.hasError('email') && !emailFormControl.hasError('required')) {
-        <mat-error>Please enter a valid email address</mat-error>
-      }
-      @if (emailFormControl.hasError('required')) {
-        <mat-error>Email is <strong>required</strong></mat-error>
-      }
+             placeholder="Ex.">
     </mat-form-field>
-  </form>
- 
-</div>
-<div>
-    <mat-form-field>
+    <mat-form-field class="w-full">
       <mat-label>Enter your password</mat-label>
       <input matInput [type]="hide ? 'password' : 'text'">
       <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
-    </mat-form-field> 
-  </div>
+    </mat-form-field>
+  </form>
 
   <div class="space-x-5">
     <button mat-raised-button color="primary">Anmeldung</button>
     <button mat-raised-button color="primary">Registrierung</button>
   </div>
-
 </div>
+
+
+
