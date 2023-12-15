@@ -3,12 +3,14 @@ import {DialogCookiesComponent} from "./dialog-cookies/dialog-cookies.component"
 import {MatDialog} from "@angular/material/dialog";
 import {DialogCookiesSettingsComponent} from "./dialog-cookies-settings/dialog-cookies-settings.component";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CookiesService {
   private dialog = inject(MatDialog);
+  private router = inject(Router);
   private cookiesAccepted = false;
   private cookiesAcceptedCount = 0;
   private cookieForm: FormGroup = new FormGroup({});
@@ -101,8 +103,10 @@ export class CookiesService {
         localStorage.setItem('cookiesAcceptedCount', count.toString());
         if (abo) {
           localStorage.setItem('abo', "true");
-
         }
+        this.router.navigate(['/login']).then(() => {
+
+        });
       });
     }
   }
