@@ -2,8 +2,6 @@ import {Component, inject, OnInit} from '@angular/core';
 import {ProductCardComponent} from "../product-card/product-card.component";
 import {Product, ProductService} from "../product.service";
 import {NgForOf, NgIf} from "@angular/common";
-import {DialogNewsletterComponent} from "../dialog-newsletter/dialog-newsletter.component";
-import {MatDialog} from "@angular/material/dialog";
 import {NewsletterService} from "../newsletter.service";
 @Component({
   selector: 'app-product-grid',

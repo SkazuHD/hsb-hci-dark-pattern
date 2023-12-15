@@ -1,33 +1,26 @@
-<p>login-screen works!</p>
+<div class="bg-custom_lavender-200 w-max m-auto p-6 grid place-items-center rounded-3xl gap-y-2" >
+  <h3 class="font-bold text-3xl text-center">Anmeldung</h3>
 
-
-<div class="email">
-  <form class="email-form">
-    <mat-form-field class="email-full-width">
-      <mat-label>Email</mat-label>
+  <form>
+    <mat-form-field class="w-full">
+      <mat-label>Email oder Userame</mat-label>
       <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
-             placeholder="Ex. pat@example.com">
-      <mat-hint>Errors appear instantly!</mat-hint>
-      @if (emailFormControl.hasError('email') && !emailFormControl.hasError('required')) {
-        <mat-error>Please enter a valid email address</mat-error>
-      }
-      @if (emailFormControl.hasError('required')) {
-        <mat-error>Email is <strong>required</strong></mat-error>
-      }
+             placeholder="Ex.">
     </mat-form-field>
-  </form>
-  
-</div>
-<div class="password">
-<div class="password-container">
-    <mat-form-field>
+    <mat-form-field class="w-full">
       <mat-label>Enter your password</mat-label>
-      <input matInput [type]="hide ? 'password' : 'text'">
+      <input matInput [formControl]="passwordFormControl"  [type]="hide ? 'password' : 'text'">
       <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
     </mat-form-field>
-  
-   
+  </form>
+
+  <div class="flex gap-3">
+    <button mat-raised-button color="primary" routerLink="/register">Registrierung</button>
+    <button mat-raised-button color="primary" (click)="onLogin()">Anmeldung</button>
   </div>
 </div>
+
+
+
