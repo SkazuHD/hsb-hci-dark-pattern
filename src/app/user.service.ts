@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import {Product} from "./product.service";
 
 export interface Nutzer{
   name: string;
@@ -7,7 +8,17 @@ export interface Nutzer{
   email : string;
   adresse : string;
   geschlecht : string;
+  Warekorb? : Warenkorb;
 
+}
+export interface WarenkorbPosition{
+    produkt : Product;
+    anzahl : number;
+}
+
+export interface Warenkorb{
+    positionen : WarenkorbPosition[];
+    gesamtPreis : number;
 }
 
 @Injectable({
@@ -16,13 +27,18 @@ export interface Nutzer{
 
 export class UserService {
   private nutzerArray :Nutzer[] = [];
-  private loggedInUser : Nutzer;
+  private loggedInUser : Nutzer | undefined;
 
   onLogin(username : string, passwort: string):boolean{
     let nutzer  = (this.nutzerArray.find(nutzer => nutzer.username === username || nutzer.email === username));
 
     if (nutzer?.passwort === passwort) {
         this.loggedInUser = nutzer;
+        this.loggedInUser.Warekorb = {
+            positionen: [],
+            gesamtPreis: 0
+        }
+        console.log(this.loggedInUser);
         return true;
       }else {
         return false;
@@ -34,9 +50,19 @@ export class UserService {
     this.nutzerArray.push(nutzer);
   }
 
-  get user(): Nutzer | undefined{
-    return this.loggedInUser;
-  }
+    onLogout(){
+        this.loggedInUser = undefined;
+    }
+
+    addToCart(product: Product, amount: number) {
+
+    }
+    removeFromCart(product: Product, amount: number) {
+
+    }
+    getCart():Warenkorb{
+      return this.loggedInUser?.Warekorb ?? {positionen: [], gesamtPreis: 0}
+    }
 
   constructor() {
     this.nutzerArray.push({
