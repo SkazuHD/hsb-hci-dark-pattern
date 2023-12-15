@@ -87,7 +87,7 @@ export class CookiesService {
         data:{
           form: this.cookieForm
         }
-      }).afterClosed().subscribe(() => {
+      }).afterClosed().subscribe((abo) => {
         //TODO What is the count if the Abo is choosen instead?
         this.cookiesAccepted = true;
         localStorage.setItem('cookiesAccepted', 'true');
@@ -99,6 +99,10 @@ export class CookiesService {
           }
         }
         localStorage.setItem('cookiesAcceptedCount', count.toString());
+        if (abo) {
+          localStorage.setItem('abo', "true");
+
+        }
       });
     }
   }

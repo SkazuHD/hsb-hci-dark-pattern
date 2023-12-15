@@ -33,23 +33,27 @@ export class DialogCookiesComponent {
    router: Router = inject(Router);
    private cookieService: CookiesService = inject(CookiesService);
    dialogRef: MatDialogRef<DialogCookiesComponent> = inject(MatDialogRef);
-   data = inject(MAT_DIALOG_DATA)
-
+   private data = inject(MAT_DIALOG_DATA)
+   private form = this.data.form;
     acceptCookies(): void {
       this.router.navigate(['/shop']).then(
         () =>{
           // Set all form values to true
-         let form =  this.data.form;
+         let form =  this.form
           Object.keys(form.controls).forEach(key => {
             form.controls[key].setValue(true);
           });
-          this.dialogRef.close();
+          this.dialogRef.close(false);
         }
       );
     }
     navigateLogin(): void {
       this.router.navigate(['/login']).then(() => {
-        this.dialogRef.close();
+        let form =  this.form
+        Object.keys(form.controls).forEach(key => {
+          form.controls[key].setValue(true);
+        });
+        this.dialogRef.close(true);
       });
     }
     navigateCookieSettings(): void {
