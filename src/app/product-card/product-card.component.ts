@@ -5,7 +5,7 @@ import {Router} from "@angular/router";
 import {MatChipsModule} from "@angular/material/chips";
 import {MatIconModule} from "@angular/material/icon";
 import {StarRatingComponent} from "../star-rating/star-rating.component";
-import {NgIf} from "@angular/common";
+import {CurrencyPipe, NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-product-card',
@@ -16,6 +16,7 @@ import {NgIf} from "@angular/common";
     MatIconModule,
     StarRatingComponent,
     NgIf,
+    CurrencyPipe,
   ],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.css'

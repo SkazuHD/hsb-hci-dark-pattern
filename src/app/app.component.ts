@@ -1,8 +1,10 @@
 import {Component, inject, OnInit} from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, registerLocaleData} from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import {CookiesService} from "./cookies.service";
 import {animate, animateChild, group, query, style, transition, trigger} from "@angular/animations";
+import localeDe from '@angular/common/locales/de';
+import localeDeExtra from '@angular/common/locales/extra/de';
 
 @Component({
   selector: 'app-root',
@@ -44,6 +46,8 @@ export class AppComponent implements OnInit{
   private CookiesService: CookiesService = inject(CookiesService);
 
   ngOnInit(): void {
+    registerLocaleData(localeDe, 'de-DE', localeDeExtra);
+
     this.CookiesService.requestDialog();
   }
 }

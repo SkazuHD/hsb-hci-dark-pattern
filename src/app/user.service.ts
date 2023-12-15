@@ -34,11 +34,6 @@ export class UserService {
 
     if (nutzer?.passwort === passwort) {
         this.loggedInUser = nutzer;
-        this.loggedInUser.Warekorb = {
-            positionen: [],
-            gesamtPreis: 0
-        }
-        console.log(this.loggedInUser);
         return true;
       }else {
         return false;
@@ -46,7 +41,8 @@ export class UserService {
   }
 
   onRegister(nutzer:Nutzer){
-    console.log(nutzer);
+
+      nutzer.Warekorb = nutzer.Warekorb ??{positionen: [], gesamtPreis: 0};
     this.nutzerArray.push(nutzer);
   }
 
@@ -60,18 +56,82 @@ export class UserService {
     removeFromCart(product: Product, amount: number) {
 
     }
+    updateCart(Warenkorb: Warenkorb) {
+      if (this.loggedInUser)
+        this.loggedInUser.Warekorb = Warenkorb;
+    }
+
     getCart():Warenkorb{
-      return this.loggedInUser?.Warekorb ?? {positionen: [], gesamtPreis: 0}
+      if (this.loggedInUser?.Warekorb){
+        this.loggedInUser.Warekorb.gesamtPreis = this.getGesamtPreis();
+        return this.loggedInUser.Warekorb;
+      }
+      return {positionen: [], gesamtPreis: 0}
+    }
+    getGesamtPreis():number{
+      return this.loggedInUser?.Warekorb?.positionen.reduce((a, b) => a + b.produkt.price * b.anzahl, 0) ?? 0;
     }
 
   constructor() {
-    this.nutzerArray.push({
+    this.onRegister({
         adresse: 'Teststraße 1',
         email: 'admin@admin',
         geschlecht: 'm',
         name: 'Admin',
         passwort: 'admin',
-        username: 'admin'
+        username: 'admin',
+        Warekorb: {
+            positionen: [
+                {
+                    produkt: {
+                        id: 1,
+                        title: 'Testprodukt',
+                        description: 'Testbeschreibung',
+                        price: 10,
+                        image: 'https://picsum.photos/200/300',
+                        rating:{
+                            rate: 5,
+                            count: 1
+                        },
+                        category: 'Testkategorie'
+                    },
+                    anzahl: 1
+                },
+                {
+                    produkt: {
+                        id: 2,
+                        title: 'Testprodukt2',
+                        description: 'Testbeschreibung2',
+                        price: 102,
+                        image: 'https://picsum.photos/200/250',
+                        rating:{
+                            rate: 5,
+                            count: 12
+                        },
+                        category: 'Testkategorie'
+                    },
+                    anzahl: 12
+                },
+
+                {
+                    produkt: {
+                        id: 3,
+                        title: 'Testprodukt2',
+                        description: 'Testbeschreibung2',
+                        price: 1022,
+                        image: 'https://picsum.photos/250/250',
+                        rating:{
+                            rate: 5,
+                            count: 122
+                        },
+                        category: 'Testkategorie'
+                    },
+                    anzahl: 122
+                }
+            ],
+            gesamtPreis: 102
+        }
     })
+      this.onLogin("admin", "admin")
   }
 }

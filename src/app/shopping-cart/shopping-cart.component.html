@@ -1,1 +1,36 @@
-<p>shopping-cart works!</p>
+<div class="lg:grid grid-cols-3 bg-custom_lavender-100 gap-3 p-6">
+    <div class="col-span-2 bg-custom_lavender-200 grid gap-6 p-6">
+        <ng-container *ngFor="let position of warenkorb.positionen">
+            <div>
+                <div class="flex justify-end w-full">
+                    <button mat-icon-button> <mat-icon>close></mat-icon></button>
+                </div>
+                <div class="grid grid-cols-4 p-6 gap-3">
+                    <div class="col-span-1 place-self-center">
+                        <img alt="Product Image" [src]="position.produkt.image" class="h-56 bg-white p-6 rounded-3xl" loading="lazy">
+                    </div>
+                    <div class="col-span-3 flex flex-col gap-6">
+                        <div class="flex justify-between">
+                            <h1 class="text-xl font-bold">{{position.produkt.title}}</h1>
+                            <p class="text-xl font-bold">{{position.produkt.price | currency:'EUR':'symbol'}}</p>
+                        </div>
+                        <div class="flex justify-between">
+                            <div>
+                                <app-star-rating [rating]="position.produkt.rating.rate" [ratingCount]="position.produkt.rating.count"></app-star-rating>
+                                <p>{{position.produkt.category}}</p>
+                            </div>
+                            <mat-form-field>
+                                <input matInput type="number" min="0" [formControl]="getFormControl(position.produkt.id.toString())">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+    <div class="col-span-1">
+        <p class="font-bold text-3xl">
+            {{warenkorb.gesamtPreis | currency:'EUR':'symbol'}}
+        </p>
+    </div>
+</div>
