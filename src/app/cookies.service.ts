@@ -10,10 +10,13 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 export class CookiesService {
   private dialog = inject(MatDialog);
   private cookiesAccepted = false;
+  private cookiesAcceptedCount = 0;
   private cookieForm: FormGroup = new FormGroup({});
 
   constructor() {
     this.cookiesAccepted = localStorage.getItem('cookiesAccepted') === 'true';
+
+    this.cookiesAcceptedCount = parseInt(localStorage.getItem('cookiesAcceptedCount') || '0');
 
     this.cookieForm.addControl('Speichern von oder Zugriff auf Informationen auf einem Endgerät',
       new FormControl(false, []));
@@ -95,6 +98,7 @@ export class CookiesService {
             count++;
           }
         }
+        localStorage.setItem('cookiesAcceptedCount', count.toString());
         console.log('Accepted Cookies: ' + count);
       });
     }
