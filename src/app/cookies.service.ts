@@ -34,8 +34,8 @@ export class CookiesService {
       new FormControl(false, []));
     this.cookieForm.addControl('Messung der Performance von Inhalten',
       new FormControl(false, []));
-    this.cookieForm.addControl('Analyse von Zielgruppen durch Statistiken oder Kombinationen von Daten aus verschiedenen Quellen'
-      , new FormControl(false, []));
+    this.cookieForm.addControl('Analyse von Zielgruppen durch Statistiken oder Kombinationen von Daten aus verschiedenen Quellen',
+      new FormControl(false, []));
     this.cookieForm.addControl('Entwicklung und Verbesserung der Angebote',
       new FormControl(false, []));
     this.cookieForm.addControl('Verwendung reduzierter Daten zur Auswahl von Inhalten'
@@ -44,8 +44,8 @@ export class CookiesService {
       new FormControl(false, [Validators.pattern('true')]));
     this.cookieForm.addControl('Funktional',
       new FormControl(false, []));
-    this.cookieForm.addControl('Analyse / Statistiken'
-      , new FormControl(false, [Validators.pattern('true')]));
+    this.cookieForm.addControl('Analyse / Statistiken',
+      new FormControl(false, [Validators.pattern('true')]));
     this.cookieForm.addControl('Marketing',
       new FormControl(false, []));
     this.cookieForm.addControl('Anzeigen / Ads',
@@ -99,7 +99,6 @@ export class CookiesService {
           }
         }
         localStorage.setItem('cookiesAcceptedCount', count.toString());
-        console.log('Accepted Cookies: ' + count);
       });
     }
   }
