@@ -31,8 +31,8 @@ import {CookiesService} from "../cookies.service";
 })
 export class DialogCookiesComponent {
   router: Router = inject(Router);
-  private cookieService: CookiesService = inject(CookiesService);
   dialogRef: MatDialogRef<DialogCookiesComponent> = inject(MatDialogRef);
+  private cookieService: CookiesService = inject(CookiesService);
   private data = inject(MAT_DIALOG_DATA)
   private form = this.data.form;
 

@@ -7,7 +7,7 @@
         will send you our newsletter.
       </p>
       <mat-form-field class="w-full">
-        <input matInput placeholder="max@mustermann.de" [formControl]="email">
+        <input [formControl]="email" matInput placeholder="max@mustermann.de">
         <mat-error>Invalid email</mat-error>
         <ng-container *ngIf="email.hasError('invalid')">
           <mat-error>Email is invalid</mat-error>
@@ -18,7 +18,7 @@
   <div mat-dialog-actions>
     <div class="flex w-full justify-between">
       <button mat-button mat-dialog-close>Close</button>
-      <button mat-flat-button color="primary" (click)="onSubmit()">Ok</button>
+      <button (click)="onSubmit()" color="primary" mat-flat-button>Ok</button>
     </div>
   </div>
 

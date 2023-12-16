@@ -33,14 +33,13 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 
 })
 export class LoginScreenComponent implements OnInit {
-  private userService: UserService = inject(UserService);
   router: Router = inject(Router);
-  private loginForm: FormGroup = new FormGroup({});
   emailFormControl = new FormControl('', [Validators.required]);
   passwordFormControl = new FormControl('', [Validators.required])
   matcher = new MyErrorStateMatcher();
   hide = true
-
+  private userService: UserService = inject(UserService);
+  private loginForm: FormGroup = new FormGroup({});
 
   ngOnInit(): void {
     this.loginForm.addControl('email', this.emailFormControl)

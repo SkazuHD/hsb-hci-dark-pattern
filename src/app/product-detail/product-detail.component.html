@@ -4,14 +4,14 @@
     <img [src]="product.image" class="w-96"/>
     <div class="p-6 divide-y md:w-1/2">
       <div class="grid grid-cols-2">
-        <app-star-rating [rating]="product.rating.rate" [ratingCount]="product.rating.count"></app-star-rating>
+        <app-star-rating [ratingCount]="product.rating.count" [rating]="product.rating.rate"></app-star-rating>
         <div class="pl-40">
           <span class="text-lg line-through">{{unDiscountedPrice}}€</span> <span
           class="text-custom_scarlet"> {{discountedPrice}}€ </span>
         </div>
       </div>
       <div class="py-2">
-        <button mat-flat-button color="warn">
+        <button color="warn" mat-flat-button>
           in Warenkorb
         </button>
       </div>

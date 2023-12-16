@@ -33,6 +33,14 @@ export class ProductDetailComponent implements OnInit {
   private router: Router = inject(Router);
   private route: ActivatedRoute = inject(ActivatedRoute);
 
+  get discountedPrice(): string {
+    return this.product.price.toFixed(2);
+  }
+
+  get unDiscountedPrice(): string {
+    return (this.product.price * 2.5).toFixed(2);
+  }
+
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.productId = +params['id'];
@@ -54,14 +62,5 @@ export class ProductDetailComponent implements OnInit {
         },
       );
 
-  }
-
-
-  get discountedPrice(): string {
-    return this.product.price.toFixed(2);
-  }
-
-  get unDiscountedPrice(): string {
-    return (this.product.price * 2.5).toFixed(2);
   }
 }

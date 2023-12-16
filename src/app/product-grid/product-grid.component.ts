@@ -18,10 +18,9 @@ import {NewsletterService} from "../newsletter.service";
 export class ProductGridComponent implements OnInit {
 
 
+  products: Product[];
   private productService: ProductService = inject(ProductService);
   private newsLetterService: NewsletterService = inject(NewsletterService);
-
-  products: Product[];
 
   ngOnInit() {
     this.productService.getProducts().subscribe(products => this.products = products);
