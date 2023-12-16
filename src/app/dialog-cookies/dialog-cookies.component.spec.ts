@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { DialogCookiesComponent } from './dialog-cookies.component';
+import {DialogCookiesComponent} from './dialog-cookies.component';
 
 describe('DialogCookiesComponent', () => {
   let component: DialogCookiesComponent;
@@ -10,8 +10,8 @@ describe('DialogCookiesComponent', () => {
     await TestBed.configureTestingModule({
       imports: [DialogCookiesComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(DialogCookiesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

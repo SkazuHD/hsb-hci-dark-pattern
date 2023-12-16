@@ -57,36 +57,40 @@ export class CookiesService {
     this.cookieForm.addControl('Drittanbieter',
       new FormControl(false, [Validators.pattern('true')]));
   }
+
   requestDialog(): void {
     this.openDialog();
   }
+
   requestSettingDialog(): void {
     this.openSettingDialog();
   }
+
   private openSettingDialog(): void {
     this.dialog.open(DialogCookiesSettingsComponent, {
       closeOnNavigation: false,
       disableClose: true,
       width: 'min(768px, 100%)',
-      data:{
+      data: {
         form: this.cookieForm
       }
     }).afterClosed().subscribe((successful) => {
       //Dont Close all if canceled
       if (successful) {
-       this.dialog.closeAll()
+        this.dialog.closeAll()
       }
     });
   }
+
   private openDialog(): void {
     if (!
       this.cookiesAccepted && this.dialog.openDialogs.length === 0
-    ){
+    ) {
       this.dialog.open(DialogCookiesComponent, {
         closeOnNavigation: false,
         disableClose: true,
         width: 'min(976px, 100%)',
-        data:{
+        data: {
           form: this.cookieForm
         }
       }).afterClosed().subscribe((abo) => {

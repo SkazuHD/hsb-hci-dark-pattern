@@ -1,4 +1,4 @@
-import {Component, inject, Input} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {
   MatDialogActions,
   MatDialogClose,
@@ -11,8 +11,6 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
 import {NgIf} from "@angular/common";
-import {DialogRef} from "@angular/cdk/dialog";
-import {of} from "rxjs";
 
 @Component({
   selector: 'app-dialog-newsletter',
@@ -34,6 +32,7 @@ import {of} from "rxjs";
 export class DialogNewsletterComponent {
   private dialogRef: MatDialogRef<DialogNewsletterComponent, any> = inject(MatDialogRef);
   email = new FormControl('', [Validators.email, Validators.required]);
+
   public onSubmit() {
     if (this.email.value && this.email.valid) {
       //TODO : Save to User Profile

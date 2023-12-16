@@ -22,8 +22,9 @@ import {CurrencyPipe, NgIf} from "@angular/common";
   styleUrl: './product-card.component.css'
 })
 export class ProductCardComponent {
-  @Input({ required: true }) product: Product;
+  @Input({required: true}) product: Product;
   private router: Router = inject(Router);
+
   navigateToProductDetails(productId: number) {
     // Use the Router service to navigate to the product details page
     this.router.navigate(['/product', productId]);
@@ -32,6 +33,7 @@ export class ProductCardComponent {
   get discountedPrice(): string {
     return this.product.price.toFixed(2);
   }
+
   get unDiscountedPrice(): string {
     return (this.product.price * 2.5).toFixed(2);
   }

@@ -1,17 +1,17 @@
 <div class="flex align-baseline gap-2">
   <div>
-<ng-container *ngFor="let star of fullStars">
-  <mat-icon> star </mat-icon>
-</ng-container>
-<!-- TODO: Show exactly filled star instead of half-->
-<ng-container *ngIf="partialStar">
-  <mat-icon> star_half </mat-icon>
-</ng-container>
-<ng-container *ngFor="let star of emptyStars">
-  <mat-icon> star_border </mat-icon>
-</ng-container>
+    <ng-container *ngFor="let star of fullStars">
+      <mat-icon> star</mat-icon>
+    </ng-container>
+    <!-- TODO: Show exactly filled star instead of half-->
+    <ng-container *ngIf="partialStar">
+      <mat-icon> star_half</mat-icon>
+    </ng-container>
+    <ng-container *ngFor="let star of emptyStars">
+      <mat-icon> star_border</mat-icon>
+    </ng-container>
   </div>
-<ng-container *ngIf="ratingCount">
-  <span class="font-semibold">({{ratingCount}})</span>
-</ng-container>
+  <ng-container *ngIf="ratingCount">
+    <span class="font-semibold">({{ratingCount}})</span>
+  </ng-container>
 </div>

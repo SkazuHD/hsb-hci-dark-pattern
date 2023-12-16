@@ -22,7 +22,7 @@ export class StarRatingComponent {
   }
 
   get partialStar(): number {
-    return Math.round((this.rating % 1) *10) / 10;
+    return Math.round((this.rating % 1) * 10) / 10;
   }
 
   get emptyStars(): number[] {

@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ShopViewComponent } from './shop-view.component';
+import {ShopViewComponent} from './shop-view.component';
 
 describe('StandaloneViewComponent', () => {
   let component: ShopViewComponent;
@@ -10,7 +10,7 @@ describe('StandaloneViewComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ShopViewComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(ShopViewComponent);
     component = fixture.componentInstance;

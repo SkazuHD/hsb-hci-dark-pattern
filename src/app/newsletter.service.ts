@@ -26,18 +26,18 @@ export class NewsletterService {
   }
 
   private openDialog() {
-      if (this.dialog.openDialogs.length === 0) {
-        this.dialog.open(DialogNewsletterComponent, {
-          width: 'min(640px,100%)',
-          autoFocus: true,
-          closeOnNavigation: false,
-          disableClose: true
-        }).beforeClosed().subscribe((value) => {
-          if (value) {
-            this.NewsLeterAccepted = true;
-            clearInterval(this.interval);
-          }
-        });
-      }
+    if (this.dialog.openDialogs.length === 0) {
+      this.dialog.open(DialogNewsletterComponent, {
+        width: 'min(640px,100%)',
+        autoFocus: true,
+        closeOnNavigation: false,
+        disableClose: true
+      }).beforeClosed().subscribe((value) => {
+        if (value) {
+          this.NewsLeterAccepted = true;
+          clearInterval(this.interval);
+        }
+      });
     }
+  }
 }

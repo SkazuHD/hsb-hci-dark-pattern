@@ -1,10 +1,10 @@
 import {Component, inject} from '@angular/core';
 import {
   MAT_DIALOG_DATA,
-  MatDialog,
   MatDialogActions,
   MatDialogContainer,
-  MatDialogContent, MatDialogRef,
+  MatDialogContent,
+  MatDialogRef,
   MatDialogTitle
 } from "@angular/material/dialog";
 import {MatFormFieldModule} from "@angular/material/form-field";
@@ -30,30 +30,33 @@ import {CookiesService} from "../cookies.service";
   styleUrl: './dialog-cookies.component.css'
 })
 export class DialogCookiesComponent {
-   router: Router = inject(Router);
-   private cookieService: CookiesService = inject(CookiesService);
-   dialogRef: MatDialogRef<DialogCookiesComponent> = inject(MatDialogRef);
-   private data = inject(MAT_DIALOG_DATA)
-   private form = this.data.form;
-    acceptCookies(): void {
-          // Set all form values to true
-         let form =  this.form
-          Object.keys(form.controls).forEach(key => {
-            form.controls[key].setValue(true);
-          });
-          this.dialogRef.close(false);
-    }
-    navigateLogin(): void {
-        let form =  this.form
-        Object.keys(form.controls).forEach(key => {
-          form.controls[key].setValue(true);
-        });
-        this.dialogRef.close(true);
+  router: Router = inject(Router);
+  private cookieService: CookiesService = inject(CookiesService);
+  dialogRef: MatDialogRef<DialogCookiesComponent> = inject(MatDialogRef);
+  private data = inject(MAT_DIALOG_DATA)
+  private form = this.data.form;
 
-    }
-    navigateCookieSettings(): void {
-      this.cookieService.requestSettingDialog();
-    }
+  acceptCookies(): void {
+    // Set all form values to true
+    let form = this.form
+    Object.keys(form.controls).forEach(key => {
+      form.controls[key].setValue(true);
+    });
+    this.dialogRef.close(false);
+  }
+
+  navigateLogin(): void {
+    let form = this.form
+    Object.keys(form.controls).forEach(key => {
+      form.controls[key].setValue(true);
+    });
+    this.dialogRef.close(true);
+
+  }
+
+  navigateCookieSettings(): void {
+    this.cookieService.requestSettingDialog();
+  }
 
 
 }

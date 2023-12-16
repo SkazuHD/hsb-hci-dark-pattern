@@ -1,4 +1,6 @@
 import {HttpClient} from "@angular/common/http";
+import {Injectable} from '@angular/core';
+import {map, Observable, of, tap} from 'rxjs';
 
 export interface Product {
   category: string;
@@ -13,16 +15,15 @@ export interface Product {
     count: number;
   };
 }
-import { Injectable} from '@angular/core';
-import {map, Observable, of, tap} from 'rxjs';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService{
+export class ProductService {
 
   private products: Product[] = [];
+
   constructor(private http: HttpClient) {
     // Comment out to not use the API
     /*this.products =[{
@@ -49,7 +50,7 @@ export class ProductService{
     console.debug('Fetching all products from API')
     return this.http.get<Product[]>('https://fakestoreapi.com/products').pipe(
       tap(products => this.products = products), map(products => products.map(product => {
-        product.count = Math.round(Math.random()*15)+1;
+        product.count = Math.round(Math.random() * 15) + 1;
         return product;
       }))
     );
@@ -63,15 +64,17 @@ export class ProductService{
     console.debug('Fetching product from API by id')
 
     return this.http.get<Product>('https://fakestoreapi.com/products/' + id).pipe(tap(product => {
-      product.count = Math.round(Math.random()*15);
+      product.count = Math.round(Math.random() * 15);
       return product;
     }));
 
     return this.http.get('https://fakestoreapi.com/products/' + id) as Observable<Product>;
   }
+
   getAvailableCategories(): Observable<string[]> {
     return this.http.get('https://fakestoreapi.com/products/categories') as Observable<string[]>;
   }
+
   getProductByCategory(category: string): Observable<Product[]> {
     return this.http.get('https://fakestoreapi.com/products/category/' + category) as Observable<Product[]>;
   }

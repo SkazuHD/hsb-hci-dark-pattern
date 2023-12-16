@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
-import {inject} from '@angular/core';
-import {FormBuilder, Validators, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {Component, inject} from '@angular/core';
+import {FormBuilder, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatStepperModule} from '@angular/material/stepper';
@@ -46,17 +45,17 @@ export class RegisterScreenComponent {
   isLinear = true;
   hide = true;
 
-  onRegister(){
+  onRegister() {
     //Checj if all forms are valid
-    if(this.nameGroup.valid && this.usernameGroup.valid && this.password1Group.valid && this.password2Group.valid && this.email1Group.valid && this.email2Group.valid && this.addresseGroup.valid){
-      if(this.password1Group.value.thirdCtrl == this.password2Group.value.forthCtrl && this.email1Group.value.fifthCtrl == this.email2Group.value.sixthCtrl){
+    if (this.nameGroup.valid && this.usernameGroup.valid && this.password1Group.valid && this.password2Group.valid && this.email1Group.valid && this.email2Group.valid && this.addresseGroup.valid) {
+      if (this.password1Group.value.thirdCtrl == this.password2Group.value.forthCtrl && this.email1Group.value.fifthCtrl == this.email2Group.value.sixthCtrl) {
         this.nutzer = {
-            name: this.nameGroup.value.firstCtrl ?? '',
-            username: this.usernameGroup.value.secondCtrl ?? '',
-            passwort: this.password1Group.value.thirdCtrl ?? '',
-            email: this.email1Group.value.fifthCtrl ?? '',
-            adresse: this.addresseGroup.value.seventhCtrl ?? '',
-            geschlecht: '',
+          name: this.nameGroup.value.firstCtrl ?? '',
+          username: this.usernameGroup.value.secondCtrl ?? '',
+          passwort: this.password1Group.value.thirdCtrl ?? '',
+          email: this.email1Group.value.fifthCtrl ?? '',
+          adresse: this.addresseGroup.value.seventhCtrl ?? '',
+          geschlecht: '',
         }
         this.UserService.onRegister(this.nutzer);
         this.router.navigate(['/login'])
@@ -65,5 +64,6 @@ export class RegisterScreenComponent {
 
   }
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(private _formBuilder: FormBuilder) {
+  }
 }

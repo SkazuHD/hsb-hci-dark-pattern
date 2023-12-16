@@ -3,6 +3,7 @@ import {ProductCardComponent} from "../product-card/product-card.component";
 import {Product, ProductService} from "../product.service";
 import {NgForOf, NgIf} from "@angular/common";
 import {NewsletterService} from "../newsletter.service";
+
 @Component({
   selector: 'app-product-grid',
   standalone: true,
@@ -14,7 +15,7 @@ import {NewsletterService} from "../newsletter.service";
   templateUrl: './product-grid.component.html',
   styleUrl: './product-grid.component.css'
 })
-export class ProductGridComponent implements OnInit{
+export class ProductGridComponent implements OnInit {
 
 
   private productService: ProductService = inject(ProductService);

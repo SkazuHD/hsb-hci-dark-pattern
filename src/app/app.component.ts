@@ -18,7 +18,7 @@ import {UserService} from "./user.service";
   animations: [
     trigger('routeAnimations', [
       transition('* <=> *', [
-        style({ position: 'relative' }),
+        style({position: 'relative'}),
         query(':enter, :leave', [
           style({
             position: 'absolute',
@@ -28,15 +28,15 @@ import {UserService} from "./user.service";
           })
         ]),
         query(':enter', [
-          style({ right: '-100%'})
+          style({right: '-100%'})
         ]),
         query(':leave', animateChild()),
         group([
           query(':leave', [
-            animate('300ms ease-out', style({ right: '100%'}))
+            animate('300ms ease-out', style({right: '100%'}))
           ]),
           query(':enter', [
-            animate('300ms ease-out', style({ right: '0%'}))
+            animate('300ms ease-out', style({right: '0%'}))
           ])
         ]),
         query(':enter', animateChild()),
@@ -44,7 +44,7 @@ import {UserService} from "./user.service";
     ])
   ]
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   title = 'Shop';
   private CookiesService: CookiesService = inject(CookiesService);
   private userServices: UserService = inject(UserService);
