@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { BottomFooterComponent } from './bottom-footer.component';
+import {BottomFooterComponent} from './bottom-footer.component';
 
 describe('BottomFooterComponent', () => {
   let component: BottomFooterComponent;
@@ -10,8 +10,8 @@ describe('BottomFooterComponent', () => {
     await TestBed.configureTestingModule({
       imports: [BottomFooterComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(BottomFooterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

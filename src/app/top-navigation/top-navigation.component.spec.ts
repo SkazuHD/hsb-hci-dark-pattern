@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { TopNavigationComponent } from './top-navigation.component';
+import {TopNavigationComponent} from './top-navigation.component';
 
 describe('TopNavigationComponent', () => {
   let component: TopNavigationComponent;
@@ -10,8 +10,8 @@ describe('TopNavigationComponent', () => {
     await TestBed.configureTestingModule({
       imports: [TopNavigationComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(TopNavigationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

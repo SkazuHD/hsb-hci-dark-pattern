@@ -1,14 +1,12 @@
 import {Component, inject, OnInit} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Product, ProductService} from '../product.service';
 import {NgIf} from "@angular/common";
 import {filter} from "rxjs";
-import { Router } from '@angular/router';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatButtonModule} from '@angular/material/button';
 import {StarRatingComponent} from "../star-rating/star-rating.component";
-
 
 
 @Component({
@@ -16,12 +14,12 @@ import {StarRatingComponent} from "../star-rating/star-rating.component";
   standalone: true,
   imports: [
     NgIf,
-    MatButtonModule, 
-    MatDividerModule, 
+    MatButtonModule,
+    MatDividerModule,
     MatIconModule,
     StarRatingComponent,
 
-    
+
   ],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.css'
@@ -58,11 +56,11 @@ export class ProductDetailComponent implements OnInit {
 
   }
 
-  
 
   get discountedPrice(): string {
     return this.product.price.toFixed(2);
   }
+
   get unDiscountedPrice(): string {
     return (this.product.price * 2.5).toFixed(2);
   }

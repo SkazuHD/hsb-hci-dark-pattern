@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {RouterOutlet} from "@angular/router";
 import {BottomFooterComponent} from "../bottom-footer/bottom-footer.component";
 import {TopNavigationComponent} from "../top-navigation/top-navigation.component";

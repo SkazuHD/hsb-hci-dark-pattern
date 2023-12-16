@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { DialogNewsletterComponent } from './dialog-newsletter.component';
+import {DialogNewsletterComponent} from './dialog-newsletter.component';
 
 describe('DialogNewsletterComponent', () => {
   let component: DialogNewsletterComponent;
@@ -10,8 +10,8 @@ describe('DialogNewsletterComponent', () => {
     await TestBed.configureTestingModule({
       imports: [DialogNewsletterComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(DialogNewsletterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

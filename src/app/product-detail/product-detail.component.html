@@ -1,16 +1,17 @@
 <div *ngIf="product" class="">
   <h2 class="text-3xl text-center">{{ product.title }}</h2>
   <div class="flex justify-center items-center flex-col md:flex-row ">
-    <img [src]="product.image" class="w-96" />
+    <img [src]="product.image" class="w-96"/>
     <div class="p-6 divide-y md:w-1/2">
       <div class="grid grid-cols-2">
         <app-star-rating [rating]="product.rating.rate" [ratingCount]="product.rating.count"></app-star-rating>
         <div class="pl-40">
-          <span class="text-lg line-through">{{unDiscountedPrice}}€</span> <span class="text-custom_scarlet"> {{discountedPrice}}€ </span>
+          <span class="text-lg line-through">{{unDiscountedPrice}}€</span> <span
+          class="text-custom_scarlet"> {{discountedPrice}}€ </span>
         </div>
       </div>
       <div class="py-2">
-        <button mat-flat-button color="warn" >
+        <button mat-flat-button color="warn">
           in Warenkorb
         </button>
       </div>

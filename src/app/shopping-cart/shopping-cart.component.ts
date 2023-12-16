@@ -24,37 +24,37 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular
   templateUrl: './shopping-cart.component.html',
   styleUrl: './shopping-cart.component.css'
 })
-export class ShoppingCartComponent implements OnInit{
+export class ShoppingCartComponent implements OnInit {
   private userService: UserService = inject(UserService);
   private warenkorbPositionen: WarenkorbPosition[] = [];
-  warenkorbFormGroup: FormGroup = new FormGroup({
-  });
+  warenkorbFormGroup: FormGroup = new FormGroup({});
   warenkorb: Warenkorb;
 
-     ngOnInit(): void {
-       this.warenkorb = this.userService.getCart();
-       this.warenkorbPositionen = this.warenkorb.positionen;
-       this.warenkorbPositionen.forEach((pos) => {
-         this.warenkorbFormGroup.addControl(pos.produkt.id.toString(), new FormControl(pos.anzahl));
-       });
+  ngOnInit(): void {
+    this.warenkorb = this.userService.getCart();
+    this.warenkorbPositionen = this.warenkorb.positionen;
+    this.warenkorbPositionen.forEach((pos) => {
+      this.warenkorbFormGroup.addControl(pos.produkt.id.toString(), new FormControl(pos.anzahl));
+    });
 
-       this.warenkorbFormGroup.valueChanges.subscribe((value) => {
-         this.warenkorbPositionen.forEach((pos) => {
-           //Set formgroup to 0 if value is negative
-              if(value[pos.produkt.id] < 0){
-                 this.getFormControl(pos.produkt.id.toString()).setValue(0);
-                    value[pos.produkt.id] = 0;
-              }
-           pos.anzahl = value[pos.produkt.id];
-           this.warenkorb.gesamtPreis = this.userService.getGesamtPreis()
-           this.userService.updateCart(this.warenkorb);
-         });
+    this.warenkorbFormGroup.valueChanges.subscribe((value) => {
+      this.warenkorbPositionen.forEach((pos) => {
+        //Set formgroup to 0 if value is negative
+        if (value[pos.produkt.id] < 0) {
+          this.getFormControl(pos.produkt.id.toString()).setValue(0);
+          value[pos.produkt.id] = 0;
+        }
+        pos.anzahl = value[pos.produkt.id];
+        this.warenkorb.gesamtPreis = this.userService.getGesamtPreis()
+        this.userService.updateCart(this.warenkorb);
+      });
 
-       });
+    });
 
 
-    }
-    getFormControl(id: string): FormControl {
-        return this.warenkorbFormGroup.get(id) as FormControl;
-    }
+  }
+
+  getFormControl(id: string): FormControl {
+    return this.warenkorbFormGroup.get(id) as FormControl;
+  }
 }

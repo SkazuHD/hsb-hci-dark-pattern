@@ -1,24 +1,25 @@
 <div class="p-3">
-<h1 mat-dialog-title>NEWSLETTER</h1>
-<div mat-dialog-content>
-  <div class="grid gap-3">
-  <p>
-  Data is good for all of us and we would like to keep you up to date. Please enter your email address here and we will send you our newsletter.
-</p>
-<mat-form-field class="w-full">
-  <input matInput placeholder="max@mustermann.de" [formControl]="email" >
-  <mat-error>Invalid email</mat-error>
-  <ng-container *ngIf="email.hasError('invalid')">
-    <mat-error>Email is invalid</mat-error>
-  </ng-container>
-</mat-form-field>
+  <h1 mat-dialog-title>NEWSLETTER</h1>
+  <div mat-dialog-content>
+    <div class="grid gap-3">
+      <p>
+        Data is good for all of us and we would like to keep you up to date. Please enter your email address here and we
+        will send you our newsletter.
+      </p>
+      <mat-form-field class="w-full">
+        <input matInput placeholder="max@mustermann.de" [formControl]="email">
+        <mat-error>Invalid email</mat-error>
+        <ng-container *ngIf="email.hasError('invalid')">
+          <mat-error>Email is invalid</mat-error>
+        </ng-container>
+      </mat-form-field>
+    </div>
   </div>
-</div>
-<div mat-dialog-actions >
-  <div class="flex w-full justify-between">
-  <button mat-button mat-dialog-close>Close</button>
-  <button mat-flat-button color="primary" (click)="onSubmit()">Ok</button>
+  <div mat-dialog-actions>
+    <div class="flex w-full justify-between">
+      <button mat-button mat-dialog-close>Close</button>
+      <button mat-flat-button color="primary" (click)="onSubmit()">Ok</button>
+    </div>
   </div>
-</div>
 
 </div>

@@ -1,11 +1,12 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {
   FormControl,
+  FormGroup,
   FormGroupDirective,
-  NgForm,
-  Validators,
   FormsModule,
-  ReactiveFormsModule, FormGroup
+  NgForm,
+  ReactiveFormsModule,
+  Validators
 } from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
 import {MatInputModule} from '@angular/material/input';
@@ -31,9 +32,9 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrl: './login-screen.component.css'
 
 })
-export class LoginScreenComponent implements OnInit{
-  private userService : UserService =  inject(UserService);
-  router : Router = inject(Router);
+export class LoginScreenComponent implements OnInit {
+  private userService: UserService = inject(UserService);
+  router: Router = inject(Router);
   private loginForm: FormGroup = new FormGroup({});
   emailFormControl = new FormControl('', [Validators.required]);
   passwordFormControl = new FormControl('', [Validators.required])
@@ -45,9 +46,10 @@ export class LoginScreenComponent implements OnInit{
     this.loginForm.addControl('email', this.emailFormControl)
     this.loginForm.addControl('passwort', this.passwordFormControl)
   }
-  onLogin(){
-    if(this.loginForm.valid){
-      if(this.userService.onLogin(this.emailFormControl.value ?? '',this.passwordFormControl.value ?? '')){
+
+  onLogin() {
+    if (this.loginForm.valid) {
+      if (this.userService.onLogin(this.emailFormControl.value ?? '', this.passwordFormControl.value ?? '')) {
         this.router.navigate(['/product'])
       }
     }
