@@ -30,8 +30,8 @@ import {NgIf} from "@angular/common";
   styleUrl: './dialog-newsletter.component.css'
 })
 export class DialogNewsletterComponent {
-  private dialogRef: MatDialogRef<DialogNewsletterComponent, any> = inject(MatDialogRef);
   email = new FormControl('', [Validators.email, Validators.required]);
+  private dialogRef: MatDialogRef<DialogNewsletterComponent, any> = inject(MatDialogRef);
 
   public onSubmit() {
     if (this.email.value && this.email.valid) {

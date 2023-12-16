@@ -1,12 +1,12 @@
 <div class="bg-custom_lavender-200 w-max m-auto rounded-3xl grid place-items-center gap-y-5 p-6">
   <h3 class="font-bold text-3xl text-center">Registrierung</h3>
-  <mat-stepper class="rounded-3xl" orientation="vertical" [linear]="isLinear" #stepper>
+  <mat-stepper #stepper [linear]="isLinear" class="rounded-3xl" orientation="vertical">
     <mat-step [stepControl]="nameGroup">
       <form [formGroup]="nameGroup">
         <ng-template matStepLabel>Gib deinen Namen ein</ng-template>
         <mat-form-field>
           <mat-label>Name</mat-label>
-          <input matInput placeholder="Vorname, Nachname" formControlName="firstCtrl" required>
+          <input formControlName="firstCtrl" matInput placeholder="Vorname, Nachname" required>
         </mat-form-field>
         <div>
           <button mat-button matStepperNext>Weiter</button>
@@ -18,7 +18,7 @@
         <ng-template matStepLabel>Gib deinen Username an</ng-template>
         <mat-form-field>
           <mat-label>Username</mat-label>
-          <input matInput formControlName="secondCtrl"
+          <input formControlName="secondCtrl" matInput
                  required>
         </mat-form-field>
         <div>
@@ -32,9 +32,9 @@
         <ng-template matStepLabel>Gib dein Passwort an</ng-template>
         <mat-form-field>
           <mat-label>Passwort</mat-label>
-          <input matInput [type]="hide ? 'password' : 'text'" formControlName="thirdCtrl">
-          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                  [attr.aria-pressed]="hide">
+          <input [type]="hide ? 'password' : 'text'" formControlName="thirdCtrl" matInput>
+          <button (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" mat-icon-button
+                  matSuffix>
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
         </mat-form-field>
@@ -49,9 +49,9 @@
         <ng-template matStepLabel>Gib dein Passwort ein zweites mal an</ng-template>
         <mat-form-field>
           <mat-label>Passwort</mat-label>
-          <input matInput [type]="hide ? 'password' : 'text'" formControlName="forthCtrl">
-          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                  [attr.aria-pressed]="hide">
+          <input [type]="hide ? 'password' : 'text'" formControlName="forthCtrl" matInput>
+          <button (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" mat-icon-button
+                  matSuffix>
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
         </mat-form-field>
@@ -66,7 +66,7 @@
         <ng-template matStepLabel>Gib deine Email an</ng-template>
         <mat-form-field>
           <mat-label>Email</mat-label>
-          <input matInput formControlName="fifthCtrl" placeholder="test@test.com"
+          <input formControlName="fifthCtrl" matInput placeholder="test@test.com"
                  required>
         </mat-form-field>
         <div>
@@ -80,7 +80,7 @@
         <ng-template matStepLabel>Gib deine Email ein weiters mal an</ng-template>
         <mat-form-field>
           <mat-label>Email</mat-label>
-          <input matInput formControlName="sixthCtrl" placeholder="test@test.com"
+          <input formControlName="sixthCtrl" matInput placeholder="test@test.com"
                  required>
         </mat-form-field>
         <div>
@@ -94,7 +94,7 @@
         <ng-template matStepLabel>Gib deine Adresse an</ng-template>
         <mat-form-field>
           <mat-label>Addresse</mat-label>
-          <input matInput formControlName="seventhCtrl" placeholder="Ex. Land, Stadt, Strasse, HNr"
+          <input formControlName="seventhCtrl" matInput placeholder="Ex. Land, Stadt, Strasse, HNr"
                  required>
 
         </mat-form-field>
@@ -109,8 +109,8 @@
 
       <div class="flex gap-x-4">
         <button mat-button matStepperPrevious>Zurück</button>
-        <button mat-button (click)="stepper.reset()">Reset</button>
-        <button mat-raised-button color="primary" (click)="onRegister()">Anmelden</button>
+        <button (click)="stepper.reset()" mat-button>Reset</button>
+        <button (click)="onRegister()" color="primary" mat-raised-button>Anmelden</button>
       </div>
     </mat-step>
   </mat-stepper>

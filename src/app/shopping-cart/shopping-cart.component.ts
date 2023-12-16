@@ -25,10 +25,10 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular
   styleUrl: './shopping-cart.component.css'
 })
 export class ShoppingCartComponent implements OnInit {
-  private userService: UserService = inject(UserService);
-  private warenkorbPositionen: WarenkorbPosition[] = [];
   warenkorbFormGroup: FormGroup = new FormGroup({});
   warenkorb: Warenkorb;
+  private userService: UserService = inject(UserService);
+  private warenkorbPositionen: WarenkorbPosition[] = [];
 
   ngOnInit(): void {
     this.warenkorb = this.userService.getCart();

@@ -17,8 +17,6 @@ import {MatIconModule} from "@angular/material/icon";
 })
 
 export class RegisterScreenComponent {
-  private UserService: UserService = inject(UserService);
-  private nutzer: Nutzer;
   router: Router = inject(Router);
   nameGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required],
@@ -44,6 +42,11 @@ export class RegisterScreenComponent {
   });
   isLinear = true;
   hide = true;
+  private UserService: UserService = inject(UserService);
+  private nutzer: Nutzer;
+
+  constructor(private _formBuilder: FormBuilder) {
+  }
 
   onRegister() {
     //Checj if all forms are valid
@@ -62,8 +65,5 @@ export class RegisterScreenComponent {
       }
     }
 
-  }
-
-  constructor(private _formBuilder: FormBuilder) {
   }
 }

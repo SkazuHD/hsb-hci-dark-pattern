@@ -25,16 +25,16 @@ export class ProductCardComponent {
   @Input({required: true}) product: Product;
   private router: Router = inject(Router);
 
-  navigateToProductDetails(productId: number) {
-    // Use the Router service to navigate to the product details page
-    this.router.navigate(['/product', productId]);
-  }
-
   get discountedPrice(): string {
     return this.product.price.toFixed(2);
   }
 
   get unDiscountedPrice(): string {
     return (this.product.price * 2.5).toFixed(2);
+  }
+
+  navigateToProductDetails(productId: number) {
+    // Use the Router service to navigate to the product details page
+    this.router.navigate(['/product', productId]);
   }
 }

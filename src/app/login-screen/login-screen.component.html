@@ -6,17 +6,17 @@
     <form class="space-y-5">
       <mat-form-field class="w-full">
         <mat-label>Email or Username</mat-label>
-        <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
-               placeholder="Ex.">
+        <input [errorStateMatcher]="matcher" [formControl]="emailFormControl" matInput placeholder="Ex."
+               type="email">
         <mat-error *ngIf="emailFormControl.hasError('required')">Please enter a valid E-Mail or your Username
         </mat-error>
       </mat-form-field>
       <mat-form-field class="w-full">
         <mat-label>Enter your password</mat-label>
-        <input matInput [formControl]="passwordFormControl" [type]="hide ? 'password' : 'text'" autocomplete="on"
+        <input [formControl]="passwordFormControl" [type]="hide ? 'password' : 'text'" autocomplete="on" matInput
                name="password">
-        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                [attr.aria-pressed]="hide">
+        <button (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" mat-icon-button
+                matSuffix>
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
         <mat-error *ngIf="passwordFormControl.hasError('required')">
@@ -26,8 +26,8 @@
     </form>
 
     <div class="flex gap-3">
-      <button mat-raised-button color="primary" routerLink="/register">Registrierung</button>
-      <button mat-raised-button color="primary" (click)="onLogin()">Anmeldung</button>
+      <button color="primary" mat-raised-button routerLink="/register">Registrierung</button>
+      <button (click)="onLogin()" color="primary" mat-raised-button>Anmeldung</button>
     </div>
   </div>
 </div>

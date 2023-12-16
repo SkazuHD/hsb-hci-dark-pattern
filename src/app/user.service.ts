@@ -31,56 +31,6 @@ export class UserService {
   private nutzerArray: Nutzer[] = [];
   private loggedInUser: Nutzer | undefined;
 
-  onLogin(username: string, passwort: string): boolean {
-    let nutzer = (this.nutzerArray.find(nutzer => nutzer.username === username || nutzer.email === username));
-
-    if (nutzer?.passwort === passwort) {
-      this.loggedInUser = nutzer;
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  onRegister(nutzer: Nutzer) {
-
-    nutzer.Warekorb = nutzer.Warekorb ?? {positionen: [], gesamtPreis: 0};
-    this.nutzerArray.push(nutzer);
-  }
-
-  onLogout() {
-    this.loggedInUser = undefined;
-  }
-
-  get loggedIn(): boolean {
-    return !!this.loggedInUser;
-  }
-
-  addToCart(product: Product, amount: number) {
-
-  }
-
-  removeFromCart(product: Product, amount: number) {
-
-  }
-
-  updateCart(Warenkorb: Warenkorb) {
-    if (this.loggedInUser)
-      this.loggedInUser.Warekorb = Warenkorb;
-  }
-
-  getCart(): Warenkorb {
-    if (this.loggedInUser?.Warekorb) {
-      this.loggedInUser.Warekorb.gesamtPreis = this.getGesamtPreis();
-      return this.loggedInUser.Warekorb;
-    }
-    return {positionen: [], gesamtPreis: 0}
-  }
-
-  getGesamtPreis(): number {
-    return this.loggedInUser?.Warekorb?.positionen.reduce((a, b) => a + b.produkt.price * b.anzahl, 0) ?? 0;
-  }
-
   constructor() {
     this.onRegister({
       adresse: 'Teststraße 1',
@@ -142,6 +92,56 @@ export class UserService {
       }
     })
     // this.onLogin("admin", "admin")
+  }
+
+  get loggedIn(): boolean {
+    return !!this.loggedInUser;
+  }
+
+  onLogin(username: string, passwort: string): boolean {
+    let nutzer = (this.nutzerArray.find(nutzer => nutzer.username === username || nutzer.email === username));
+
+    if (nutzer?.passwort === passwort) {
+      this.loggedInUser = nutzer;
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  onRegister(nutzer: Nutzer) {
+
+    nutzer.Warekorb = nutzer.Warekorb ?? {positionen: [], gesamtPreis: 0};
+    this.nutzerArray.push(nutzer);
+  }
+
+  onLogout() {
+    this.loggedInUser = undefined;
+  }
+
+  addToCart(product: Product, amount: number) {
+
+  }
+
+  removeFromCart(product: Product, amount: number) {
+
+  }
+
+  updateCart(Warenkorb: Warenkorb) {
+    if (this.loggedInUser)
+      this.loggedInUser.Warekorb = Warenkorb;
+  }
+
+  getCart(): Warenkorb {
+    if (this.loggedInUser?.Warekorb) {
+      this.loggedInUser.Warekorb.gesamtPreis = this.getGesamtPreis();
+      return this.loggedInUser.Warekorb;
+    }
+    return {positionen: [], gesamtPreis: 0}
+  }
+
+  getGesamtPreis(): number {
+    return this.loggedInUser?.Warekorb?.positionen.reduce((a, b) => a + b.produkt.price * b.anzahl, 0) ?? 0;
   }
 }
 
