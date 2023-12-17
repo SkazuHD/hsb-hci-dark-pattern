@@ -10,20 +10,31 @@ import {authGuard} from "./user.service";
 
 export const routes: Routes = [
   {
-    path: '', component: AppComponent, children: [
+    path: '',
+    component: AppComponent,
+    children: [
       {path: 'register', component: RegisterScreenComponent},
       {path: 'login', component: LoginScreenComponent},
       {path: 'logout', component: AppComponent, canActivate: [authGuard]},
       {
-        path: '', component: ShopViewComponent, canActivate: [authGuard], canActivateChild: [authGuard], children: [
-          {path: 'product/:id', component: ProductDetailComponent},
-          {path: 'product', component: ProductGridComponent},
-          {path: 'cart', component: ShoppingCartComponent},
-          {path: 'checkout', component: AppComponent},
-          {path: 'privacy', component: AppComponent},
-        ]
+        path: '',
+        canActivate: [authGuard],
+        canActivateChild: [authGuard],
+        children: [
+          {
+            path: '',
+            component: ShopViewComponent,
+            children: [
+              {path: 'product/:id', component: ProductDetailComponent},
+              {path: 'product', component: ProductGridComponent},
+              {path: 'cart', component: ShoppingCartComponent},
+              {path: 'checkout', component: AppComponent},
+              {path: 'privacy', component: AppComponent},
+              {path: '', redirectTo: 'product', pathMatch: 'full'}, // Redirect empty path to 'product'
+            ],
+          },
+        ],
       },
-    ]
+    ],
   },
-
 ];
