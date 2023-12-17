@@ -6,6 +6,7 @@ import {LoginScreenComponent} from "./login-screen/login-screen.component";
 import {RegisterScreenComponent} from "./register-screen/register-screen.component";
 import {ShoppingCartComponent} from "./shopping-cart/shopping-cart.component";
 import {ShopViewComponent} from "./shop-view/shop-view.component";
+import { PurchaseComponent } from './purchase/purchase.component';
 import {authGuard} from "./user.service";
 
 export const routes: Routes = [
@@ -19,6 +20,7 @@ export const routes: Routes = [
           {path: 'product/:id', component: ProductDetailComponent},
           {path: 'product', component: ProductGridComponent},
           {path: 'cart', component: ShoppingCartComponent},
+          {path: 'purchase', component: PurchaseComponent},
           {path: 'checkout', component: AppComponent},
           {path: 'privacy', component: AppComponent},
         ]

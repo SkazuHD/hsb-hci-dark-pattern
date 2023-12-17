@@ -1,0 +1,45 @@
+<div>
+    <div class="divide-y">
+        <div class="grid grid-cols-2">
+            <p class="text-custom_scarlet text-5xl text-center underline decoration-double decoration-red-600 decoration-2"> letzte chance!</p>
+            <div class="text-center">test produkt</div>
+        </div>
+        <div class="grid grid-cols-2 divide-x">
+            <div class="text-center grid grid-cols-1 justify-self-start pt-8 pl-28">
+                <mat-form-field>
+                    <mat-label>Adresse</mat-label>
+                    <input  matInput placeholder="Adresse" required>
+                </mat-form-field>   
+                <mat-form-field>
+                    <mat-label>PLZ</mat-label>
+                    <input  matInput placeholder="PLZ" required>
+                </mat-form-field>   
+                <mat-form-field>
+                    <mat-label>ort</mat-label>
+                    <input matInput placeholder="Ort" required>
+                </mat-form-field>          
+            </div>
+            <div class="text-center">
+                <p>Zahlung</p>
+                <div class="grid">
+                    <div class="pt-8" >
+                        <button  color="warn" mat-flat-button>
+                            PayPal
+                        </button>
+                    </div>
+                    <div class="pt-8" >
+                        <button  color="warn" mat-flat-button>
+                            ApplePay
+                        </button>
+                    </div>
+                    <div class="pt-8" >
+                        <button  color="warn" mat-flat-button>
+                            Credit/debit card
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
