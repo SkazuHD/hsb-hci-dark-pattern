@@ -9,6 +9,7 @@ import {Router} from '@angular/router';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {Product} from "../product.service";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {LoadingSpinnerComponent} from "../loading-spinner/loading-spinner.component";
 
 @Component({
   selector: 'app-shopping-cart',
@@ -24,7 +25,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     ReactiveFormsModule,
     FormsModule,
     MatProgressSpinnerModule,
-    NgClass
+    NgClass,
+    LoadingSpinnerComponent
   ],
   templateUrl: './shopping-cart.component.html',
   styleUrl: './shopping-cart.component.css'
