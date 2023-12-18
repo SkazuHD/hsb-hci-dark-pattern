@@ -14,6 +14,7 @@ import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {KeyValuePipe, NgForOf, NgIf} from "@angular/common";
 import {MatSelectModule} from "@angular/material/select";
+import {LoadingSpinnerComponent} from "../loading-spinner/loading-spinner.component";
 
 @Component({
   selector: 'app-dialog-cookies-settings',
@@ -31,7 +32,8 @@ import {MatSelectModule} from "@angular/material/select";
     NgForOf,
     KeyValuePipe,
     MatSelectModule,
-    NgIf
+    NgIf,
+    LoadingSpinnerComponent
   ],
   templateUrl: './dialog-cookies-settings.component.html',
   styleUrl: './dialog-cookies-settings.component.css'
@@ -40,6 +42,7 @@ export class DialogCookiesSettingsComponent implements OnInit {
   dialogRef: MatDialogRef<DialogCookiesSettingsComponent> = inject(MatDialogRef);
   data = inject(MAT_DIALOG_DATA)
   cookieForm: FormGroup
+  loading: boolean = false;
 
   ngOnInit(): void {
     this.cookieForm = this.data.form;
@@ -68,6 +71,13 @@ export class DialogCookiesSettingsComponent implements OnInit {
 
   onCancel(): void {
     this.dialogRef.close(false);
+  }
+
+  onToggle(): void {
+    this.loading = true;
+    setTimeout(() => {
+      this.loading = false;
+    }, 1000);
   }
 }
 
