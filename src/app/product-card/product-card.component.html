@@ -1,5 +1,5 @@
 <div
-  class="grid  rounded-3xl p-6 cursor-pointer text-slate-950 bg-custom_lavender-100 hover:bg-custom_gunmetal hover:text-white transition-all min-h-full">
+  class="grid  rounded-3xl p-6 cursor-pointer text-slate-950 bg-custom_lavender-100 hover:bg-custom_lavender-200 hover:text-black transition-all min-h-full">
   <a (click)="navigateToProductDetails(product.id)" class="grid place-items-center gap-3 min-h-full">
     <h3 class="font-bold text-xl text-center">{{product.title}}</h3>
     <img [src]="product.image" alt="Product Image" class="h-56 bg-white p-6 rounded-3xl" loading="lazy">
@@ -11,8 +11,9 @@
       <p>Nur noch <span class="font-bold">{{product.count}}</span> verfügbar</p>
     </ng-container>
   </a>
-  <button (click)="navigateToProductDetails(product.id)" class="self-end" color="primary" mat-flat-button>
-    BUY
+  <button (click)="addToCart(product)"
+          class="self-end uppercase text-lg !text-white !bg-custom_gunmetal" mat-flat-button>
+    Add to Cart
     <mat-icon>
       shopping_cart
     </mat-icon>

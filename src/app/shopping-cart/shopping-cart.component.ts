@@ -5,8 +5,9 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {StarRatingComponent} from "../star-rating/star-rating.component";
 import {MatInputModule} from "@angular/material/input";
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router} from '@angular/router';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {Product} from "../product.service";
 
 @Component({
   selector: 'app-shopping-cart',
@@ -42,9 +43,9 @@ export class ShoppingCartComponent implements OnInit {
     this.warenkorbFormGroup.valueChanges.subscribe((value) => {
       this.warenkorbPositionen.forEach((pos) => {
         //Set formgroup to 0 if value is negative
-        if (value[pos.produkt.id] < 0) {
-          this.getFormControl(pos.produkt.id.toString()).setValue(0);
-          value[pos.produkt.id] = 0;
+        if (value[pos.produkt.id] < 1) {
+          this.getFormControl(pos.produkt.id.toString()).setValue(1);
+          value[pos.produkt.id] = 1;
         }
         pos.anzahl = value[pos.produkt.id];
         this.warenkorb.gesamtPreis = this.userService.getGesamtPreis()
@@ -53,6 +54,12 @@ export class ShoppingCartComponent implements OnInit {
 
     });
 
+
+  }
+
+  onRemoveFromCart(product: Product) {
+    this.userService.removeFromCart(product);
+    this.warenkorb.gesamtPreis = this.userService.getGesamtPreis()
 
   }
 

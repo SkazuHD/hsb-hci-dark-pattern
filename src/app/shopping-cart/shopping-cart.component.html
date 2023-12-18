@@ -1,9 +1,9 @@
-<div class="lg:grid grid-cols-3 bg-custom_lavender-100 gap-3 p-6">
-  <div class="col-span-2 bg-custom_lavender-200 grid gap-6 p-6">
+<div class="lg:grid grid-cols-3 bg-custom_lavender-100 gap-6 p-6 rounded-3xl">
+  <div class="col-span-2 bg-custom_lavender-200 grid  p-6 rounded-3xl">
     <ng-container *ngFor="let position of warenkorb.positionen">
       <div>
         <div class="flex justify-end w-full">
-          <button mat-icon-button>
+          <button (click)="onRemoveFromCart(position.produkt)" mat-icon-button>
             <mat-icon>close></mat-icon>
           </button>
         </div>
@@ -24,20 +24,25 @@
                 <p>{{position.produkt.category}}</p>
               </div>
               <mat-form-field>
-                <input [formControl]="getFormControl(position.produkt.id.toString())" matInput min="0" type="number">
+                <input [formControl]="getFormControl(position.produkt.id.toString())" matInput min="1" type="number">
               </mat-form-field>
             </div>
           </div>
         </div>
       </div>
     </ng-container>
-    <button (click)="navigateToPurchase()" color="warn" mat-flat-button>
-      kaufen
-    </button>
   </div>
-  <div class="col-span-1">
-    <p class="font-bold text-3xl">
+  <div class="col-span-1 flex flex-col gap-3">
+    <p class="font-bold text-3xl self-end">
       {{warenkorb.gesamtPreis | currency:'EUR':'symbol'}}
+
     </p>
+    <button (click)="navigateToPurchase()" class="font-bold uppercase text-lg !text-white !bg-custom_gunmetal"
+            mat-flat-button>
+      Kaufen
+      <mat-icon>
+        shopping_cart
+      </mat-icon>
+    </button>
   </div>
 </div>
