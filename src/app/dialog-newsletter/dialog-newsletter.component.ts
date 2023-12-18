@@ -11,6 +11,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
 import {NgIf} from "@angular/common";
+import {LoadingSpinnerComponent} from "../loading-spinner/loading-spinner.component";
 
 @Component({
   selector: 'app-dialog-newsletter',
@@ -24,13 +25,15 @@ import {NgIf} from "@angular/common";
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
-    NgIf
+    NgIf,
+    LoadingSpinnerComponent
   ],
   templateUrl: './dialog-newsletter.component.html',
   styleUrl: './dialog-newsletter.component.css'
 })
 export class DialogNewsletterComponent {
   email = new FormControl('', [Validators.email, Validators.required]);
+  loading: boolean = false;
   private dialogRef: MatDialogRef<DialogNewsletterComponent, String> = inject(MatDialogRef);
 
   public onSubmit() {
@@ -40,5 +43,14 @@ export class DialogNewsletterComponent {
     } else {
       this.email.markAsTouched();
     }
+  }
+
+
+  onClose() {
+    this.loading = true;
+    setTimeout(() => {
+      this.dialogRef.close();
+      this.loading = false;
+    }, 3000);
   }
 }
