@@ -5,6 +5,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {StarRatingComponent} from "../star-rating/star-rating.component";
 import {MatInputModule} from "@angular/material/input";
+import {ActivatedRoute, Router} from '@angular/router';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @Component({
@@ -27,6 +28,7 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular
 export class ShoppingCartComponent implements OnInit {
   warenkorbFormGroup: FormGroup = new FormGroup({});
   warenkorb: Warenkorb;
+  private router: Router = inject(Router);
   private userService: UserService = inject(UserService);
   private warenkorbPositionen: WarenkorbPosition[] = [];
 
@@ -56,5 +58,9 @@ export class ShoppingCartComponent implements OnInit {
 
   getFormControl(id: string): FormControl {
     return this.warenkorbFormGroup.get(id) as FormControl;
+  }
+
+  navigateToPurchase() {
+    this.router.navigate(['/purchase']);
   }
 }

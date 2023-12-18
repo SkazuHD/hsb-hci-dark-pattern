@@ -63,4 +63,8 @@ export class ProductDetailComponent implements OnInit {
       );
 
   }
+
+  navigateToWarenkorb(productId: number) {
+    this.router.navigate(['/cart']);
+  }
 }
