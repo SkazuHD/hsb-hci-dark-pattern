@@ -3,16 +3,19 @@
   <div class="flex justify-center items-center flex-col md:flex-row ">
     <img [src]="product.image" class="w-96"/>
     <div class="p-6 divide-y md:w-1/2">
-      <div class="grid grid-cols-2">
+      <div class="flex justify-between w-full">
         <app-star-rating [ratingCount]="product.rating.count" [rating]="product.rating.rate"></app-star-rating>
-        <div class="pl-40">
-          <span class="text-lg line-through">{{unDiscountedPrice}}€</span> <span
-          class="text-custom_scarlet"> {{discountedPrice}}€ </span>
-        </div>
+        <p class="font-semibold text-3xl  flex gap-4"><span
+          class="text-lg line-through">{{unDiscountedPrice | currency:'EUR':'symbol'}} </span> <span
+          class="text-custom_scarlet">{{discountedPrice | currency:'EUR':'symbol'}} </span></p>
       </div>
       <div class="py-2">
-        <button (click)="navigateToWarenkorb(product.id)" color="warn" mat-flat-button>
-          in Warenkorb
+        <button (click)="addToCart()"
+                class="self-end uppercase text-lg !text-white !bg-custom_gunmetal" mat-flat-button>
+          Add to Cart
+          <mat-icon>
+            shopping_cart
+          </mat-icon>
         </button>
       </div>
       <p class="py-2">{{ product.description }}</p>

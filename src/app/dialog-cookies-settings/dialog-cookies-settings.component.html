@@ -1,3 +1,4 @@
+<app-loading-spinner [showLoading]="loading"></app-loading-spinner>
 <div class="p-3">
   <h1 class="text-center !text-3xl" mat-dialog-title>Datenschutzzentrum</h1>
   <div class="" mat-dialog-content>
@@ -5,7 +6,8 @@
     <form [formGroup]="cookieForm" class="grid grid-cols-1 p-3 gap-6">
       <ng-container *ngFor="let controlName of cookieForm.controls | keyvalue">
         <div class="grid">
-          <mat-slide-toggle [formControlName]="controlName.key" color="primary">{{controlName.key}}</mat-slide-toggle>
+          <mat-slide-toggle (click)="onToggle()" [formControlName]="controlName.key"
+                            color="primary">{{controlName.key}}</mat-slide-toggle>
           <ng-container *ngIf="getFormControlByName(controlName.key).touched">
             <mat-error *ngIf="getFormControlByName(controlName.key).status === 'INVALID'"
                        class="text-custom_scarlet text-xs">

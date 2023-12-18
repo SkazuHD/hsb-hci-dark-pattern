@@ -1,1 +1,7 @@
-<p>top-navigation works!</p>
+<div class="flex justify-end w-full bg-custom_lavender-200 p-6">
+  <button [matBadge]="productCountInCart" class="text-lg" mat-flat-button matBadgePosition="above after"
+          routerLink="/cart">
+    <mat-icon>shopping_basket</mat-icon>
+    <span>Warenkorb</span>
+  </button>
+</div>

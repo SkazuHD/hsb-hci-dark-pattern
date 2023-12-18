@@ -1,12 +1,15 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {UserService, Warenkorb, WarenkorbPosition} from "../user.service";
-import {CurrencyPipe, NgForOf, NgIf} from "@angular/common";
+import {CurrencyPipe, NgClass, NgForOf, NgIf} from "@angular/common";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {StarRatingComponent} from "../star-rating/star-rating.component";
 import {MatInputModule} from "@angular/material/input";
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router} from '@angular/router';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {Product} from "../product.service";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {LoadingSpinnerComponent} from "../loading-spinner/loading-spinner.component";
 
 @Component({
   selector: 'app-shopping-cart',
@@ -20,7 +23,10 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular
     MatInputModule,
     CurrencyPipe,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatProgressSpinnerModule,
+    NgClass,
+    LoadingSpinnerComponent
   ],
   templateUrl: './shopping-cart.component.html',
   styleUrl: './shopping-cart.component.css'
@@ -28,6 +34,7 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular
 export class ShoppingCartComponent implements OnInit {
   warenkorbFormGroup: FormGroup = new FormGroup({});
   warenkorb: Warenkorb;
+  public showLoading: boolean = false;
   private router: Router = inject(Router);
   private userService: UserService = inject(UserService);
   private warenkorbPositionen: WarenkorbPosition[] = [];
@@ -42,9 +49,9 @@ export class ShoppingCartComponent implements OnInit {
     this.warenkorbFormGroup.valueChanges.subscribe((value) => {
       this.warenkorbPositionen.forEach((pos) => {
         //Set formgroup to 0 if value is negative
-        if (value[pos.produkt.id] < 0) {
-          this.getFormControl(pos.produkt.id.toString()).setValue(0);
-          value[pos.produkt.id] = 0;
+        if (value[pos.produkt.id] < 1) {
+          this.getFormControl(pos.produkt.id.toString()).setValue(1);
+          value[pos.produkt.id] = 1;
         }
         pos.anzahl = value[pos.produkt.id];
         this.warenkorb.gesamtPreis = this.userService.getGesamtPreis()
@@ -52,6 +59,17 @@ export class ShoppingCartComponent implements OnInit {
       });
 
     });
+
+
+  }
+
+  onRemoveFromCart(product: Product) {
+    this.showLoading = true;
+    setTimeout(() => {
+      this.showLoading = false;
+      this.userService.removeFromCart(product);
+      this.warenkorb.gesamtPreis = this.userService.getGesamtPreis()
+    }, 2000);
 
 
   }

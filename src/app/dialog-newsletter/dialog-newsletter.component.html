@@ -1,3 +1,5 @@
+<app-loading-spinner [showLoading]="loading"></app-loading-spinner>
+
 <div class="p-3">
   <h1 mat-dialog-title>NEWSLETTER</h1>
   <div mat-dialog-content>
@@ -17,7 +19,7 @@
   </div>
   <div mat-dialog-actions>
     <div class="flex w-full justify-between">
-      <button mat-button mat-dialog-close>Close</button>
+      <button (click)="onClose()" mat-button>Close</button>
       <button (click)="onSubmit()" color="primary" mat-flat-button>Ok</button>
     </div>
   </div>

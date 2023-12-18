@@ -39,58 +39,7 @@ export class UserService {
       name: 'Admin',
       passwort: 'admin',
       username: 'admin',
-      Warekorb: {
-        positionen: [
-          {
-            produkt: {
-              id: 1,
-              title: 'Testprodukt',
-              description: 'Testbeschreibung',
-              price: 10,
-              image: 'https://picsum.photos/200/300',
-              rating: {
-                rate: 5,
-                count: 1
-              },
-              category: 'Testkategorie'
-            },
-            anzahl: 1
-          },
-          {
-            produkt: {
-              id: 2,
-              title: 'Testprodukt2',
-              description: 'Testbeschreibung2',
-              price: 102,
-              image: 'https://picsum.photos/200/250',
-              rating: {
-                rate: 5,
-                count: 12
-              },
-              category: 'Testkategorie'
-            },
-            anzahl: 12
-          },
-
-          {
-            produkt: {
-              id: 3,
-              title: 'Testprodukt2',
-              description: 'Testbeschreibung2',
-              price: 1022,
-              image: 'https://picsum.photos/250/250',
-              rating: {
-                rate: 5,
-                count: 122
-              },
-              category: 'Testkategorie'
-            },
-            anzahl: 122
-          }
-        ],
-        gesamtPreis: 102
-      }
-    })
+    });
   }
 
   get loggedIn(): boolean {
@@ -119,11 +68,23 @@ export class UserService {
   }
 
   addToCart(product: Product, amount: number) {
-
+    if (this.loggedInUser) {
+      let position = this.loggedInUser.Warekorb?.positionen.find(position => position.produkt.id === product.id);
+      if (position) {
+        position.anzahl += amount;
+      } else {
+        this.loggedInUser.Warekorb?.positionen.push({produkt: product, anzahl: amount});
+      }
+    }
   }
 
-  removeFromCart(product: Product, amount: number) {
-
+  removeFromCart(product: Product) {
+    if (this.loggedInUser) {
+      let position = this.loggedInUser.Warekorb?.positionen.find(position => position.produkt.id === product.id);
+      if (position) {
+        this.loggedInUser.Warekorb?.positionen.splice(this.loggedInUser.Warekorb?.positionen.indexOf(position), 1);
+      }
+    }
   }
 
   updateCart(Warenkorb: Warenkorb) {
@@ -145,6 +106,8 @@ export class UserService {
 }
 
 export const authGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+  inject(UserService).onLogin("admin", "admin");
+  return true;
   let router = inject(Router);
   if (route.url.toString() === 'logout') {
     inject(UserService).onLogout();
