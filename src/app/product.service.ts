@@ -67,8 +67,6 @@ export class ProductService {
       product.count = Math.round(Math.random() * 15);
       return product;
     }));
-
-    return this.http.get('https://fakestoreapi.com/products/' + id) as Observable<Product>;
   }
 
   getAvailableCategories(): Observable<string[]> {

@@ -31,7 +31,7 @@ import {NgIf} from "@angular/common";
 })
 export class DialogNewsletterComponent {
   email = new FormControl('', [Validators.email, Validators.required]);
-  private dialogRef: MatDialogRef<DialogNewsletterComponent, any> = inject(MatDialogRef);
+  private dialogRef: MatDialogRef<DialogNewsletterComponent, String> = inject(MatDialogRef);
 
   public onSubmit() {
     if (this.email.value && this.email.valid) {

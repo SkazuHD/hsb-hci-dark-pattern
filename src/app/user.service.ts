@@ -91,7 +91,6 @@ export class UserService {
         gesamtPreis: 102
       }
     })
-    // this.onLogin("admin", "admin")
   }
 
   get loggedIn(): boolean {
@@ -146,17 +145,18 @@ export class UserService {
 }
 
 export const authGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+  let router = inject(Router);
   if (route.url.toString() === 'logout') {
     inject(UserService).onLogout();
-    inject(Router).navigate(['/login']).then(value => {
-      return false;
-    });
+    return router.parseUrl('/login');
   }
+
   if (inject(UserService).loggedIn) {
     return true;
   } else {
-    inject(Router).navigate(['/login']);
-    return true;
+    //Return UrlTree to redirect to login page
+    return router.parseUrl('/login');
+
   }
 
 }
