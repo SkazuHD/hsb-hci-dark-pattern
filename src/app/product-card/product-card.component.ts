@@ -40,8 +40,7 @@ export class ProductCardComponent {
     this.router.navigate(['/product', productId]);
   }
 
-  addToCart(product: Product) {
+  addToCart() {
     this.userSerivce.addToCart(this.product, 1);
-
   }
 }

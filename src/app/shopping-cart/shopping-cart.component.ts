@@ -1,6 +1,6 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {UserService, Warenkorb, WarenkorbPosition} from "../user.service";
-import {CurrencyPipe, NgForOf, NgIf} from "@angular/common";
+import {CurrencyPipe, NgClass, NgForOf, NgIf} from "@angular/common";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {StarRatingComponent} from "../star-rating/star-rating.component";
@@ -8,6 +8,7 @@ import {MatInputModule} from "@angular/material/input";
 import {Router} from '@angular/router';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {Product} from "../product.service";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @Component({
   selector: 'app-shopping-cart',
@@ -21,7 +22,9 @@ import {Product} from "../product.service";
     MatInputModule,
     CurrencyPipe,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatProgressSpinnerModule,
+    NgClass
   ],
   templateUrl: './shopping-cart.component.html',
   styleUrl: './shopping-cart.component.css'
@@ -29,6 +32,7 @@ import {Product} from "../product.service";
 export class ShoppingCartComponent implements OnInit {
   warenkorbFormGroup: FormGroup = new FormGroup({});
   warenkorb: Warenkorb;
+  public showLoading: boolean = false;
   private router: Router = inject(Router);
   private userService: UserService = inject(UserService);
   private warenkorbPositionen: WarenkorbPosition[] = [];
@@ -58,8 +62,13 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   onRemoveFromCart(product: Product) {
-    this.userService.removeFromCart(product);
-    this.warenkorb.gesamtPreis = this.userService.getGesamtPreis()
+    this.showLoading = true;
+    setTimeout(() => {
+      this.showLoading = false;
+      this.userService.removeFromCart(product);
+      this.warenkorb.gesamtPreis = this.userService.getGesamtPreis()
+    }, 2000);
+
 
   }
 
