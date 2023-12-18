@@ -39,7 +39,9 @@
       {{warenkorb.gesamtPreis | currency:'EUR':'symbol'}}
 
     </p>
-    <button (click)="navigateToPurchase()" class="font-bold uppercase text-lg !text-white !bg-custom_gunmetal"
+    <button (click)="navigateToPurchase()" [disabled]="warenkorb.positionen.length===0"
+            [ngClass]="warenkorb.positionen.length > 0? '!text-white !bg-custom_gunmetal':' '"
+            class="font-bold uppercase text-lg"
             mat-flat-button>
       Kaufen
       <mat-icon>
