@@ -23,16 +23,16 @@
     </div>
   </div>
 
-  <div class="divide-y text-center ">
+  <div class="divide-y text-center mx-auto ">
     <div>
       <h1 class="text-2xl text-center "> Weitere Produkte </h1>
+      <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 mx-3">
+        <ng-container *ngFor="let product of furtherProducts">
+          <app-product-card [product]="product"></app-product-card>
+        </ng-container>
+      </div>
     </div>
-    <div class="grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3 mx-3">
-      <p>tshirt</p>
-      <p>käse</p>
-      <p>auto</p>
-      <p>pc</p>
-    </div>
+
   </div>
 
 </div>
