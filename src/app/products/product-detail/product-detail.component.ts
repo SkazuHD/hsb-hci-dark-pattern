@@ -1,13 +1,13 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Product, ProductService} from '../product.service';
+import {Product, ProductService} from '../../product.service';
 import {CurrencyPipe, NgIf} from "@angular/common";
 import {filter} from "rxjs";
 import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatButtonModule} from '@angular/material/button';
 import {StarRatingComponent} from "../star-rating/star-rating.component";
-import {UserService} from "../user.service";
+import {UserService} from "../../user.service";
 
 
 @Component({
@@ -50,12 +50,7 @@ export class ProductDetailComponent implements OnInit {
       this.getProduct();
     });
   }
-
-  navigateToWarenkorb(productId: number) {
-    this.userSerivce.addToCart(this.product, 1);
-    this.router.navigate(['/cart']);
-  }
-
+  
   addToCart() {
     this.userSerivce.addToCart(this.product, 1);
   }

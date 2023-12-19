@@ -1,7 +1,7 @@
 <div *ngIf="product" class="">
   <h2 class="text-3xl text-center">{{ product.title }}</h2>
   <div class="flex justify-center items-center flex-col md:flex-row ">
-    <img [src]="product.image" class="w-96"/>
+    <img [alt]="product.title" [src]="product.image" class="w-96"/>
     <div class="p-6 divide-y md:w-1/2">
       <div class="flex justify-between w-full">
         <app-star-rating [ratingCount]="product.rating.count" [rating]="product.rating.rate"></app-star-rating>

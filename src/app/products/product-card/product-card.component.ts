@@ -1,12 +1,12 @@
 import {Component, inject, Input} from '@angular/core';
-import {Product} from "../product.service";
+import {Product} from "../../product.service";
 import {MatButtonModule} from "@angular/material/button";
 import {Router} from "@angular/router";
 import {MatChipsModule} from "@angular/material/chips";
 import {MatIconModule} from "@angular/material/icon";
 import {StarRatingComponent} from "../star-rating/star-rating.component";
 import {CurrencyPipe, NgIf} from "@angular/common";
-import {UserService} from "../user.service";
+import {UserService} from "../../user.service";
 
 @Component({
   selector: 'app-product-card',

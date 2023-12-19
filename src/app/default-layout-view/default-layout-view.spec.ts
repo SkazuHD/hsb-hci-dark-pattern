@@ -1,18 +1,18 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {RegisterScreenComponent} from './register-screen.component';
+import {DefaultLayoutView} from './default-layout-view';
 
-describe('RegisterScreenComponent', () => {
-  let component: RegisterScreenComponent;
-  let fixture: ComponentFixture<RegisterScreenComponent>;
+describe('StandaloneViewComponent', () => {
+  let component: DefaultLayoutView;
+  let fixture: ComponentFixture<DefaultLayoutView>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RegisterScreenComponent]
+      imports: [DefaultLayoutView]
     })
       .compileComponents();
 
-    fixture = TestBed.createComponent(RegisterScreenComponent);
+    fixture = TestBed.createComponent(DefaultLayoutView);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

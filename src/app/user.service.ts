@@ -106,8 +106,12 @@ export class UserService {
 }
 
 export const authGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
-  inject(UserService).onLogin("admin", "admin");
-  return true;
+  let bypassLogin = false;
+  if (bypassLogin) {
+    inject(UserService).onLogin("admin", "admin");
+    return true;
+  }
+
   let router = inject(Router);
   if (route.url.toString() === 'logout') {
     inject(UserService).onLogout();

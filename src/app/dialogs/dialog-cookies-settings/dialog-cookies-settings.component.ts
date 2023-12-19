@@ -14,7 +14,7 @@ import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {KeyValuePipe, NgForOf, NgIf} from "@angular/common";
 import {MatSelectModule} from "@angular/material/select";
-import {LoadingSpinnerComponent} from "../loading-spinner/loading-spinner.component";
+import {LoadingSpinnerComponent} from "../../standalone-components/loading-spinner/loading-spinner.component";
 
 @Component({
   selector: 'app-dialog-cookies-settings',

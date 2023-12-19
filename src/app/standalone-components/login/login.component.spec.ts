@@ -1,18 +1,18 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {ShopViewComponent} from './shop-view.component';
+import {LoginComponent} from './login.component';
 
-describe('StandaloneViewComponent', () => {
-  let component: ShopViewComponent;
-  let fixture: ComponentFixture<ShopViewComponent>;
+describe('LoginScreenComponent', () => {
+  let component: LoginComponent;
+  let fixture: ComponentFixture<LoginComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ShopViewComponent]
+      imports: [LoginComponent]
     })
       .compileComponents();
 
-    fixture = TestBed.createComponent(ShopViewComponent);
+    fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

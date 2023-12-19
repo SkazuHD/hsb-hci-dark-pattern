@@ -11,7 +11,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
 import {NgIf} from "@angular/common";
-import {LoadingSpinnerComponent} from "../loading-spinner/loading-spinner.component";
+import {LoadingSpinnerComponent} from "../../standalone-components/loading-spinner/loading-spinner.component";
 
 @Component({
   selector: 'app-dialog-newsletter',

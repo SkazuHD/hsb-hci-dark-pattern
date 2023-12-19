@@ -4,7 +4,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatButtonModule} from '@angular/material/button';
-import {Nutzer, UserService} from "../user.service";
+import {Nutzer, UserService} from "../../user.service";
 import {Router, RouterLink} from "@angular/router";
 import {MatIconModule} from "@angular/material/icon";
 
@@ -12,11 +12,11 @@ import {MatIconModule} from "@angular/material/icon";
   selector: 'app-register-screen',
   standalone: true,
   imports: [RouterLink, MatButtonModule, MatStepperModule, FormsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatIconModule],
-  templateUrl: './register-screen.component.html',
-  styleUrl: './register-screen.component.css'
+  templateUrl: './register.component.html',
+  styleUrl: './register.component.css'
 })
 
-export class RegisterScreenComponent {
+export class RegisterComponent {
   router: Router = inject(Router);
   nameGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required],
