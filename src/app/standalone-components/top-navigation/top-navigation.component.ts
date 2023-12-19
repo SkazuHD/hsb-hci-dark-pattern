@@ -4,7 +4,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {RouterLink} from "@angular/router";
 import {MatBadgeModule} from "@angular/material/badge";
-import {UserService} from "../user.service";
+import {UserService} from "../../user.service";
 
 @Component({
   selector: 'app-top-navigation',

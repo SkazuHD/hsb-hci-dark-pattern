@@ -14,7 +14,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {Router, RouterLink} from "@angular/router";
-import {UserService} from "../user.service";
+import {UserService} from "../../user.service";
 import {NgIf} from "@angular/common";
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -28,11 +28,11 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   selector: 'app-login-screen',
   standalone: true,
   imports: [MatButtonModule, FormsModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule, MatIconModule, RouterLink, NgIf],
-  templateUrl: './login-screen.component.html',
-  styleUrl: './login-screen.component.css'
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.css'
 
 })
-export class LoginScreenComponent implements OnInit {
+export class LoginComponent implements OnInit {
   router: Router = inject(Router);
   emailFormControl = new FormControl('', [Validators.required]);
   passwordFormControl = new FormControl('', [Validators.required])

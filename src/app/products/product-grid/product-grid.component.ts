@@ -1,8 +1,8 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {ProductCardComponent} from "../product-card/product-card.component";
-import {Product, ProductService} from "../product.service";
+import {Product, ProductService} from "../../product.service";
 import {NgForOf, NgIf} from "@angular/common";
-import {NewsletterService} from "../newsletter.service";
+import {NewsletterService} from "../../dialogs/newsletter.service";
 
 @Component({
   selector: 'app-product-grid',

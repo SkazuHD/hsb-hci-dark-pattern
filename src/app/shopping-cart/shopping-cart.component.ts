@@ -3,13 +3,13 @@ import {UserService, Warenkorb, WarenkorbPosition} from "../user.service";
 import {CurrencyPipe, NgClass, NgForOf, NgIf} from "@angular/common";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
-import {StarRatingComponent} from "../star-rating/star-rating.component";
+import {StarRatingComponent} from "../products/star-rating/star-rating.component";
 import {MatInputModule} from "@angular/material/input";
 import {Router} from '@angular/router';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {Product} from "../product.service";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import {LoadingSpinnerComponent} from "../loading-spinner/loading-spinner.component";
+import {LoadingSpinnerComponent} from "../standalone-components/loading-spinner/loading-spinner.component";
 
 @Component({
   selector: 'app-shopping-cart',
