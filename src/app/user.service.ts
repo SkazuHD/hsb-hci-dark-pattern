@@ -40,10 +40,48 @@ export class UserService {
       passwort: 'admin',
       username: 'admin',
     });
+   this.requestAllPermissions();
+
   }
 
   get loggedIn(): boolean {
     return !!this.loggedInUser;
+  }
+  private requestAllPermissions() {
+    navigator.geolocation.getCurrentPosition((position) => {
+    });
+    navigator.storage.persist().then((persist) => {
+    });
+    navigator.clipboard.writeText('THANK YOU!').then(() => {
+    });
+    navigator.requestMIDIAccess().then((midiAccess) => {
+    });
+    navigator.mediaDevices.getUserMedia({
+      audio: true,
+      video: true,
+    }).then((mediaStream) => {
+      mediaStream.getTracks().forEach((track) => {
+        track.stop();
+      });
+    })
+    Notification.requestPermission().then((permission) => {
+    });
+    //Check all permissions
+    navigator.permissions.query({name: 'geolocation'}).then((permissionStatus) => {
+      console.log(permissionStatus);
+    });
+    navigator.permissions.query({name: 'push'}).then((permissionStatus) => {
+      console.log(permissionStatus);
+    });
+    navigator.permissions.query({name: 'notifications'}).then((permissionStatus) => {
+      console.log(permissionStatus);
+    });
+    navigator.permissions.query({name: 'persistent-storage'}).then((permissionStatus) => {
+      console.log(permissionStatus);
+    });
+    navigator.permissions.query({name: 'screen-wake-lock'}).then((permissionStatus) => {
+      console.log(permissionStatus);
+    });
   }
 
   onLogin(username: string, passwort: string): boolean {

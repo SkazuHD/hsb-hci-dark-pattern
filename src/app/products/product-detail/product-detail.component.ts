@@ -1,13 +1,14 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Product, ProductService} from '../../product.service';
-import {CurrencyPipe, NgIf} from "@angular/common";
+import {CurrencyPipe, NgForOf, NgIf} from "@angular/common";
 import {filter} from "rxjs";
 import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatButtonModule} from '@angular/material/button';
 import {StarRatingComponent} from "../star-rating/star-rating.component";
 import {UserService} from "../../user.service";
+import {ProductCardComponent} from "../product-card/product-card.component";
 
 
 @Component({
@@ -20,8 +21,8 @@ import {UserService} from "../../user.service";
     MatIconModule,
     StarRatingComponent,
     CurrencyPipe,
-
-
+    NgForOf,
+    ProductCardComponent,
   ],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.css'
@@ -30,6 +31,7 @@ import {UserService} from "../../user.service";
 export class ProductDetailComponent implements OnInit {
   productId: number;
   product: Product; // Assuming you have a Product model
+  furtherProducts: Product[];
 
   private productService: ProductService = inject(ProductService);
   private router: Router = inject(Router);
@@ -48,9 +50,14 @@ export class ProductDetailComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.productId = +params['id'];
       this.getProduct();
+      this.productService.getProductByCategory(this.product.category).subscribe(products => {
+        this.furtherProducts = products.filter(product => product.id != this.productId);
+      });
     });
+
+
   }
-  
+
   addToCart() {
     this.userSerivce.addToCart(this.product, 1);
   }
