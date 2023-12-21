@@ -29,20 +29,7 @@ export class TopNavigationComponent {
     return cart.positionen.reduce((acc, curr) => acc + curr.anzahl, 0);
   }
 
-  get genderFromUser(): string {
-    let gender = this.userSerice.getGender();
-    if (gender == "m"){
-      return "Herr"
-    } else if(gender =="f"){
-      return "Frau"
-    }else{
-      return ""
-    }
-  }
-
-  get nameFromUser(): string {
-    return this.userSerice.getName();
-  }
+  
   navigateToHome(){
     this.router.navigate(['/product']);
   }
