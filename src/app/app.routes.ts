@@ -8,6 +8,8 @@ import {ShoppingCartComponent} from "./shopping-cart/shopping-cart.component";
 import {DefaultLayoutView} from "./default-layout-view/default-layout-view";
 import {PurchaseComponent} from './purchase/purchase.component';
 import {authGuard} from "./user.service";
+import { StartLayoutComponent } from './start-layout/start-layout.component';
+
 
 export const routes: Routes = [
   {
@@ -26,6 +28,7 @@ export const routes: Routes = [
             path: '',
             component: DefaultLayoutView,
             children: [
+              {path: 'home', component:StartLayoutComponent},
               {path: 'product/:id', component: ProductDetailComponent},
               {path: 'product', component: ProductGridComponent},
               {path: 'cart', component: ShoppingCartComponent},
