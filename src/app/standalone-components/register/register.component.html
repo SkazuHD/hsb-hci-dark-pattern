@@ -44,7 +44,7 @@
         </div>
       </form>
     </mat-step>
-    <mat-step [stepControl]="password2Group">
+    <mat-step [stepControl]="password2Group" [errorMessage]="passwordErrorMessage">
       <form [formGroup]="password2Group">
         <ng-template matStepLabel>Gib dein Passwort ein zweites mal an</ng-template>
         <mat-form-field>

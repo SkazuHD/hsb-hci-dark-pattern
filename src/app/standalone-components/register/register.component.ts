@@ -1,23 +1,35 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, ViewChild} from '@angular/core';
 import {FormBuilder, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatStepperModule} from '@angular/material/stepper';
+import {MatStepper, MatStepperModule} from '@angular/material/stepper';
 import {MatButtonModule} from '@angular/material/button';
 import {Nutzer, UserService} from "../../user.service";
 import {Router, RouterLink} from "@angular/router";
 import {MatIconModule} from "@angular/material/icon";
+import {NgIf} from "@angular/common";
+import {STEPPER_GLOBAL_OPTIONS} from "@angular/cdk/stepper";
 
 @Component({
   selector: 'app-register-screen',
   standalone: true,
-  imports: [RouterLink, MatButtonModule, MatStepperModule, FormsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatIconModule],
+  providers: [
+    {
+      provide: STEPPER_GLOBAL_OPTIONS,
+      useValue: {showError: true},
+    },
+  ],
+  imports: [RouterLink, MatButtonModule, MatStepperModule, FormsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatIconModule, NgIf],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
 
 export class RegisterComponent {
+  @ViewChild('stepper') stepper: MatStepper;
+
   router: Router = inject(Router);
+  passwordErrorMessage = "Passwörter stimmen nicht überein";
+
   nameGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required],
   });
@@ -54,7 +66,14 @@ export class RegisterComponent {
   onRegister() {
     //Checj if all forms are valid
     if (this.nameGroup.valid && this.usernameGroup.valid && this.password1Group.valid && this.password2Group.valid && this.email1Group.valid && this.email2Group.valid && this.addresseGroup.valid && this.genderGroup.valid) {
-      if (this.password1Group.value.thirdCtrl == this.password2Group.value.forthCtrl && this.email1Group.value.fifthCtrl == this.email2Group.value.sixthCtrl) {
+      if (this.password1Group.value.thirdCtrl !== this.password2Group.value.forthCtrl) {
+        this.stepper.selectedIndex = 3;
+
+      }else if(this.email1Group.value.fifthCtrl !== this.email2Group.value.sixthCtrl){
+        this.stepper.selectedIndex = 5;
+        //Set error message
+        this.email2Group.setErrors({notSame: true});
+      }else {
         this.nutzer = {
           name: this.nameGroup.value.firstCtrl ?? '',
           username: this.usernameGroup.value.secondCtrl ?? '',
