@@ -5,6 +5,8 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 import {RouterLink} from "@angular/router";
 import {MatBadgeModule} from "@angular/material/badge";
 import {UserService} from "../../user.service";
+import {Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-top-navigation',
@@ -17,6 +19,7 @@ import {UserService} from "../../user.service";
 })
 export class TopNavigationComponent {
   private userSerice: UserService = inject(UserService);
+  private router: Router = inject(Router);
 
   get productCountInCart(): number {
     let cart = this.userSerice.getCart();
@@ -24,5 +27,23 @@ export class TopNavigationComponent {
       return 0;
     }
     return cart.positionen.reduce((acc, curr) => acc + curr.anzahl, 0);
+  }
+
+  get genderFromUser(): string {
+    let gender = this.userSerice.getGender();
+    if (gender == "m"){
+      return "Herr"
+    } else if(gender =="f"){
+      return "Frau"
+    }else{
+      return ""
+    }
+  }
+
+  get nameFromUser(): string {
+    return this.userSerice.getName();
+  }
+  navigateToHome(){
+    this.router.navigate(['/product']);
   }
 }

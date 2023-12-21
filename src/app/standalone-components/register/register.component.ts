@@ -38,8 +38,11 @@ export class RegisterComponent {
   });
   addresseGroup = this._formBuilder.group({
     seventhCtrl: ['', Validators.required],
-
   });
+  genderGroup = this._formBuilder.group({
+    eighthCtrl:['', Validators.required]
+  });
+
   isLinear = true;
   hide = true;
   private UserService: UserService = inject(UserService);
@@ -50,7 +53,7 @@ export class RegisterComponent {
 
   onRegister() {
     //Checj if all forms are valid
-    if (this.nameGroup.valid && this.usernameGroup.valid && this.password1Group.valid && this.password2Group.valid && this.email1Group.valid && this.email2Group.valid && this.addresseGroup.valid) {
+    if (this.nameGroup.valid && this.usernameGroup.valid && this.password1Group.valid && this.password2Group.valid && this.email1Group.valid && this.email2Group.valid && this.addresseGroup.valid && this.genderGroup.valid) {
       if (this.password1Group.value.thirdCtrl == this.password2Group.value.forthCtrl && this.email1Group.value.fifthCtrl == this.email2Group.value.sixthCtrl) {
         this.nutzer = {
           name: this.nameGroup.value.firstCtrl ?? '',
@@ -58,7 +61,7 @@ export class RegisterComponent {
           passwort: this.password1Group.value.thirdCtrl ?? '',
           email: this.email1Group.value.fifthCtrl ?? '',
           adresse: this.addresseGroup.value.seventhCtrl ?? '',
-          geschlecht: '',
+          geschlecht: this.genderGroup.value.eighthCtrl ?? '',
         }
         this.UserService.onRegister(this.nutzer);
         this.router.navigate(['/login'])

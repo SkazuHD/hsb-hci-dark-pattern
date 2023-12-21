@@ -95,6 +95,14 @@ export class UserService {
     }
   }
 
+  getGender(): string{
+    return this.loggedInUser!.geschlecht;
+  }
+
+  getName(): string{
+    return this.loggedInUser!.name;
+  }
+
   onRegister(nutzer: Nutzer) {
 
     nutzer.Warekorb = nutzer.Warekorb ?? {positionen: [], gesamtPreis: 0};
