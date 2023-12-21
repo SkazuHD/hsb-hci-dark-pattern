@@ -104,6 +104,21 @@
         </div>
       </form>
     </mat-step>
+    <mat-step [stepControl]="genderGroup">
+      <form [formGroup]="genderGroup">
+        <ng-template matStepLabel>Gib dein Geschlecht an</ng-template>
+        <mat-form-field>
+          <mat-label>Geschlecht</mat-label>
+          <input formControlName="eighthCtrl" matInput placeholder="Ex. (m/f/d)"
+                 required>
+
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Zurück</button>
+          <button mat-button matStepperNext>Weiter</button>
+        </div>
+      </form>
+    </mat-step>
     <mat-step>
       <ng-template matStepLabel>Fertig</ng-template>
 

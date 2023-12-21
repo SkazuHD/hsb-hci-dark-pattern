@@ -1,7 +1,19 @@
-<div class="flex justify-end w-full bg-custom_lavender-200 p-6">
-  <button [matBadge]="productCountInCart" class="text-lg" mat-flat-button matBadgePosition="above after"
-          routerLink="/cart">
-    <mat-icon>shopping_basket</mat-icon>
-    <span>Warenkorb</span>
-  </button>
+<div class="grid grid-cols-3  bg-custom_lavender-200 p-6">
+  <div class="">
+    <h1 class=" text-3xl font-bold">Willkommen, {{genderFromUser}} {{nameFromUser}} </h1>
+  </div>
+  <div class="flex place-self-center">
+    <button (click)="navigateToHome()">Logo Hier/Home Button</button>
+  </div>
+  <div class="flex place-self-end">
+    <button [matBadge]="productCountInCart" class="text-lg" mat-flat-button matBadgePosition="above after"
+            routerLink="/cart">
+      <mat-icon>shopping_basket</mat-icon>
+      <span>Warenkorb</span>
+    </button>
+  </div>
 </div>
+
+
+
+
