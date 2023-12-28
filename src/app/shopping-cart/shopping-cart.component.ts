@@ -82,6 +82,46 @@ export class ShoppingCartComponent implements OnInit {
 
   }
 
+  onClick1(){  // Ich schwör das is so hässlich, i cant no more, would appreciate some help
+    if(this.handleWithCare === false){
+      this.handleWithCare = true;
+    }
+    else this.handleWithCare = false;
+  }
+
+  onClick2(){
+    if(this.expressDelivery === false){
+      this.expressDelivery = true;
+    }
+    else this.expressDelivery = false;
+  }
+
+  onClick3(){
+    if(this.kaufschutz === false){
+      this.kaufschutz = true;
+    }
+    else this.kaufschutz = false;
+  }
+
+  onClick4(){
+    if(this.weilWirsKoennen === false){
+      this.weilWirsKoennen = true;
+    }
+    else this.weilWirsKoennen = false;
+  }
+
+  get name() : string{
+    return this.userService.getName();
+  }
+
+  get email() : string{
+    return this.userService.getMail();
+  }
+
+  get adresse(): string{
+    return this.userService.getAdresse();
+  }
+
   getFormControl(id: string): FormControl {
     return this.warenkorbFormGroup.get(id) as FormControl;
   }
