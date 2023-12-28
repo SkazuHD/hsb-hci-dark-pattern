@@ -103,6 +103,14 @@ export class UserService {
     return this.loggedInUser!.name;
   }
 
+  getMail(): string{
+    return this.loggedInUser!.email;
+  }
+
+  getAdresse(): string{
+    return this.loggedInUser!.adresse;
+  }
+
   onRegister(nutzer: Nutzer) {
 
     nutzer.Warekorb = nutzer.Warekorb ?? {positionen: [], gesamtPreis: 0};
@@ -152,7 +160,7 @@ export class UserService {
 }
 
 export const authGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
-  let bypassLogin = false;
+  let bypassLogin = true;
   if (bypassLogin) {
     inject(UserService).onLogin("admin", "admin");
     return true;

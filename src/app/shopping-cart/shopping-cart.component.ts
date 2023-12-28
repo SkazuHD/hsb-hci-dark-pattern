@@ -1,5 +1,5 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {UserService, Warenkorb, WarenkorbPosition} from "../user.service";
+import {Nutzer, UserService, Warenkorb, WarenkorbPosition} from "../user.service";
 import {CurrencyPipe, NgClass, NgForOf, NgIf} from "@angular/common";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
@@ -10,7 +10,8 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular
 import {Product} from "../product.service";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {LoadingSpinnerComponent} from "../standalone-components/loading-spinner/loading-spinner.component";
-
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 @Component({
   selector: 'app-shopping-cart',
   standalone: true,
@@ -26,7 +27,9 @@ import {LoadingSpinnerComponent} from "../standalone-components/loading-spinner/
     FormsModule,
     MatProgressSpinnerModule,
     NgClass,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    MatExpansionModule,
+    MatSlideToggleModule
   ],
   templateUrl: './shopping-cart.component.html',
   styleUrl: './shopping-cart.component.css'
@@ -34,6 +37,11 @@ import {LoadingSpinnerComponent} from "../standalone-components/loading-spinner/
 export class ShoppingCartComponent implements OnInit {
   warenkorbFormGroup: FormGroup = new FormGroup({});
   warenkorb: Warenkorb;
+  addedCosts : FormGroup;
+  handleWithCare : boolean = false;
+  expressDelivery: boolean = false;
+  kaufschutz: boolean = false;
+  weilWirsKoennen: boolean = false;
   public showLoading: boolean = false;
   private router: Router = inject(Router);
   private userService: UserService = inject(UserService);
@@ -72,6 +80,46 @@ export class ShoppingCartComponent implements OnInit {
     }, 2000);
 
 
+  }
+
+  onClick1(){  // Ich schwör das is so hässlich, i cant no more, would appreciate some help
+    if(this.handleWithCare === false){
+      this.handleWithCare = true;
+    }
+    else this.handleWithCare = false;
+  }
+
+  onClick2(){
+    if(this.expressDelivery === false){
+      this.expressDelivery = true;
+    }
+    else this.expressDelivery = false;
+  }
+
+  onClick3(){
+    if(this.kaufschutz === false){
+      this.kaufschutz = true;
+    }
+    else this.kaufschutz = false;
+  }
+
+  onClick4(){
+    if(this.weilWirsKoennen === false){
+      this.weilWirsKoennen = true;
+    }
+    else this.weilWirsKoennen = false;
+  }
+
+  get name() : string{
+    return this.userService.getName();
+  }
+
+  get email() : string{
+    return this.userService.getMail();
+  }
+
+  get adresse(): string{
+    return this.userService.getAdresse();
   }
 
   getFormControl(id: string): FormControl {
