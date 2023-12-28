@@ -1,2 +1,5 @@
 .cool-bg{
-    background-image: radial-gradient(circle, #083343, #305064, #556f86, #7b8fa9, #a3b1cd, #b9c3dd, #cfd5ee, #e5e7fe, #ecedfe, #f3f3fe, #f9f9ff, #ffffff);}
+  position: relative;
+  height: 100%;
+  background-image: radial-gradient(circle, #00a2df, #6db0e8, #9dc0ee, #c2d0f3, #e0e3f8, #ebecfa, #f6f5fc, #ffffff, #ffffff, #ffffff, #ffffff, #ffffff,#ffffff, #ffffff, #ffffff, #ffffff, #ffffff, #ffffff, #ffffff, #ffffff, #ffffff, #ffffff);
+}

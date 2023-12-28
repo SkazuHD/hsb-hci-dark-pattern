@@ -1,8 +1,9 @@
 import {HttpClient} from "@angular/common/http";
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {map, Observable, of, tap} from 'rxjs';
+import {Ad, AdService} from "./ad.service";
 
-export interface Product {
+export type Product = {
   category: string;
   description: string;
   id: number;
@@ -23,6 +24,7 @@ export interface Product {
 export class ProductService {
 
   private products: Product[] = [];
+  private adService: AdService = inject(AdService)
 
   constructor(private http: HttpClient) {
     // Comment out to not use the API
@@ -41,7 +43,6 @@ export class ProductService {
     }as Product];
     */
   }
-
   getProducts(): Observable<Product[]> {
     if (this.products.length > 0) {
       console.debug('Returning all cached products')
@@ -55,7 +56,19 @@ export class ProductService {
       }))
     );
   }
-
+  getProductsAndAds(): Observable<(Product | Ad)[]> {
+    return this.getProducts().pipe(map(products => {
+      const productsWithAds: (Product | Ad)[] = [];
+      products.forEach((product, index) => {
+        productsWithAds.push(product);
+        if (index % 5 === 0) {
+          productsWithAds.push(this.adService.requestAd());
+        }
+      });
+      //Shuffle
+      return productsWithAds.sort(() => Math.random() - 0.5);
+    }));
+  }
   getProductById(id: number): Observable<Product | undefined> {
     if (this.products.length > 0) {
       console.debug('Returning cached product by id')
