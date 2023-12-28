@@ -31,6 +31,6 @@ export class TopNavigationComponent {
 
   
   navigateToHome(){
-    this.router.navigate(['/product']);
+    this.router.navigate(['/home']);
   }
 }
