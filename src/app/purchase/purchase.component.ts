@@ -63,7 +63,7 @@ export class PurchaseComponent {
   }
 
     private getProduct() {
-      this.productService.getProductById(1)
+      this.productService.getProductById(this.randomId)
         .pipe(
           filter((obj): obj is Product => obj !== undefined)
         )
@@ -75,11 +75,14 @@ export class PurchaseComponent {
             }
           },
         );
-  
     }
 
+    getRandomId() {
+      return Math.floor(Math.random() * 20);
+    }
+    randomId = this.getRandomId();
 
-    buy(){
+    buy(){ 
       this.loadingTimer()
     }
 
