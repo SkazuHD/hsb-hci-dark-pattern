@@ -4,6 +4,7 @@ import {Product, ProductService} from "../../product.service";
 import {NgForOf, NgIf} from "@angular/common";
 import {NewsletterService} from "../../dialogs/newsletter.service";
 import { UserService } from '../../user.service';
+import {Ad} from "../../ad.service";
 import { PopupService } from '../../dialogs/popup.service';
 
 @Component({
@@ -21,7 +22,7 @@ export class ProductGridComponent implements OnInit {
 
 
   private userSerice: UserService = inject(UserService);
-  products: Product[];
+  productsWithAds: (Product | Ad)[] = [];
   private productService: ProductService = inject(ProductService);
   private newsLetterService: NewsletterService = inject(NewsletterService)
   private popUpService : PopupService = inject(PopupService);
@@ -29,6 +30,9 @@ export class ProductGridComponent implements OnInit {
   ngOnInit() {
     this.productService.getProducts().subscribe(products => this.products = products);
     this.newsLetterService.requestDialog();
+    this.productService.getProductsAndAds().subscribe(products =>
+    {this.productsWithAds = products
+    console.log(products)});
     this.popUpService.requestDialog();
   }
 
