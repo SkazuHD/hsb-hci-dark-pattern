@@ -53,21 +53,20 @@
             Additional Costs
           </mat-panel-title>
           <mat-panel-description>
-            Versicherungen
+            
           </mat-panel-description>
         </mat-expansion-panel-header>
-          <form class="grid grid-cols-1 p-3 gap-6">  <!-- [formGroup]="addedCosts" -->
-            <p>"Ich möchte keine Versicherungen doch nicht abschließen"</p>         <!-- Ich schwör das is so hässlich, i cant no more, would appreciate some help (alles addiert btw: 31.62€)-->
-            <mat-slide-toggle>"Handle with care" - Shipping (14,99€)</mat-slide-toggle>
-            <mat-slide-toggle>Express-Delivery (9,99€)</mat-slide-toggle>
-            <mat-slide-toggle>Käuferschutz (5.95€)</mat-slide-toggle>
-            <mat-slide-toggle>Weil wirs können (0.69€)</mat-slide-toggle>
+          <form [formGroup]="addedCosts" class="grid grid-cols-1 p-3 gap-6">
+            <p>"Ich möchte keine Versicherungen doch nicht abschließen"</p>         <!-- Ich schwör das is so hässlich, i cant no more, would appreciate some help-->
+            <mat-slide-toggle (click)="onClick1">"Handle with care" - Shipping (14,99€)</mat-slide-toggle>
+            <mat-slide-toggle (click)="onClick2">Express-Delivery (9,99€)</mat-slide-toggle>
+            <mat-slide-toggle (click)="onClick3">Käuferschutz (5.95€)</mat-slide-toggle>
+            <mat-slide-toggle (click)="onClick4">Weil wirs können (0.69€)</mat-slide-toggle>
           </form>
         
       </mat-expansion-panel>
     </mat-accordion>
     <p class="font-bold text-3xl self-end">
-      
       {{warenkorb.gesamtPreis | currency:'EUR':'symbol'}} <!-- Hier dann neuen Preis berechnen mit den added costs-->
 
     </p>

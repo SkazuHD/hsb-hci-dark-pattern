@@ -12,7 +12,6 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {LoadingSpinnerComponent} from "../standalone-components/loading-spinner/loading-spinner.component";
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import { PopupService } from '../dialogs/popup.service';
 @Component({
   selector: 'app-shopping-cart',
   standalone: true,
@@ -93,19 +92,6 @@ export class ShoppingCartComponent implements OnInit {
     }, 2000);
 
 
-  }
-
-
-  get name() : string{
-    return this.userService.getName();
-  }
-
-  get email() : string{
-    return this.userService.getMail();
-  }
-
-  get adresse(): string{
-    return this.userService.getAdresse();
   }
 
   getFormControl(id: string): FormControl {
