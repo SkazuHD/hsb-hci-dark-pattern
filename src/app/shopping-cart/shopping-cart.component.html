@@ -67,8 +67,7 @@
       </mat-expansion-panel>
     </mat-accordion>
     <p class="font-bold text-3xl self-end">
-      
-      {{warenkorb.gesamtPreis | currency:'EUR':'symbol'}} <!-- Hier dann neuen Preis berechnen mit den added costs-->
+      {{warenkorb.gesamtPreis | currency:'EUR':'symbol'}}
 
     </p>
     <button (click)="navigateToPurchase()" [disabled]="warenkorb.positionen.length===0"

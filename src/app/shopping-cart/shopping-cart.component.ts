@@ -84,19 +84,6 @@ export class ShoppingCartComponent implements OnInit {
 
   }
 
-
-  get name() : string{
-    return this.userService.getName();
-  }
-
-  get email() : string{
-    return this.userService.getMail();
-  }
-
-  get adresse(): string{
-    return this.userService.getAdresse();
-  }
-
   getFormControl(id: string): FormControl {
     return this.warenkorbFormGroup.get(id) as FormControl;
   }
