@@ -45,7 +45,6 @@ import { CurrencyPipe } from '@angular/common';
 })
 export class DialogPopupComponent {
   productId: number;
-  display: any;
   product: Product; // Assuming you have a Product model
   furtherProducts: Product[];
 
@@ -69,7 +68,6 @@ export class DialogPopupComponent {
   }
 
   ngOnInit() {
-    this.timer(Math.floor(Math.random() * 50) + 10);
     this.route.params.subscribe(params => {
       this.productId = +params['id'];
       this.getProduct();
@@ -112,32 +110,5 @@ export class DialogPopupComponent {
       this.dialogRef.close();
       this.loading = false;
     }, 3000);
-  }
-
-
-  timer(minute : number) {
-    // let minute = 1;
-    let seconds: number = minute;
-    let textSec: any = "0";
-    let statSec: number = minute;
-
-    const prefix = minute < 10 ? "0" : "";
-
-    const timer = setInterval(() => {
-      seconds--;
-      if (statSec != 0) statSec--;
-      else statSec = 59;
-
-      if (statSec < 10) {
-        textSec = "0" + statSec;
-      } else textSec = statSec;
-
-      this.display = `${prefix}${Math.floor(seconds / 60)}:${textSec}`;
-
-      if (seconds == 0) {
-        this.dialogRef.close();
-        clearInterval(timer);
-      }
-    }, 1000);
   }
 }
