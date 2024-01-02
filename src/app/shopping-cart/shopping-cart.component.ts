@@ -12,6 +12,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {LoadingSpinnerComponent} from "../standalone-components/loading-spinner/loading-spinner.component";
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { PopupService } from '../dialogs/popup.service';
 @Component({
   selector: 'app-shopping-cart',
   standalone: true,
@@ -46,6 +47,7 @@ export class ShoppingCartComponent implements OnInit {
   private router: Router = inject(Router);
   private userService: UserService = inject(UserService);
   private warenkorbPositionen: WarenkorbPosition[] = [];
+
 
   ngOnInit(): void {
     this.warenkorb = this.userService.getCart();
@@ -82,33 +84,6 @@ export class ShoppingCartComponent implements OnInit {
 
   }
 
-  onClick1(){  // Ich schwör das is so hässlich, i cant no more, would appreciate some help
-    if(this.handleWithCare === false){
-      this.handleWithCare = true;
-    }
-    else this.handleWithCare = false;
-  }
-
-  onClick2(){
-    if(this.expressDelivery === false){
-      this.expressDelivery = true;
-    }
-    else this.expressDelivery = false;
-  }
-
-  onClick3(){
-    if(this.kaufschutz === false){
-      this.kaufschutz = true;
-    }
-    else this.kaufschutz = false;
-  }
-
-  onClick4(){
-    if(this.weilWirsKoennen === false){
-      this.weilWirsKoennen = true;
-    }
-    else this.weilWirsKoennen = false;
-  }
 
   get name() : string{
     return this.userService.getName();
