@@ -11,6 +11,7 @@ import {authGuard} from "./user.service";
 import { StartLayoutComponent } from './start-layout/start-layout.component';
 
 
+
 export const routes: Routes = [
   {
     path: '',
@@ -35,7 +36,7 @@ export const routes: Routes = [
               {path: 'checkout', component: AppComponent},
               {path: 'privacy', component: AppComponent},
               {path: 'purchase', component: PurchaseComponent},
-              {path: '', redirectTo: 'product', pathMatch: 'full'}, // Redirect empty path to 'product'
+              {path: '', redirectTo: 'home', pathMatch: 'full'}, // Redirect empty path to 'product'
             ],
           },
         ],
