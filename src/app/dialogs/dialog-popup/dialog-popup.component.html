@@ -1,7 +1,10 @@
 <app-loading-spinner [showLoading]="loading"></app-loading-spinner>
 
 <div class="p-3">
-  <h1 mat-dialog-title>PopUP</h1>
+  <div class="grid grid-cols-2">
+    <div><h1 mat-dialog-title>PopUP</h1></div>
+    <div class="text-3xl pt-4 text-custom_scarlet"> <h1>NUR NOCH: {{display}} SEKUNDEN</h1> </div> 
+  </div>
   <div mat-dialog-content>
     <div class="grid gap-3">
       <p>
@@ -25,6 +28,7 @@
                 shopping_cart
               </mat-icon>
             </button>
+           
           </div>
           <p class="py-2">{{ product.description }}</p>
           <p class="text-gray-500 py-2">{{ product.category }}</p>
