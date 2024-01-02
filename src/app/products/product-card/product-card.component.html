@@ -3,9 +3,10 @@
   <a (click)="navigateToProductDetails(product.id)" class="grid place-items-center gap-3 min-h-full">
     <h3 class="font-bold text-xl text-center">{{product.title}}</h3>
     <img [src]="product.image" alt="Product Image" class="h-56 bg-white p-6 rounded-3xl" loading="lazy">
-    <p class="font-semibold text-3xl  flex gap-4"><span
-      class="text-lg line-through">{{unDiscountedPrice | currency:'EUR':'symbol'}} </span> <span
-      class="text-custom_scarlet">{{discountedPrice | currency:'EUR':'symbol'}} </span></p>
+    <p class="font-semibold text-3xl  flex gap-4">
+      <!-- <span class="text-lg line-through">{{unDiscountedPrice | currency:'EUR':'symbol'}} </span>          mal gucken was besser is du vogel -->
+      <span class="">{{discountedPrice | currency:'EUR':'symbol'}} </span>
+    </p> 
     <app-star-rating [ratingCount]="product.rating.count" [rating]="product.rating.rate"></app-star-rating>
     <ng-container *ngIf="product.count">
       <p>Nur noch <span class="font-bold">{{product.count}}</span> verfügbar</p>

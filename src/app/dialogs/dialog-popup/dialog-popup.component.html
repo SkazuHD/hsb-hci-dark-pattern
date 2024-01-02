@@ -1,0 +1,42 @@
+<app-loading-spinner [showLoading]="loading"></app-loading-spinner>
+
+<div class="p-3">
+  <h1 mat-dialog-title>PopUP</h1>
+  <div mat-dialog-content>
+    <div class="grid gap-3">
+      <p>
+        Jetzt kaufen und 10 Euro extra sparen
+      </p>
+
+      <div class="flex justify-center items-center flex-col md:flex-row ">
+        <img [alt]="product.title" [src]="product.image" class="w-60 pr-6"/>
+        <div class="p-3 divide-y md:w-1/2">
+          <div class="flex justify-between w-full">
+            <app-star-rating [ratingCount]="product.rating.count" [rating]="product.rating.rate"></app-star-rating>
+            <p class="font-semibold text-2xl  flex gap-2"><span
+              class="text-lg line-through">{{unDiscountedPrice | currency:'EUR':'symbol'}} </span> <span
+              class="text-custom_scarlet">{{discountedPrice | currency:'EUR':'symbol'}} </span></p>
+          </div>
+          <div class="py-2">
+            <button (click)="addToCart()"
+                    class="self-end uppercase text-lg !text-white !bg-custom_gunmetal" mat-flat-button>
+              Add to Cart
+              <mat-icon>
+                shopping_cart
+              </mat-icon>
+            </button>
+          </div>
+          <p class="py-2">{{ product.description }}</p>
+          <p class="text-gray-500 py-2">{{ product.category }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <div class="flex w-full justify-between">
+      <button (click)="onClose()" mat-button>Close</button>
+
+    </div>
+  </div>
+
+</div>
