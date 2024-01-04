@@ -71,6 +71,17 @@ export class ShoppingCartComponent implements OnInit {
 
   }
 
+  get name(): string{
+    return this.userService.getName();
+  }
+  get adresse(): string{
+    return this.userService.getAdresse();
+  }
+
+  get email(): string{
+    return this.userService.getMail();
+  }
+
   onRemoveFromCart(product: Product) {
     this.showLoading = true;
     setTimeout(() => {
@@ -90,3 +101,4 @@ export class ShoppingCartComponent implements OnInit {
     this.router.navigate(['/purchase']);
   }
 }
+ 
