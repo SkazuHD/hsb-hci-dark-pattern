@@ -1,5 +1,4 @@
 <app-loading-spinner [showLoading]="showLoading"></app-loading-spinner>
-
 <div>
   <div class="">
     <div class="place-items-center grid grid-cols-2 rounded-2xl bg-cyan-100 items-center " (click)="addToCart()">
@@ -11,7 +10,7 @@
               class="text-lg line-through text-2xl">{{unDiscountedPrice | currency:'EUR':'symbol'}} </span> <span
               class="text-custom_scarlet text-2xl">{{discountedPrice | currency:'EUR':'symbol'}} </span></p>
             <app-star-rating class="text.xs" [ratingCount]="product.rating.count" [rating]="product.rating.rate"></app-star-rating>
-            <button (click)="addToCart()"class="self-end uppercase text-lg !text-white !bg-custom_gunmetal" mat-flat-button>
+            <button class="self-end uppercase text-lg !text-white !bg-custom_gunmetal" mat-flat-button>
               Add to Cart
               <mat-icon>
                 shopping_cart  
