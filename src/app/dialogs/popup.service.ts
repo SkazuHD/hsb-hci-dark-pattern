@@ -21,7 +21,7 @@ export class PopupService {
           //Can be changed to queue all requests instead of resetting
           this.request_count = 0;
         }
-      }, 1000)
+      }, 12000)
     }
   
     requestDialog() {
