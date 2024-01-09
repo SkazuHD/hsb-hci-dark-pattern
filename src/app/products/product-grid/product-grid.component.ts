@@ -28,7 +28,6 @@ export class ProductGridComponent implements OnInit {
   private popUpService : PopupService = inject(PopupService);
 
   ngOnInit() {
-    this.productService.getProducts().subscribe(products => this.products = products);
     this.newsLetterService.requestDialog();
     this.productService.getProductsAndAds().subscribe(products =>
     {this.productsWithAds = products
