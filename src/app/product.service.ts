@@ -66,6 +66,7 @@ export class ProductService {
         }
       });
       //Shuffle
+      return productsWithAds
       return productsWithAds.sort(() => Math.random() - 0.5);
     }));
   }
