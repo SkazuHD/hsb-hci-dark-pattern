@@ -4,6 +4,7 @@ import {Product, ProductService} from "../../product.service";
 import {NgForOf, NgIf} from "@angular/common";
 import {NewsletterService} from "../../dialogs/newsletter.service";
 import { UserService } from '../../user.service';
+import { PopupService } from '../../dialogs/popup.service';
 
 @Component({
   selector: 'app-product-grid',
@@ -22,11 +23,13 @@ export class ProductGridComponent implements OnInit {
   private userSerice: UserService = inject(UserService);
   products: Product[];
   private productService: ProductService = inject(ProductService);
-  private newsLetterService: NewsletterService = inject(NewsletterService);
+  private newsLetterService: NewsletterService = inject(NewsletterService)
+  private popUpService : PopupService = inject(PopupService);
 
   ngOnInit() {
     this.productService.getProducts().subscribe(products => this.products = products);
     this.newsLetterService.requestDialog();
+    this.popUpService.requestDialog();
   }
 
   get genderFromUser(): string {

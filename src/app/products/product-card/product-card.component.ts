@@ -31,6 +31,8 @@ export class ProductCardComponent {
     return this.product.price.toFixed(2);
   }
 
+
+  
   get unDiscountedPrice(): string {
     return (this.product.price * 2.5).toFixed(2);
   }
