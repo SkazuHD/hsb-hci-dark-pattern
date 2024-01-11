@@ -124,6 +124,7 @@ export class PurchaseComponent {
 
     
 
+    
     addToCart() {
       this.userSerivce.addToCart(this.product, 1);
     }
