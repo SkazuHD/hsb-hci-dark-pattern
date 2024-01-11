@@ -1,5 +1,5 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {Nutzer, UserService, Warenkorb, WarenkorbPosition} from "../user.service";
+import {UserService, Warenkorb, WarenkorbPosition} from "../user.service";
 import {CurrencyPipe, NgClass, NgForOf, NgIf} from "@angular/common";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
@@ -12,7 +12,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {LoadingSpinnerComponent} from "../standalone-components/loading-spinner/loading-spinner.component";
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import { PopupService } from '../dialogs/popup.service';
+
 @Component({
   selector: 'app-shopping-cart',
   standalone: true,
@@ -38,8 +38,8 @@ import { PopupService } from '../dialogs/popup.service';
 export class ShoppingCartComponent implements OnInit {
   warenkorbFormGroup: FormGroup = new FormGroup({});
   warenkorb: Warenkorb;
-  addedCosts : FormGroup;
-  handleWithCare : boolean = false;
+  addedCosts: FormGroup = new FormGroup({})
+  handleWithCare: boolean = false;
   expressDelivery: boolean = false;
   kaufschutz: boolean = false;
   weilWirsKoennen: boolean = false;
@@ -48,7 +48,21 @@ export class ShoppingCartComponent implements OnInit {
   private userService: UserService = inject(UserService);
   private warenkorbPositionen: WarenkorbPosition[] = [];
 
+  get name(): string {
+    return this.userService.getName();
+  }
 
+  get email(): string {
+    return this.userService.getMail();
+  }
+
+  get adresse(): string {
+    return this.userService.getAdresse();
+  }
+
+  get WarenKorbGesamtPreis(): number {
+    return this.userService.getGesamtPreis();
+  }
 
   ngOnInit(): void {
     this.warenkorb = this.userService.getCart();
@@ -56,6 +70,8 @@ export class ShoppingCartComponent implements OnInit {
     this.warenkorbPositionen.forEach((pos) => {
       this.warenkorbFormGroup.addControl(pos.produkt.id.toString(), new FormControl(pos.anzahl));
     });
+    this.initAddedCosts();
+
 
     this.warenkorbFormGroup.valueChanges.subscribe((value) => {
       this.warenkorbPositionen.forEach((pos) => {
@@ -74,8 +90,6 @@ export class ShoppingCartComponent implements OnInit {
 
   }
 
-
-
   onRemoveFromCart(product: Product) {
     this.showLoading = true;
     setTimeout(() => {
@@ -87,25 +101,56 @@ export class ShoppingCartComponent implements OnInit {
 
   }
 
+  onClick1() {  // Ich schwör das is so hässlich, i cant no more, would appreciate some help
+    this.handleWithCare = !this.handleWithCare;
 
-  get name() : string{
-    return this.userService.getName();
+    this.warenkorb.handleWithCare = this.handleWithCare;
+    this.userService.updateCart(this.warenkorb);
   }
 
-  get email() : string{
-    return this.userService.getMail();
+  onClick2() {
+    this.expressDelivery = !this.expressDelivery;
+
+    this.warenkorb.expressDelivery = this.expressDelivery;
+    this.userService.updateCart(this.warenkorb);
   }
 
-  get adresse(): string{
-    return this.userService.getAdresse();
+  onClick3() {
+    this.kaufschutz = !this.kaufschutz;
+
+    this.warenkorb.buyerProtection = this.kaufschutz;
+    this.userService.updateCart(this.warenkorb);
+  }
+
+  onClick4() {
+    this.weilWirsKoennen = !this.weilWirsKoennen;
+
+    this.warenkorb.justBecauseWeCan = this.weilWirsKoennen;
+    this.userService.updateCart(this.warenkorb);
   }
 
   getFormControl(id: string): FormControl {
     return this.warenkorbFormGroup.get(id) as FormControl;
   }
 
+  getAddedCostsFormControl(key: string): FormControl {
+    return this.addedCosts.get(key) as FormControl;
+  }
+
   navigateToPurchase() {
     this.router.navigate(['/purchase']);
   }
+
+  private initAddedCosts() {
+    this.handleWithCare = this.warenkorb?.handleWithCare ?? false;
+    this.expressDelivery = this.warenkorb?.expressDelivery ?? false;
+    this.kaufschutz = this.warenkorb?.buyerProtection ?? false;
+    this.weilWirsKoennen = this.warenkorb?.justBecauseWeCan ?? false;
+
+
+    this.addedCosts.addControl('handleWithCare', new FormControl(this.warenkorb?.handleWithCare));
+    this.addedCosts.addControl('expressDelivery', new FormControl(this.warenkorb?.expressDelivery));
+    this.addedCosts.addControl('kaufschutz', new FormControl(this.warenkorb?.buyerProtection));
+    this.addedCosts.addControl('weilWirsKoennen', new FormControl(this.warenkorb?.justBecauseWeCan));
+  }
 }
- 

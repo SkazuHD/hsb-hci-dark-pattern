@@ -37,7 +37,7 @@
   <div class="col-span-1 flex flex-col gap-3">
     <div class="grid grid-cols-2 place-content-center text-base bg-custom_lavender-200 rounded-3xl p-3">
       <div class="text-base">
-        <p>Subtotal: {{warenkorb.gesamtPreis | currency:'EUR':'symbol'}}</p>
+        <p>Subtotal: {{WarenKorbGesamtPreis | currency:'EUR':'symbol'}}</p>
         <p>Shipping: FREE!!!</p>
       </div>
       <div class="grid grid-rows-3 ">
@@ -46,29 +46,37 @@
         <div>{{adresse}}</div>
       </div>
     </div>
-    <mat-accordion >
-      <mat-expansion-panel hideToggle class="mat-elevation-z0 bg-custom_lavender-100">
+    <mat-accordion>
+      <mat-expansion-panel class="mat-elevation-z0 bg-custom_lavender-100" hideToggle>
         <mat-expansion-panel-header>
           <mat-panel-title>
             Additional Costs
           </mat-panel-title>
           <mat-panel-description>
-            Versicherungen
+
           </mat-panel-description>
         </mat-expansion-panel-header>
-          <form class="grid grid-cols-1 p-3 gap-6">  <!-- [formGroup]="addedCosts" -->
-            <p>"Ich möchte keine Versicherungen doch nicht abschließen"</p>         <!-- Ich schwör das is so hässlich, i cant no more, would appreciate some help (alles addiert btw: 31.62€)-->
-            <mat-slide-toggle>"Handle with care" - Shipping (14,99€)</mat-slide-toggle>
-            <mat-slide-toggle>Express-Delivery (9,99€)</mat-slide-toggle>
-            <mat-slide-toggle>Käuferschutz (5.95€)</mat-slide-toggle>
-            <mat-slide-toggle>Weil wirs können (0.69€)</mat-slide-toggle>
-          </form>
-        
+        <form [formGroup]="addedCosts" class="grid grid-cols-1 p-3 gap-6">
+          <p>"Ich möchte keine Versicherungen doch nicht abschließen"</p>
+          <!-- Ich schwör das is so hässlich, i cant no more, would appreciate some help-->
+          <mat-slide-toggle (click)="onClick1()" [formControl]="getAddedCostsFormControl('handleWithCare')">"Handle with
+            care" - Shipping (14,99€)
+          </mat-slide-toggle>
+          <mat-slide-toggle (click)="onClick2()" [formControl]="getAddedCostsFormControl('expressDelivery')">
+            Express-Delivery (9,99€)
+          </mat-slide-toggle>
+          <mat-slide-toggle (click)="onClick3()" [formControl]="getAddedCostsFormControl('kaufschutz')">Käuferschutz
+            (5.95€)
+          </mat-slide-toggle>
+          <mat-slide-toggle (click)="onClick4()" [formControl]="getAddedCostsFormControl('weilWirsKoennen')">Weil wirs
+            können (0.69€)
+          </mat-slide-toggle>
+        </form>
+
       </mat-expansion-panel>
     </mat-accordion>
     <p class="font-bold text-3xl self-end">
-      
-      {{warenkorb.gesamtPreis | currency:'EUR':'symbol'}} <!-- Hier dann neuen Preis berechnen mit den added costs-->
+      {{WarenKorbGesamtPreis | currency:'EUR':'symbol'}} <!-- Hier dann neuen Preis berechnen mit den added costs-->
 
     </p>
     <button (click)="navigateToPurchase()" [disabled]="warenkorb.positionen.length===0"
