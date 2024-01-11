@@ -277,14 +277,242 @@
   },
   {
     "id": 24,
-    "title": "Designer socks",
+    "title": "Baby and children's slippers crawling shoes Ecopell leather terra",
     "price": 121.29,
     "description": "Toddler shoes made from vegetable-tanned, chrome-free leather. Non-slip sole. Soft, durable and breathable. Comfortable fit.",
     "category": "clothing",
     "image": "https://assets.hans-natur.de/images/350x350/29/ebfc7dd9_335333.jpg",
     "rating": {
+      "rate": 4.8,
+      "count": 153
+    }
+  },
+  {
+    "id": 25,
+    "title": "Adult diapers Unisize EXTRA",
+    "price": 917.99,
+    "description": "Adult diaper - especially for the night. 100% organic cotton (kbA), IVN-certified. With practical press studs and Velcro fastener to adjust the size.",
+    "category": "clothing",
+    "image": "https://assets.hans-natur.de/images/350x350/34/20df9081_3813.jpg",
+    "rating": {
+      "rate": 5.0,
+      "count": 9123
+    }
+  },
+  {
+    "id": 26,
+    "title": "Froggy the plush",
+    "price": 612.99,
+    "description": "Froggy is the ideal plush frog as a promotional item.The plush can be personalized at the level of its scarf.Offer it as a welcome gift or during an event, or simply for sale in your establishment.",
+    "category": "froggy",
+    "image": "https://peluchecreation.com/wp-content/uploads/2021/02/Froggy-la-grenouille-en-peluche-personnalisee-1.jpg",
+    "rating": {
+      "rate": 4.3,
+      "count": 12
+    }
+  },
+  {
+    "id": 27,
+    "title": "Backpack Mr. Frog I Trixie",
+    "price": 12.99,
+    "description": "With this cute backpack with a frog face, every child is perfectly equipped for kindergarten or outings. The rucksack has adjustable shoulder straps and a handle at the top so that it can be easily hung on the hook. Thanks to the chest buckle, the shoulder straps do not slip off the shoulders. The backpack has a small pocket with a zipper on the front that can also be easily opened by children. There is a label on the inside of the rucksack on which you can write the child's name.",
+    "category": "froggy",
+    "image": "https://lymababy.de/cdn/shop/files/P6050404.jpg?v=1686794286&width=1800",
+    "rating": {
+      "rate": 4.5,
+      "count": 351
+    }
+  },
+  {
+    "id": 28,
+    "title": "Frog Hoodie, Frog Hoodie Zipper Mouth",
+    "price": 19.29,
+    "description": "Material: Made from high-quality polyseter fabric. Breathable, comfortable, skin-friendly, soft. Unique zipper hoodies with cute frog animal shape, suitable for daily wear.Features: long sleeve, high neck, large front pocket, cute frog design hoodie, frog design cuffs, zippered hoodie, zippered hoodie. Unisex casual novelty frog hoodies, cute and novelty.",
+    "category": "froggy",
+    "image": "https://m.media-amazon.com/images/I/41M-nYxsLpL._AC_.jpg",
+    "rating": {
+      "rate": 4.6,
+      "count": 861
+    }
+  },
+  {
+    "id": 29,
+    "title": "Arawat Frog Mug 3D",
+    "price": 52.99,
+    "description": " ✿ COFFEE CUP AS A FUN GIFT IDEA: The funny white coffee cup as a gift is undoubtedly the best choice for friends, brother, siblings, dad, mom, grandpa, grandma, coworker, colleague, boss. The teacup will bring them lots of fun.",
+    "category": "froggy",
+    "image": "https://m.media-amazon.com/images/I/61aolWancbL.__AC_SX300_SY300_QL70_ML2_.jpg",
+    "rating": {
+      "rate": 4.2,
+      "count": 235
+    }
+  },
+  {
+    "id": 30,
+    "title": "Basic stackable chair, set of 4",
+    "price": 140.99,
+    "description": "- Seat and backrest: beech plywood, 5-ply glued (7.5 mm), natural clear lacquer finish - Frame: tubular steel Ø 21 x 1.5 mm - Color: Polyester powder-coated in black   - Plastic floor glides",
+    "category": "froggy",
+    "image": "https://www.tischkoenig-shop.de/media/catalog/product/cache/2ff60df06a02a60a86afb1df16900b17/s/t/stapelstuhl-warschau-s_2.jpg",
+    "rating": {
+      "rate": 4.4,
+      "count": 7612
+    }
+  },
+  {
+    "id": 31,
+    "title": "Ball Chair",
+    "price": 7.200,
+    "description": "The Ball Chair was designed in 1963 and debuted at the Cologne Furniture Fair in 1966. This chair is one of the most famous and popular Finnish design classics and was Eero Aarnio's international breakthrough.",
+    "category": "chair",
+    "image": "https://de.aarniooriginals.com/cdn/shop/products/aarnio_originals_ballchair_lime_green_07_2000x.png?v=1695743360",
+    "rating": {
+      "rate": 4.4,
+      "count": 7612
+    }
+  },
+  {
+    "id": 32,
+    "title": "Jewelry Dish Tray",
+    "price": 44.21,
+    "description": "Made of great quality glazed ceramic. Well packed with bubble bag and box.",
+    "category": "trinket",
+    "image": "https://m.media-amazon.com/images/I/811ex4FmyPL._AC_SX679_.jpg",
+    "rating": {
+      "rate": 4.2,
+      "count": 712
+    }
+  },
+  {
+    "id": 33,
+    "title": "3D Printed Small Pistol",
+    "price": 9.99,
+    "description": "3D printed mini 1911 toy pistol is an anxiety and stress relief toy. Our small cool pistol toy is a sensory toy that can be played with one hand. Crafted using advanced 3D printing technology, it combines the excitement of a gun with the fun of a small toy.ompress",
+    "category": "toy",
+    "image": "https://m.media-amazon.com/images/I/41N+zE6phLL._AC_.jpg",
+    "rating": {
       "rate": 4.0,
-      "count": 812
+      "count": 122
+    }
+  },
+  {
+    "id": 34,
+    "title": "Elukiko Drone",
+    "price": 49.99,
+    "description": "Capture breathtaking high-definition videos and crystal-clear aerial photos with the integrated 1080P HD camera. Experience the wonders from above as FPV transmission technology allows you to immerse yourself in real-time images and videos via the convenient phone app, bringing beautiful scenery directly to your screen.",
+    "category": "toy",
+    "image": "https://m.media-amazon.com/images/I/61cjSj8o9-L._AC_SX569_.jpg",
+    "rating": {
+      "rate": 4.6,
+      "count": 1122
+    }
+  },
+  {
+    "id": 35,
+    "title": "Winyea Tag Laser Tag",
+    "price": 89.99,
+    "description": "Built-in Rechargeable Battery: This rechargeable laser tag set is equipped with 8 rechargeable batteries and 4 in 1 usb cable to charge, so you don’t need to worry about the batteries.You never have to stop the game action to change a few dozen batteries. The guns and vests are fully rechargeable! Base on normal play, gun can be used approximately 6 hours, vest can be used approximately 3 hours each on one full charge.",
+    "category": "toy",
+    "image": "https://m.media-amazon.com/images/I/71WomucRi0L._AC_SX679_.jpg",
+    "rating": {
+      "rate": 4.8,
+      "count": 7512
+    }
+  },
+  {
+    "id": 36,
+    "title": "Gskyer Telescope",
+    "price": 96.99,
+    "description": "Quality Optics: 400mm(f/5.7) focal length and 70mm aperture, fully coated optics glass lens with high transmission coatings creates stunning images and protect your eyes. Perfect full positive telescope for astronomers to explore stars and moon. ",
+    "category": "toy",
+    "image": "https://m.media-amazon.com/images/I/7110baO-5UL._AC_SX569_.jpg",
+    "rating": {
+      "rate": 4.2,
+      "count": 712
+    }
+  },
+  {
+    "id": 37,
+    "title": "TEMI Dinosaur Truck",
+    "price": 149.99,
+    "description": "Large Dinosaur Transport Truck – The truck is equipped with a simulated T-rex head which makes it look cooler. And the large cage allows it to capture more dinosaurs. Truck size: 35*15*20cm ",
+    "category": "toy",
+    "image": "https://m.media-amazon.com/images/I/81rfuij7Q7L._AC_SX679_.jpg",
+    "rating": {
+      "rate": 4.1,
+      "count": 122
+    }
+  },
+  {
+    "id": 38,
+    "title": "Haiwon Space Exploration Astronaut",
+    "price": 49.99,
+    "description": "Everyone has a dream of becoming an astronaut, and every dream should be respected. this 900 pieces space astronaut building kit is much more challenging, complex and detailed than any other building block,male adults and kids will immerse themselves in building process for hours of endless creative fun ",
+    "category": "toy",
+    "image": "https://m.media-amazon.com/images/I/71nCcJj8MmL._AC_SX679_.jpg",
+    "rating": {
+      "rate": 4.4,
+      "count": 17512
+    }
+  },
+  {
+    "id": 39,
+    "title": "Umnodobn Golden Fidget Spinner",
+    "price": 8.99,
+    "description": "Cool Exclusive Patent Design: Design Patemt:29877942 Fidget Spinner help you focus and relief the stress..Cool fidget spinner collection for both kids and adults. A must have fidget spinner for fun and decoration and stress relief. ",
+    "category": "toy",
+    "image": "https://m.media-amazon.com/images/I/61Ob5AitTuL._AC_SX679_.jpg",
+    "rating": {
+      "rate": 4.2,
+      "count": 8612
+    }
+  },
+  {
+    "id": 40,
+    "title": "Mafbeanl Remote Control Car",
+    "price": 16.99,
+    "description": "This rc car featuring two powerful electric motors and soft tracked tires with excellent grip, ensuring anti-skid performance. 360 degree tumbling flip for different playing experience on this electric remote control car. Two different speed modes can be switched through pressing the acceleration key of the remote controller. Watch as children have a blast and endless fun with this car toy in any environment they choose to explore. ",
+    "category": "toy",
+    "image": "https://m.media-amazon.com/images/I/71SgfG-fPpL.__AC_SX300_SY300_QL70_FMwebp_.jpg",
+    "rating": {
+      "rate": 4.5,
+      "count": 75
+    }
+  },
+  {
+    "id": 41,
+    "title": "Table Top Mini Bowling Game",
+    "price": 12.99,
+    "description": "MINI DESK & TABLE GAMES: This mini arcade & table games for adults also can be used for coffee table games for kids 8-12 with family. And this tabletop games also is a mini desk games for office for adults desktop games for work. ",
+    "category": "toy",
+    "image": "https://m.media-amazon.com/images/I/61hlToDuj1L._AC_SX679_.jpg",
+    "rating": {
+      "rate": 4.4,
+      "count": 252
+    }
+  },
+  {
+    "id": 42,
+    "title": "Xinbeiya Rechargeable Game Handheld Cube",
+    "price": 29.99,
+    "description": "Fun Games: Let’s begin to play thrilling and exciting games. The electronic game cube contains 3 speed games, 3 memory games, and 2 creativity games with colorful flashing lights and dynamic music. Single Play or Multiplayer Play. It has a PK mode that you can play with your friends or family. Exercise the kid’s hand-eye coordination, reaction ability, thinking logistics, and memory. Improve kid’s sensory development.",
+    "category": "toy",
+    "image": "https://m.media-amazon.com/images/I/71dfH9VPYYL._AC_SX679_.jpg",
+    "rating": {
+      "rate": 4.3,
+      "count": 712
+    }
+  },
+  {
+    "id": 43,
+    "title": "Cute Robot Pets for Kids and Adults",
+    "price": 139.99,
+    "description": "ROBOT PETS - Eilik is the perfect companion for both kids and adults who love pets, with abundant emotions, idle animations, and interactive features! There are also other fun mini-games.",
+    "category": "toy",
+    "image": "https://m.media-amazon.com/images/I/51DBd7O6GEL.__AC_SX300_SY300_QL70_FMwebp_.jpg",
+    "rating": {
+      "rate": 4.8,
+      "count": 512
     }
   }
 ]
