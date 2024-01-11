@@ -1,72 +1,91 @@
 <app-loading-spinner [showLoading]="showLoading"></app-loading-spinner>
-<div>
-  <div class="">
-    <div class="place-items-center grid grid-cols-2 rounded-2xl bg-cyan-100 items-center " (click)="addToCart()">
-      <p class="text-custom_scarlet items-center font-bold text-5xl text-center underline decoration-double decoration-red-600 decoration-2">
+<div (click)="addToCart()"
+     class="place-items-center grid grid-cols-2 rounded-2xl bg-custom_gunmetal items-center p-3">
+    <p class="text-custom_scarlet items-center font-bold text-5xl text-center underline  ">
         letzte chance!</p>
-        <div class="grid grid-cols-2 w-10/12 h-4/5  rounded-2xl cursor-pointer text-slate-950 bg-custom_lavender-100 hover:bg-custom_lavender-200 hover:text-black transition-all min-h-full">
-          <div class="place-items-center pt-8 items-center pl-6">
+    <div class="grid grid-cols-2 w-10/12 h-4/5  rounded-2xl cursor-pointer text-slate-950 bg-custom_lavender-100 hover:bg-custom_lavender-200 hover:text-black transition-all min-h-full">
+        <div class="place-items-center pt-8 items-center pl-6">
             <p class="font-semibold text-3xl  flex gap-4 "><span
-              class="text-lg line-through text-2xl">{{unDiscountedPrice | currency:'EUR':'symbol'}} </span> <span
-              class="text-custom_scarlet text-2xl">{{discountedPrice | currency:'EUR':'symbol'}} </span></p>
-            <app-star-rating class="text.xs" [ratingCount]="product.rating.count" [rating]="product.rating.rate"></app-star-rating>
+                    class=" line-through text-2xl">{{unDiscountedPrice | currency:'EUR':'symbol'}} </span>
+                <span
+                        class="text-custom_scarlet text-2xl">{{discountedPrice | currency:'EUR':'symbol'}} </span>
+            </p>
+            <app-star-rating [ratingCount]="product.rating.count" [rating]="product.rating.rate"
+                             class="text.xs"></app-star-rating>
             <button class="self-end uppercase text-lg !text-white !bg-custom_gunmetal" mat-flat-button>
-              Add to Cart
-              <mat-icon>
-                shopping_cart  
-              </mat-icon>
+                Add to Cart
+                <mat-icon>
+                    shopping_cart
+                </mat-icon>
             </button>
-          </div>
-          <div>
-            <a class="grid place-items-center " >
-              <h3 class="font-bold text-center text-xs">{{product.title}}</h3>
-              <img [src]="product.image" alt="Product Image" class="h-32 bg-white p-6 rounded-3xl" loading="lazy">
-              <ng-container *ngIf="product.count">
-                <p>Nur noch <span class="font-bold text-xs">{{product.count}}</span> verfügbar</p>
-              </ng-container>
+        </div>
+        <div>
+            <a class="grid place-items-center ">
+                <h3 class="font-bold text-center text-xs">{{product.title}}</h3>
+                <img [src]="product.image" alt="Product Image" class="h-32 bg-white p-6 rounded-3xl"
+                     loading="lazy">
+                <ng-container *ngIf="product.count">
+                    <p>Nur noch <span class="font-bold text-xs">{{product.count}}</span> verfügbar</p>
+                </ng-container>
             </a>
         </div>
-        </div>
     </div>
-    <div class="grid grid-cols-2 divide-x-2 divide-slate-400 divide-dashed rounded-2xl bg-custom_lavender-200 mt-4">
-      <div class="text-center grid grid-cols-1 justify-self-start pt-8 font-mono mx-40">
-        <mat-form-field>
-          <input [formControl]="email" matInput placeholder="max@mustermann.de">
-          <mat-error>Invalid email</mat-error>
-          <ng-container *ngIf="email.hasError('invalid')">
-            <mat-error>Email is invalid</mat-error>
-          </ng-container>          
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>PLZ</mat-label>
-          <input [formControl]="plz"  matInput placeholder="PLZ" required>
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>ort</mat-label>
-          <input [formControl]="ort"  matInput placeholder="Ort" required>
-        </mat-form-field>
-      </div>
-      <div class="text-center font-medium">
-        <p>Zahlung</p>
-        <div class="grid">
-          <div class="pt-8">
-            <button color="warn" mat-flat-button (click)="buy()">
-              PayPal
-            </button>
-          </div>
-          <div class="pt-8">
-            <button color="warn" mat-flat-button (click)="buy()">
-              ApplePay
-            </button>
-          </div>
-          <div class="pt-8">
-            <button color="warn" mat-flat-button (click)="buy()">
-              Credit/debit card
-            </button>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
 </div>
+<div class="grid lg:grid-cols-2 divide-x-2 divide-slate-400 divide-dashed rounded-2xl bg-custom_lavender-200 mt-4">
+    <div class="grid gap-3 grid-cols-2 p-3">
+        <div class="grid">
+            <h3 class="text-2xl font-bold p-3">Lieferadresse</h3>
+            <mat-form-field>
+                <input [formControl]="adresse" matInput placeholder="Adresse" required>
+                <mat-error>Invalid address</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>PLZ</mat-label>
+                <input [formControl]="plz" matInput placeholder="PLZ" required>
+                <mat-error>Invalid plz</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>ort</mat-label>
+                <input [formControl]="ort" matInput placeholder="Ort" required>
+                <mat-error>Invalid Ort</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="grid">
+            <h3 class="text-2xl font-bold p-3">Rechnungsadresse</h3>
+            <mat-form-field>
+                <input [formControl]="adresse" matInput placeholder="Ad" required>
+                <mat-error>Invalid address</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>PLZ</mat-label>
+                <input [formControl]="plz" matInput placeholder="PLZ" required>
+                <mat-error>Invalid plz</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>ort</mat-label>
+                <input [formControl]="ort" matInput placeholder="Ort" required>
+                <mat-error>Invalid Ort</mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="text-center flex flex-col gap-3">
+        <h3 class="font-bold text-2xl p-3 ">Zahlungsmittel</h3>
+        <div class="grid align-middle justify-center w-full gap-3">
+            <button (click)="buy()" class="w-56 !bg-yellow-400 " mat-flat-button>
+                PayPal
+                <mat-icon><img alt="paypal" src="/assets/images/paypal.png"></mat-icon>
+            </button>
+            <button (click)="buy()" class="w-56" mat-flat-button>
+                Buy now with ApplePay
+                <mat-icon><img alt="applepay" class="" src="/assets/images/apple-pay.png"></mat-icon>
+            </button>
+            <button (click)="buy()" class="w-56" color="primary" mat-flat-button>
+                Credit/debit card
+                <mat-icon>credit_card</mat-icon>
+            </button>
+
+        </div>
+    </div>
+
+</div>
+

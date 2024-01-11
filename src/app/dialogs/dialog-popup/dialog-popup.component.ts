@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {
     MatDialogActions,
     MatDialogClose,
@@ -41,7 +41,7 @@ import {filter} from 'rxjs';
     templateUrl: './dialog-popup.component.html',
     styleUrl: './dialog-popup.component.css'
 })
-export class DialogPopupComponent {
+export class DialogPopupComponent implements OnInit {
     productId: number;
     display: any;
     product: Product; // Assuming you have a Product model
@@ -126,7 +126,6 @@ export class DialogPopupComponent {
                     }
                 },
             );
-
     }
 
     private randomId(): number {
