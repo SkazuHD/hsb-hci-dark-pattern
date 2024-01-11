@@ -9,40 +9,41 @@ import {CurrencyPipe, NgIf} from "@angular/common";
 import {UserService} from "../../user.service";
 
 @Component({
-  selector: 'app-product-card',
-  standalone: true,
-  imports: [
-    MatButtonModule,
-    MatChipsModule,
-    MatIconModule,
-    StarRatingComponent,
-    NgIf,
-    CurrencyPipe,
-  ],
-  templateUrl: './product-card.component.html',
-  styleUrl: './product-card.component.css'
+    selector: 'app-product-card',
+    standalone: true,
+    imports: [
+        MatButtonModule,
+        MatChipsModule,
+        MatIconModule,
+        StarRatingComponent,
+        NgIf,
+        CurrencyPipe,
+    ],
+    templateUrl: './product-card.component.html',
+    styleUrl: './product-card.component.css'
 })
 export class ProductCardComponent {
-  @Input({required: true}) product: Product;
-  private router: Router = inject(Router);
-  private userSerivce: UserService = inject(UserService);
+    @Input({required: true}) product: Product;
+    private router: Router = inject(Router);
+    private userSerivce: UserService = inject(UserService);
 
-  get discountedPrice(): string {
-    return this.product.price.toFixed(2);
-  }
+    get discountedPrice(): string {
+        return this.product.price.toFixed(2);
+    }
 
 
-  
-  get unDiscountedPrice(): string {
-    return (this.product.price * 2.5).toFixed(2);
-  }
+    get unDiscountedPrice(): string {
+        return (this.product.price * 2.5).toFixed(2);
+    }
 
-  navigateToProductDetails(productId: number) {
-    // Use the Router service to navigate to the product details page
-    this.router.navigate(['/product', productId]);
-  }
+    navigateToProductDetails(productId: number) {
+        // Use the Router service to navigate to the product details page
+        this.router.navigate(['/product', productId]).then(
+            () => window.scrollTo(0, 0)
+        );
+    }
 
-  addToCart() {
-    this.userSerivce.addToCart(this.product, 1);
-  }
+    addToCart() {
+        this.userSerivce.addToCart(this.product, 1);
+    }
 }

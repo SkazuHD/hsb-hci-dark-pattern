@@ -1,4 +1,4 @@
-import {AfterViewChecked, Component, inject, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Product, ProductService} from '../../product.service';
 import {CurrencyPipe, NgForOf, NgIf} from "@angular/common";
@@ -28,7 +28,7 @@ import {ProductCardComponent} from "../product-card/product-card.component";
     styleUrl: './product-detail.component.css'
 })
 
-export class ProductDetailComponent implements OnInit, AfterViewChecked {
+export class ProductDetailComponent implements OnInit {
     productId: number;
     product: Product; // Assuming you have a Product model
     furtherProducts: Product[];
@@ -56,10 +56,6 @@ export class ProductDetailComponent implements OnInit, AfterViewChecked {
         });
 
 
-    }
-
-    ngAfterViewChecked() {
-        window.scrollTo(0, 0);
     }
 
     addToCart() {
