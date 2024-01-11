@@ -10,7 +10,7 @@ import {PurchaseComponent} from './purchase/purchase.component';
 import {authGuard} from "./user.service";
 import {StartLayoutComponent} from './start-layout/start-layout.component';
 import {SearchResultComponent} from "./search-result/search-result.component";
-
+import {FinalComponent} from "./final/final.component";
 
 export const routes: Routes = [
     {
@@ -37,6 +37,7 @@ export const routes: Routes = [
                             {path: 'checkout', component: AppComponent},
                             {path: 'privacy', component: AppComponent},
                             {path: 'purchase', component: PurchaseComponent},
+                            {path: 'final', component: FinalComponent},
                             {path: '', redirectTo: 'home', pathMatch: 'full'}, // Redirect empty path to 'product'
                         ],
                     },

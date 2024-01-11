@@ -126,7 +126,6 @@ export class DialogPopupComponent implements OnInit {
                     }
                 },
             );
-
     }
 
     private randomId(): number {
