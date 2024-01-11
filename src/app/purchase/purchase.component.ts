@@ -1,6 +1,6 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormBuilder, FormControl, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatStepperModule} from '@angular/material/stepper';
@@ -13,6 +13,9 @@ import { filter } from 'rxjs';
 import { StarRatingComponent } from '../products/star-rating/star-rating.component';
 import {CurrencyPipe, NgIf} from "@angular/common";
 import { LoadingSpinnerComponent } from "../standalone-components/loading-spinner/loading-spinner.component";
+import {MatSnackBar, MatSnackBarConfig, MatSnackBarModule} from '@angular/material/snack-bar';
+
+
 
 
 @Component({
@@ -20,9 +23,31 @@ import { LoadingSpinnerComponent } from "../standalone-components/loading-spinne
     standalone: true,
     templateUrl: './purchase.component.html',
     styleUrl: './purchase.component.css',
+     styles: [`
+      .custom-snackbar {
+        border-radius: 2px;
+        box-sizing: border-box;
+        display: block;
+        margin: 24px;
+        max-width: 568px;
+        min-width: 288px;
+        padding: 14px 24px;
+        transform: translateY(100%) translateY(24px);
+      }`
+    ],
+
     imports: [RouterLink, NgIf, CurrencyPipe, MatButtonModule, MatStepperModule, FormsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatIconModule, ReactiveFormsModule, StarRatingComponent, LoadingSpinnerComponent]
 })
 export class PurchaseComponent {
+
+  
+
+  email = new FormControl('', [Validators.email, Validators.required]);
+  plz = new FormControl('', [Validators.minLength(5)]);
+  ort = new FormControl('', [Validators.minLength(3)]);
+
+
+
 
 
   productId: number;
@@ -34,8 +59,12 @@ export class PurchaseComponent {
   private router: Router = inject(Router);
   private route: ActivatedRoute = inject(ActivatedRoute);
   private userSerivce: UserService = inject(UserService);
+  constructor(public snackBar: MatSnackBar) {}
 
-  adresse = new FormControl('');
+
+
+
+
 
 
   get discountedPrice(): string {
@@ -83,9 +112,19 @@ export class PurchaseComponent {
     randomId = this.getRandomId();
 
     buy(){ 
-      this.loadingTimer()
+      if (this.email.valid && this.plz.valid && this.ort.valid){
+        this.loadingTimer()
+      }
+      else{
+        const config = new MatSnackBarConfig();
+        config.panelClass = ['custom-snackbar'];
+        this.snackBar.open("Invalid inputs", "close", config);
+      }
     }
 
+    
+
+    
     addToCart() {
       this.userSerivce.addToCart(this.product, 1);
     }
