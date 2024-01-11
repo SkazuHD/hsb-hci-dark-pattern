@@ -9,11 +9,13 @@ import {provideHttpClient} from "@angular/common/http";
 import {HashLocationStrategy, LocationStrategy} from "@angular/common";
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideAnimations(), ProductService, provideHttpClient(), {
-    provide: LocationStrategy,
-    useClass: HashLocationStrategy
-  }, {
-    provide: LOCALE_ID,
-    useValue: 'de-DE' // 'de-DE' for Germany, 'fr-FR' for France ...
-  }],
+    providers: [provideRouter(routes), provideAnimations(), ProductService, provideHttpClient(), {
+        provide: LocationStrategy,
+        useClass: HashLocationStrategy
+    }, {
+        provide: LOCALE_ID,
+        useValue: 'de-DE' // 'de-DE' for Germany, 'fr-FR' for France ...
+    },
+
+    ],
 };

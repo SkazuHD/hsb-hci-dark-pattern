@@ -1,0 +1,9 @@
+<div class="grid place-items-center w-full p-6">
+    <h1 class="text-5xl font-bold">Suchergebnis für '{{query}}'</h1>
+</div>
+<app-product-grid [productsWithAds]="Results"></app-product-grid>
+<ng-container *ngIf="Results.length == 0">
+    <div class="grid place-items-center w-full py-24">
+        <h1 class="text-4xl font-semibold"> Da gibts wohl nichts zu sehen</h1>
+    </div>
+</ng-container>
