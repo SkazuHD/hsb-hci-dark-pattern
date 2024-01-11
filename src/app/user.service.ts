@@ -190,7 +190,7 @@ export class UserService {
 }
 
 export const authGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
-    let bypassLogin = true;
+    let bypassLogin = false;
     if (bypassLogin) {
         inject(UserService).onLogin("admin", "admin");
         return true;
