@@ -1,33 +1,41 @@
 <div class="h-full grid place-items-center">
 
-  <div class="bg-custom_lavender-200 w-max m-auto p-6 grid place-items-center rounded-3xl gap-3">
-    <h3 class="font-bold text-3xl text-center">Anmeldung</h3>
+    <div class="bg-custom_lavender-200 w-max m-auto p-6 grid place-items-center rounded-3xl gap-3">
+        <h3 class="font-bold text-3xl text-center">Anmeldung</h3>
 
-    <form class="space-y-5">
-      <mat-form-field class="w-full">
-        <mat-label>Email or Username</mat-label>
-        <input [errorStateMatcher]="matcher" [formControl]="emailFormControl" matInput placeholder="Ex."
-               type="email">
-        <mat-error *ngIf="emailFormControl.hasError('required')">Please enter a valid E-Mail or your Username
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field class="w-full">
-        <mat-label>Enter your password</mat-label>
-        <input [formControl]="passwordFormControl" [type]="hide ? 'password' : 'text'" autocomplete="on" matInput
-               name="password">
-        <button (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" mat-icon-button
-                matSuffix>
-          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-        </button>
-        <mat-error *ngIf="passwordFormControl.hasError('required')">
-          Please enter your password
-        </mat-error>
-      </mat-form-field>
-    </form>
+        <form class="space-y-5">
+            <mat-form-field class="w-full">
+                <mat-label>Email or Username</mat-label>
+                <input [errorStateMatcher]="matcher" [formControl]="emailFormControl" matInput placeholder="Ex."
+                       type="email">
+                <mat-error *ngIf="emailFormControl.hasError('required')">Please enter a valid E-Mail or your Username
+                </mat-error>
+                <mat-error *ngIf="emailFormControl.hasError('incorrect')">
+                    Username or E-Mail is incorrect
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-full">
+                <mat-label>Enter your password</mat-label>
+                <input [formControl]="passwordFormControl" [type]="hide ? 'password' : 'text'" autocomplete="on"
+                       matInput
+                       name="password">
+                <button (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide"
+                        mat-icon-button
+                        matSuffix>
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error *ngIf="passwordFormControl.hasError('required')">
+                    Please enter your password
+                </mat-error>
+                <mat-error *ngIf="passwordFormControl.hasError('incorrect')">
+                    Password is incorrect
+                </mat-error>
+            </mat-form-field>
+        </form>
 
-    <div class="flex gap-3">
-      <button color="primary" mat-raised-button routerLink="/register">Registrierung</button>
-      <button (click)="onLogin()" color="primary" mat-raised-button>Anmeldung</button>
+        <div class="flex gap-3">
+            <button color="primary" mat-raised-button routerLink="/register">Registrierung</button>
+            <button (click)="onLogin()" color="primary" mat-raised-button>Anmeldung</button>
+        </div>
     </div>
-  </div>
 </div>

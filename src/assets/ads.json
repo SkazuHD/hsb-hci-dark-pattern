@@ -1,0 +1,111 @@
+[
+  {
+    "id": 1001,
+    "title": "Froggy-Chair",
+    "price": 120.99,
+    "description": "Its the one from Animal Crossing. What else do you want",
+    "category": "froggy",
+    "image": "https://dodo.ac/np/images/9/9b/Froggy_Chair_%28Green_Frog%29_NL_Model.png",
+    "rating": {
+      "rate": 5.0,
+      "count": 1209
+    }
+  },
+  {
+    "id": 1002,
+    "title": "TP-Link Tapo C200",
+    "price": 26.99,
+    "description": "360°-WLAN-Überwachungskamera für den Innenbereich, FHD 1080P, Nachtsicht, Bewegungserkennung, Zwei-Wege-Audio, kompatibel mit Alexa und Google Assistant, für Babys/Haustiere",
+    "category": "technic",
+    "image": "https://m.media-amazon.com/images/I/41AXOob7VEL._AC_SX679_.jpg",
+    "rating": {
+      "rate": 5.0,
+      "count": 3463
+    }
+  },
+  {
+    "id": 1003,
+    "title": "Naruto Geldbörse",
+    "price": 10.99,
+    "description": "Lustige Naruto Frosch Geldbörse haha",
+    "category": "froggy",
+    "image": "https://m.media-amazon.com/images/I/81To9JVymEL._AC_SY450_.jpg",
+    "rating": {
+      "rate": 4.7,
+      "count": 125
+    }
+  },
+  {
+    "id": 1005,
+    "title": "Thanos Badeanzug für Männer",
+    "price": 23.99,
+    "description": "Sexy Thanos Badeanzug für Männer. Kommt gut bei den Ladies an :)",
+    "category": "mens-clothing",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsl138TeELoAyF_D0X1TjeneiOJx3nwSmJHw-QQsM31g43lZo47m2DGO6p6cUYLc2gLpY&usqp=CAU",
+    "rating": {
+      "rate": 3.7,
+      "count": 21
+    }
+  },
+  {
+    "id": 1006,
+    "title": "Giottos GTAA1900 Super Rocket-air Blower schwarz",
+    "price": 13.95,
+    "description": "Ein effektives Instrument, um Staub von der Kameraausrüstung zu entfernen. Der Reinigungsblasebalg Super Rocket-Air Blower ist aus umweltfreundlichem Material hergestellt und er verfügt über ein Luftventil, dass ein Eindringen von Staubpartikeln in den Blasebalg verhindert. Durch ein einfaches Drücken des Blasebalgs lässt sich Staub von Spiegeln, Kamerasensoren, Objektiven, Kameras etc. entfernen. Der Super Rocket-Air Blower ist außerdem für die Reinigung von Foto- Videoausrüstung, Musikinstrumenten, Computertastaturen und anderen elektronischen Geräten geeignet.\n\n",
+    "category": "air",
+    "image": "https://m.media-amazon.com/images/I/41fUAqDo9WL._AC_SL1000_.jpg",
+    "rating": {
+      "rate": 4.0,
+      "count": 9651
+    }
+  },
+  {
+    "id": 1007,
+    "title": "danny devito life size cardboard cutout",
+    "price": 34.99,
+    "description": "danny devito is the man, he is a living legend and he can be in your room",
+    "category": "Cheese",
+    "image": "https://cdn11.bigcommerce.com/s-ydriczk/images/stencil/960w/products/88614/91737/Danny-Devito-Wearing-Blue-Shirt-and-Cream-Trouser-lifesize-celebrity-cardboard-cutout-buy-now-at-starstills__47705.1582849627.jpg?c=2",
+    "rating": {
+      "rate": 4.7,
+      "count": 203
+    }
+  },
+  {
+    "id": 1008,
+    "title": "Positive Kartoffel Pocket Hug",
+    "price": 49.99,
+    "description": "Die positive Kartoffel wird mit einer Karte geliefert, die motivierende Sätze enthält, die Sie inspirieren und aufmuntern. Egal, ob du eine Aufmunterung brauchst, um deinen Tag zu beginnen, oder eine Erinnerung, um weiterzumachen, wenn die Dinge schwierig werden, diese Karte ist für dich da. Die Kartoffel hält die Karte mit ihren beiden Händen, so dass sie leicht zu lesen und zu genießen ist.",
+    "category": "Anhänger",
+    "image": "https://m.media-amazon.com/images/I/61p7PzSqMeL._AC_SX679_.jpg",
+    "rating": {
+      "rate": 4.8,
+      "count": 2351
+    }
+  },
+  {
+    "id": 1009,
+    "title": "Chair of doom",
+    "price": 76.99,
+    "description": "Its a chair that will make you feel like you are the master of doom",
+    "category": "chair",
+    "image": "https://th.bing.com/th/id/OIG.j16YID.jwoTBpRKe5hY.?w=270&h=270&c=6&r=0&o=5&dpr=1.5&pid=ImgGn",
+    "rating": {
+      "rate": 3.7,
+      "count": 521
+    }
+  },
+  {
+    "id": 1010,
+    "title": "Broom of destiny",
+    "price": 140.98,
+    "description": "If you have this broom no amaount of dust will escape your vision",
+    "category": "broom",
+    "image": "https://th.bing.com/th/id/OIG.pGBOnQe3Wwphnp2Cxu3r?pid=ImgGn",
+    "rating": {
+      "rate": 3.7,
+      "count": 521
+    }
+  }
+]
+

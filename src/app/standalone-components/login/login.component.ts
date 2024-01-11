@@ -47,6 +47,7 @@ export class LoginComponent implements OnInit {
     }
 
     onLogin() {
+        this.loginForm.markAllAsTouched();
         if (this.loginForm.valid) {
             if (this.userService.onLogin(this.emailFormControl.value ?? '', this.passwordFormControl.value ?? '')) {
                 this.router.navigate(['/home'])

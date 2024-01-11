@@ -6,6 +6,7 @@ import {NewsletterService} from "../../dialogs/newsletter.service";
 import {UserService} from '../../user.service';
 import {Ad} from "../../ad.service";
 import {PopupService} from '../../dialogs/popup.service';
+import {ProductAdComponent} from "../../product-ad/product-ad.component";
 
 @Component({
     selector: 'app-product-grid',
@@ -14,6 +15,7 @@ import {PopupService} from '../../dialogs/popup.service';
         ProductCardComponent,
         NgForOf,
         NgIf,
+        ProductAdComponent,
     ],
     templateUrl: './product-grid.component.html',
     styleUrl: './product-grid.component.css'

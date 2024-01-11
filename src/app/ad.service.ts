@@ -1,36 +1,26 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Product} from "./product.service";
+import {HttpClient} from "@angular/common/http";
 
 export type Ad = Product & {
-  id: number;
+    id: number;
 };
+
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class AdService {
-  private ads: Ad[] = [];
-  constructor() {
-    // Create random ads
-    for (let i = 0; i < 10; i++) {
-      this.ads.push({
-        id: i + 1000,
-        title: 'Ad ' + i,
-        description: 'This is an ad',
-        category: 'Ad',
-        image: 'https://via.placeholder.com/150',
-        price: 0,
-        rating: {
-          rate: 0,
-          count: 0
-        },
-        count: 0,
-      });
+    private ads: Ad[] = [];
+
+    constructor(private http: HttpClient) {
+        this.http.get<Ad[]>('/assets/ads.json').subscribe(ads => this.ads = ads);
+          
     }
-  }
-  requestAd(): Ad {
-    // Return a random ad
-    return this.ads[Math.floor(Math.random() * this.ads.length)];
-  }
+
+    requestAd(): Ad {
+        // Return a random ad
+        return this.ads[Math.floor(Math.random() * this.ads.length)];
+    }
 
 
 }
