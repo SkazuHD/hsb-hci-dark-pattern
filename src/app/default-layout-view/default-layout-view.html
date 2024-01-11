@@ -1,5 +1,7 @@
-<app-top-navigation></app-top-navigation>
-<div class="m-6">
-  <router-outlet></router-outlet>
+<div class="relative">
+  <app-top-navigation class="sticky top-0 left-0 z-10"></app-top-navigation>
+  <div class="m-6">
+    <router-outlet></router-outlet>
+  </div>
+  <app-bottom-footer></app-bottom-footer>
 </div>
-<app-bottom-footer></app-bottom-footer>
