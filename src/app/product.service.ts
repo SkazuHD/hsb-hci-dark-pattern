@@ -99,5 +99,9 @@ export class ProductService {
         console.debug(result)
         return of(result);
     }
+
+    productsAmount(): number {
+        return this.products.length;
+    }
 }
 
