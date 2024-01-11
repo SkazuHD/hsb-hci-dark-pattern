@@ -6,7 +6,7 @@
         <form class="space-y-5">
             <mat-form-field class="w-full">
                 <mat-label>Email or Username</mat-label>
-                <input [errorStateMatcher]="matcher" [formControl]="emailFormControl" matInput placeholder="Ex."
+                <input [errorStateMatcher]="matcher" [formControl]="emailFormControl" matInput placeholder="Username"
                        type="email">
                 <mat-error *ngIf="emailFormControl.hasError('required')">Please enter a valid E-Mail or your Username
                 </mat-error>
