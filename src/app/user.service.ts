@@ -79,6 +79,10 @@ export class UserService {
         return this.loggedInUser!.adresse;
     }
 
+    getUsername(): string {
+        return this.loggedInUser!.username;
+    }
+
     onRegister(nutzer: Nutzer) {
 
         nutzer.Warekorb = nutzer.Warekorb ?? {positionen: [], gesamtPreis: 0};
