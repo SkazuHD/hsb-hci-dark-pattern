@@ -10,16 +10,20 @@ export type Ad = Product & {
     providedIn: 'root'
 })
 export class AdService {
+    private adCounter: number = 0;
     private ads: Ad[] = [];
 
     constructor(private http: HttpClient) {
-        this.http.get<Ad[]>('/assets/ads.json').subscribe(ads => this.ads = ads);
-          
+        this.http.get<Ad[]>('/assets/ads.json').subscribe(ads => {
+            this.ads = ads
+            this.adCounter = Math.floor(Math.random() * this.ads.length) + 1;
+        });
+
     }
 
     requestAd(): Ad {
         // Return a random ad
-        return this.ads[Math.floor(Math.random() * this.ads.length)];
+        return this.ads[this.adCounter++ % this.ads.length];
     }
 
 

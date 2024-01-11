@@ -58,16 +58,37 @@ export class ProductService {
     }
 
     getProductsAndAds(): Observable<(Product | Ad)[]> {
+
         return this.getProducts().pipe(map(products => {
+            let numberOfAds = Math.floor(products.length / 4) + 1;
+            let ads: Ad[] = [];
+            for (let i = 0; i < numberOfAds; i++) {
+                ads.push(this.adService.requestAd());
+            }
+            ads = ads.sort(() => Math.random() - 0.5);
             const productsWithAds: (Product | Ad)[] = [];
             products.forEach((product, index) => {
-                productsWithAds.push(product);
-                if (index % 5 === 0) {
-                    productsWithAds.push(this.adService.requestAd());
+                if (Math.random() > 0.5) {
+                    productsWithAds.push(product);
+                    if (index % 4 === 0 && ads.length > 0) {
+                        let ad = ads.pop();
+                        if (ad) {
+                            productsWithAds.push(ad);
+                        }
+                    }
+                } else {
+                    if (index % 4 === 0 && ads.length > 0) {
+                        let ad = ads.pop();
+                        if (ad) {
+                            productsWithAds.push(ad);
+                        }
+                    }
+                    productsWithAds.push(product);
                 }
             });
+            console.debug('unused ads', ads)
             //Shuffle
-            return productsWithAds.sort(() => Math.random() - 0.5);
+            return productsWithAds
         }));
     }
 
