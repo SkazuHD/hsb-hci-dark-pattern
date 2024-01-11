@@ -1,21 +1,18 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {FormBuilder, FormControl, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import {ActivatedRoute, Router, RouterLink} from '@angular/router';
+import {FormControl, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatButtonModule} from '@angular/material/button';
-import {RouterLink} from "@angular/router";
 import {MatIconModule} from "@angular/material/icon";
-import { UserService } from '../user.service';
-import { Product, ProductService } from '../product.service';
-import { filter } from 'rxjs';
-import { StarRatingComponent } from '../products/star-rating/star-rating.component';
+import {UserService} from '../user.service';
+import {Product, ProductService} from '../product.service';
+import {filter} from 'rxjs';
+import {StarRatingComponent} from '../products/star-rating/star-rating.component';
 import {CurrencyPipe, NgIf} from "@angular/common";
-import { LoadingSpinnerComponent } from "../standalone-components/loading-spinner/loading-spinner.component";
-import {MatSnackBar, MatSnackBarConfig, MatSnackBarModule} from '@angular/material/snack-bar';
-
-
+import {LoadingSpinnerComponent} from "../standalone-components/loading-spinner/loading-spinner.component";
+import {MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
 
 
 @Component({
@@ -23,117 +20,86 @@ import {MatSnackBar, MatSnackBarConfig, MatSnackBarModule} from '@angular/materi
     standalone: true,
     templateUrl: './purchase.component.html',
     styleUrl: './purchase.component.css',
-     styles: [`
-      .custom-snackbar {
-        border-radius: 2px;
-        box-sizing: border-box;
-        display: block;
-        margin: 24px;
-        max-width: 568px;
-        min-width: 288px;
-        padding: 14px 24px;
-        transform: translateY(100%) translateY(24px);
-      }`
-    ],
+    styles: [],
 
     imports: [RouterLink, NgIf, CurrencyPipe, MatButtonModule, MatStepperModule, FormsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatIconModule, ReactiveFormsModule, StarRatingComponent, LoadingSpinnerComponent]
 })
-export class PurchaseComponent {
-
-  
-
-  email = new FormControl('', [Validators.email, Validators.required]);
-  plz = new FormControl('', [Validators.minLength(5)]);
-  ort = new FormControl('', [Validators.minLength(3)]);
+export class PurchaseComponent implements OnInit {
 
 
+    adresse = new FormControl('', [Validators.minLength(5)]);
+    plz = new FormControl('', [Validators.minLength(5)]);
+    ort = new FormControl('', [Validators.minLength(3)]);
 
 
+    productId: number;
+    product: Product;
+    furtherProducts: Product[];
 
-  productId: number;
-  product: Product; // Assuming you have a Product model
-  furtherProducts: Product[];
+    public showLoading: boolean = false;
+    private productService: ProductService = inject(ProductService);
+    private route: ActivatedRoute = inject(ActivatedRoute);
+    private userService: UserService = inject(UserService);
+    private router: Router = inject(Router);
 
-  public showLoading: boolean = false;
-  private productService: ProductService = inject(ProductService);
-  private router: Router = inject(Router);
-  private route: ActivatedRoute = inject(ActivatedRoute);
-  private userSerivce: UserService = inject(UserService);
-  constructor(public snackBar: MatSnackBar) {}
-
-
-
-
-
-
-
-  get discountedPrice(): string {
-    return this.product.price.toFixed(2);
-  }
-
-  get unDiscountedPrice(): string {
-    return (this.product.price * 2.5).toFixed(2);
-  }
-
-  ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.productId = +params['id'];
-      this.getProduct();
-      this.productService.getProductByCategory(this.product.category).subscribe(products => {
-        this.furtherProducts = products.filter(product => product.id != this.productId);
-      });
-    });
-  }
-
-
-  navigateToProductDetails(productId: number) {
-    // Use the Router service to navigate to the product details page
-    this.router.navigate(['/product', productId]);
-  }
-
-    private getProduct() {
-      this.productService.getProductById(this.randomId)
-        .pipe(
-          filter((obj): obj is Product => obj !== undefined)
-        )
-        .subscribe(
-          (product) => {
-            this.product = product;
-            if (!this.product) {
-              this.router.navigate(['/product']);
-            }
-          },
-        );
+    constructor(public snackBar: MatSnackBar) {
     }
+
+    get discountedPrice(): string {
+        return this.product?.price.toFixed(2);
+    }
+
+    get unDiscountedPrice(): string {
+        return (this.product?.price * 2.5).toFixed(2)
+    }
+
+    ngOnInit() {
+        this.route.params.subscribe(params => {
+            this.getProduct();
+            this.productService.getProductByCategory(this.product.category).subscribe(products => {
+                this.furtherProducts = products.filter(product => product.id != this.productId);
+            });
+        });
+    }
+
 
     getRandomId() {
-      return Math.floor(Math.random() * 20);
-    }
-    randomId = this.getRandomId();
-
-    buy(){ 
-      if (this.email.valid && this.plz.valid && this.ort.valid){
-        this.loadingTimer()
-      }
-      else{
-        const config = new MatSnackBarConfig();
-        config.panelClass = ['custom-snackbar'];
-        this.snackBar.open("Invalid inputs", "close", config);
-      }
+        return Math.floor(Math.random() * this.productService.productsAmount()) + 1;
     }
 
-    
+    buy() {
+        if (this.adresse.valid && this.plz.valid && this.ort.valid) {
+            this.loadingTimer()
+            this.router.navigate(['/final']);
+        } else {
+            const config = new MatSnackBarConfig();
+            config.panelClass = ['custom-snackbar'];
+            this.snackBar.open("Invalid inputs", "close", config);
+        }
 
-    
+    }
+
     addToCart() {
-      this.userSerivce.addToCart(this.product, 1);
+        this.userService.addToCart(this.product, 1);
     }
 
-    loadingTimer(){
-      this.showLoading = true;
-      setTimeout(() => {
-        this.showLoading = false;
-      }, 500);
+    loadingTimer() {
+        this.showLoading = true;
+        setTimeout(() => {
+            this.showLoading = false;
+        }, 500);
+    }
+
+    private getProduct() {
+        this.productService.getProductById(this.getRandomId())
+            .pipe(
+                filter((obj): obj is Product => obj !== undefined)
+            )
+            .subscribe(
+                (product) => {
+                    this.product = product;
+                },
+            );
     }
 
 }
