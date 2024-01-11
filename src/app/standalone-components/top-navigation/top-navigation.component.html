@@ -1,11 +1,12 @@
-<div class="grid grid-cols-3  bg-custom_lavender-200 p-6">
+<div class="grid grid-cols-3  bg-custom_lavender-200 p-3 sticky top-0 left-0">
   <div class="">
 
   </div>
-  <div class="flex place-self-center">
-    <button (click)="navigateToHome()">Logo Hier/Home Button</button>
+  <div class="grid place-items-center">
+    <a (click)="navigateToHome()" class="w-24"> <img alt="Logo" src="assets/images/logo.png">
+    </a>
   </div>
-  <div class="flex place-self-end">
+  <div class="grid place-items-center">
     <button [matBadge]="productCountInCart" class="text-lg" mat-flat-button matBadgePosition="above after"
             routerLink="/cart">
       <mat-icon>shopping_basket</mat-icon>
