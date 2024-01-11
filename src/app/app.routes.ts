@@ -19,6 +19,7 @@ export const routes: Routes = [
         children: [
             {path: 'register', component: RegisterComponent},
             {path: 'login', component: LoginComponent},
+            {path: 'final', component: FinalComponent, canActivate: [authGuard]},
             {path: 'logout', component: AppComponent, canActivate: [authGuard]},
             {
                 path: '',
@@ -37,7 +38,6 @@ export const routes: Routes = [
                             {path: 'checkout', component: AppComponent},
                             {path: 'privacy', component: AppComponent},
                             {path: 'purchase', component: PurchaseComponent},
-                            {path: 'final', component: FinalComponent},
                             {path: '', redirectTo: 'home', pathMatch: 'full'}, // Redirect empty path to 'product'
                         ],
                     },
