@@ -17,68 +17,66 @@ import {MatSelectModule} from "@angular/material/select";
 import {LoadingSpinnerComponent} from "../../standalone-components/loading-spinner/loading-spinner.component";
 
 @Component({
-  selector: 'app-dialog-cookies-settings',
-  standalone: true,
-  imports: [
-    MatButtonModule,
-    MatDialogContent,
-    MatDialogTitle,
-    MatDialogActions,
-    MatDialogClose,
-    MatButtonToggleModule,
-    MatIconModule,
-    MatSlideToggleModule,
-    ReactiveFormsModule,
-    NgForOf,
-    KeyValuePipe,
-    MatSelectModule,
-    NgIf,
-    LoadingSpinnerComponent
-  ],
-  templateUrl: './dialog-cookies-settings.component.html',
-  styleUrl: './dialog-cookies-settings.component.css'
+    selector: 'app-dialog-cookies-settings',
+    standalone: true,
+    imports: [
+        MatButtonModule,
+        MatDialogContent,
+        MatDialogTitle,
+        MatDialogActions,
+        MatDialogClose,
+        MatButtonToggleModule,
+        MatIconModule,
+        MatSlideToggleModule,
+        ReactiveFormsModule,
+        NgForOf,
+        KeyValuePipe,
+        MatSelectModule,
+        NgIf,
+        LoadingSpinnerComponent
+    ],
+    templateUrl: './dialog-cookies-settings.component.html',
+    styleUrl: './dialog-cookies-settings.component.css'
 })
 export class DialogCookiesSettingsComponent implements OnInit {
-  dialogRef: MatDialogRef<DialogCookiesSettingsComponent> = inject(MatDialogRef);
-  data = inject(MAT_DIALOG_DATA)
-  cookieForm: FormGroup
-  loading: boolean = false;
+    dialogRef: MatDialogRef<DialogCookiesSettingsComponent> = inject(MatDialogRef);
+    data = inject(MAT_DIALOG_DATA)
+    cookieForm: FormGroup
+    loading: boolean = false;
 
-  ngOnInit(): void {
-    this.cookieForm = this.data.form;
-  }
-
-  getFormControlByName(name: string): FormControl {
-    return this.cookieForm.get(name) as FormControl;
-  }
-
-  onSubmit(): void {
-    this.cookieForm.markAllAsTouched();
-    if (this.cookieForm.valid) {
-      console.log('Formular ist gültig');
-      this.dialogRef.close(true);
-    } else {
-      console.log('Formular ist ungültig');
+    ngOnInit(): void {
+        this.cookieForm = this.data.form;
     }
-  }
 
-  onAcceptAll(): void {
-    for (const control of Object.values(this.cookieForm.controls)) {
-      control.setValue(true);
+    getFormControlByName(name: string): FormControl {
+        return this.cookieForm.get(name) as FormControl;
     }
-    this.onSubmit();
-  }
 
-  onCancel(): void {
-    this.dialogRef.close(false);
-  }
+    onSubmit(): void {
+        this.cookieForm.markAllAsTouched();
+        if (this.cookieForm.valid) {
+            this.dialogRef.close(true);
+        } else {
+        }
+    }
 
-  onToggle(): void {
-    this.loading = true;
-    setTimeout(() => {
-      this.loading = false;
-    }, 1000);
-  }
+    onAcceptAll(): void {
+        for (const control of Object.values(this.cookieForm.controls)) {
+            control.setValue(true);
+        }
+        this.onSubmit();
+    }
+
+    onCancel(): void {
+        this.dialogRef.close(false);
+    }
+
+    onToggle(): void {
+        this.loading = true;
+        setTimeout(() => {
+            this.loading = false;
+        }, 1000);
+    }
 }
 
 

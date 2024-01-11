@@ -1,18 +1,18 @@
 <div class="grid grid-cols-3 bg-custom_lavender-200 p-3 ">
-  <div class="">
-
-  </div>
-  <div class="grid place-items-center">
-    <a (click)="navigateToHome()" class="w-24"> <img alt="Logo" src="assets/images/logo.png">
-    </a>
-  </div>
-  <div class="grid place-items-center">
-    <button [matBadge]="productCountInCart" class="text-lg" mat-flat-button matBadgePosition="above after"
-            routerLink="/cart">
-      <mat-icon>shopping_basket</mat-icon>
-      <span>Warenkorb</span>
-    </button>
-  </div>
+    <div class="grid place-items-center">
+        <app-search></app-search>
+    </div>
+    <div class="grid place-items-center">
+        <a (click)="navigateToHome()" class="w-24"> <img alt="Logo" src="assets/images/logo.png">
+        </a>
+    </div>
+    <div class="grid place-items-center">
+        <button [matBadge]="productCountInCart" class="text-lg" mat-flat-button matBadgePosition="above after"
+                routerLink="/cart">
+            <mat-icon>shopping_basket</mat-icon>
+            <span>Warenkorb</span>
+        </button>
+    </div>
 </div>
 
 
