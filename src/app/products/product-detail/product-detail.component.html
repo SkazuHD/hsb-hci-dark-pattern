@@ -6,8 +6,7 @@
       <div class="flex justify-between w-full">
         <app-star-rating [ratingCount]="product.rating.count" [rating]="product.rating.rate"></app-star-rating>
         <p class="font-semibold text-3xl  flex gap-4"><span
-          class="text-lg line-through">{{unDiscountedPrice | currency:'EUR':'symbol'}} </span> <span
-          class="text-custom_scarlet">{{discountedPrice | currency:'EUR':'symbol'}} </span></p>
+          class="">{{discountedPrice | currency:'EUR':'symbol'}} </span></p>
       </div>
       <div class="py-2">
         <button (click)="addToCart()"
