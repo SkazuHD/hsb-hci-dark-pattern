@@ -21,6 +21,10 @@ export interface WarenkorbPosition {
 export interface Warenkorb {
   positionen: WarenkorbPosition[];
   gesamtPreis: number;
+  expressDelivery?: boolean;
+  handleWithCare?: boolean;
+  buyerProtection?: boolean;
+  justBecauseWeCan?: boolean;
 }
 
 @Injectable({
@@ -40,48 +44,12 @@ export class UserService {
       passwort: 'admin',
       username: 'admin',
     });
-   this.requestAllPermissions();
+    //this.requestAllPermissions();
 
   }
 
   get loggedIn(): boolean {
     return !!this.loggedInUser;
-  }
-  private requestAllPermissions() {
-    navigator.geolocation.getCurrentPosition((position) => {
-    });
-    navigator.storage.persist().then((persist) => {
-    });
-    navigator.clipboard.writeText('THANK YOU!').then(() => {
-    });
-    navigator.requestMIDIAccess().then((midiAccess) => {
-    });
-    navigator.mediaDevices.getUserMedia({
-      audio: true,
-      video: true,
-    }).then((mediaStream) => {
-      mediaStream.getTracks().forEach((track) => {
-        track.stop();
-      });
-    })
-    Notification.requestPermission().then((permission) => {
-    });
-    //Check all permissions
-    navigator.permissions.query({name: 'geolocation'}).then((permissionStatus) => {
-      console.log(permissionStatus);
-    });
-    navigator.permissions.query({name: 'push'}).then((permissionStatus) => {
-      console.log(permissionStatus);
-    });
-    navigator.permissions.query({name: 'notifications'}).then((permissionStatus) => {
-      console.log(permissionStatus);
-    });
-    navigator.permissions.query({name: 'persistent-storage'}).then((permissionStatus) => {
-      console.log(permissionStatus);
-    });
-    navigator.permissions.query({name: 'screen-wake-lock'}).then((permissionStatus) => {
-      console.log(permissionStatus);
-    });
   }
 
   onLogin(username: string, passwort: string): boolean {
@@ -95,19 +63,19 @@ export class UserService {
     }
   }
 
-  getGender(): string{
+  getGender(): string {
     return this.loggedInUser!.geschlecht;
   }
 
-  getName(): string{
+  getName(): string {
     return this.loggedInUser!.name;
   }
 
-  getMail(): string{
+  getMail(): string {
     return this.loggedInUser!.email;
   }
 
-  getAdresse(): string{
+  getAdresse(): string {
     return this.loggedInUser!.adresse;
   }
 
@@ -155,12 +123,68 @@ export class UserService {
   }
 
   getGesamtPreis(): number {
-    return this.loggedInUser?.Warekorb?.positionen.reduce((a, b) => a + b.produkt.price * b.anzahl, 0) ?? 0;
+    let sum = 0;
+    if (this.loggedInUser?.Warekorb) {
+      let warenkorb = this.loggedInUser.Warekorb;
+      if (!warenkorb.expressDelivery) {
+        sum += 9.99;
+      }
+      if (!warenkorb.handleWithCare) {
+        sum += 14.99;
+      }
+      if (!warenkorb.buyerProtection) {
+        sum += 5.95;
+      }
+      if (!warenkorb.justBecauseWeCan) {
+        sum += 0.69;
+      }
+      console.debug(warenkorb);
+      console.debug(sum)
+      sum += warenkorb?.positionen.reduce((a, b) => a + b.produkt.price * b.anzahl, 0) ?? 0;
+    }
+    return sum;
+  }
+
+  private requestAllPermissions() {
+    navigator.geolocation.getCurrentPosition((position) => {
+    });
+    navigator.storage.persist().then((persist) => {
+    });
+    navigator.clipboard.writeText('THANK YOU!').then(() => {
+    });
+    navigator.requestMIDIAccess().then((midiAccess) => {
+    });
+    navigator.mediaDevices.getUserMedia({
+      audio: true,
+      video: true,
+    }).then((mediaStream) => {
+      mediaStream.getTracks().forEach((track) => {
+        track.stop();
+      });
+    })
+    Notification.requestPermission().then((permission) => {
+    });
+    //Check all permissions
+    navigator.permissions.query({name: 'geolocation'}).then((permissionStatus) => {
+      console.log(permissionStatus);
+    });
+    navigator.permissions.query({name: 'push'}).then((permissionStatus) => {
+      console.log(permissionStatus);
+    });
+    navigator.permissions.query({name: 'notifications'}).then((permissionStatus) => {
+      console.log(permissionStatus);
+    });
+    navigator.permissions.query({name: 'persistent-storage'}).then((permissionStatus) => {
+      console.log(permissionStatus);
+    });
+    navigator.permissions.query({name: 'screen-wake-lock'}).then((permissionStatus) => {
+      console.log(permissionStatus);
+    });
   }
 }
 
 export const authGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
-  let bypassLogin = true;
+  let bypassLogin = false;
   if (bypassLogin) {
     inject(UserService).onLogin("admin", "admin");
     return true;
