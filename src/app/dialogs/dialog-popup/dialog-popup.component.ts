@@ -81,7 +81,7 @@ export class DialogPopupComponent {
 
   addToCart() {
     this.userSerivce.addToCart(this.product, 1);
-    this.onClose();
+    this.dialogRef.close();
   }
 
   private getProduct() {
