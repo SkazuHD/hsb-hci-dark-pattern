@@ -99,20 +99,36 @@
                     <input formControlName="seventhCtrl" matInput placeholder="Ex. Land, Stadt, Strasse, HNr"
                            required>
 
-        </mat-form-field>
-        <div>
-          <button mat-button matStepperPrevious>Zurück</button>
-          <button mat-button matStepperNext>Weiter</button>
-        </div>
-      </form>
-    </mat-step>
-    <mat-step [stepControl]="genderGroup">
-      <form [formGroup]="genderGroup">
-        <ng-template matStepLabel>Gib dein Geschlecht an</ng-template>
-        <mat-form-field>
-          <mat-label>Geschlecht</mat-label>
-          <input formControlName="eighthCtrl" matInput placeholder="Ex. (m/f/d)"
-                 required>
+                </mat-form-field>
+                <div>
+                    <button mat-button matStepperPrevious>Zurück</button>
+                    <button mat-button matStepperNext>Weiter</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Gib deine Geburtsdatum ein</ng-template>
+
+            <mat-form-field>
+                <mat-label>Datum auswählen</mat-label>
+                <input [matDatepicker]="picker" matInput>
+                <mat-hint>DD/MM/YYYY</mat-hint>
+                <mat-datepicker-toggle [for]="picker" matIconSuffix></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </mat-step>
+        <mat-step>
+            <form>
+                <ng-template matStepLabel>Gib deinen Gender an</ng-template>
+                <mat-form-field>
+                    <mat-label>Gib dein Gender an</mat-label>
+                    <mat-select [formControl]="selectFormControl" required>
+                        <mat-option value="m">männlich</mat-option>
+                        <mat-option value="f">weiblich</mat-option>
+                        <mat-option value="d">diverse</mat-option>
+                        <mat-option value="x">Kampfhubschrauber</mat-option>
+
+                    </mat-select>
 
                 </mat-form-field>
                 <div>

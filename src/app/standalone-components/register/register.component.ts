@@ -14,24 +14,28 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MAT_DATE_LOCALE, MatNativeDateModule} from "@angular/material/core";
 
 @Component({
-  selector: 'app-register-screen',
-  standalone: true,
-  providers: [
-    {
-      provide: STEPPER_GLOBAL_OPTIONS,
-      useValue: {showError: true},
-    },
-  ],
-  imports: [RouterLink, MatButtonModule, MatStepperModule, FormsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatIconModule, NgIf],
-  templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+    selector: 'app-register-screen',
+    standalone: true,
+    providers: [
+        {
+            provide: STEPPER_GLOBAL_OPTIONS,
+            useValue: {showError: true},
+        },
+        {provide: MAT_DATE_LOCALE, useValue: 'de-DE'}
+    ],
+    imports: [MatSelectModule, RouterLink, MatButtonModule, MatStepperModule, FormsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatIconModule, NgIf, MatDatepickerModule, MatNativeDateModule
+
+    ],
+    templateUrl: './register.component.html',
+    styleUrl: './register.component.css'
 })
 
 export class RegisterComponent {
     @ViewChild('stepper') stepper: MatStepper;
 
-  router: Router = inject(Router);
-  passwordErrorMessage = "Passwörter stimmen nicht überein";
+    router: Router = inject(Router);
+    passwordErrorMessage = "Passwörter stimmen nicht überein";
+    genderOptions: string[] = ['m', 'f', 'd'];
 
     nameGroup = this._formBuilder.group({
         firstCtrl: ['', Validators.required],
@@ -65,11 +69,11 @@ export class RegisterComponent {
     constructor(private _formBuilder: FormBuilder) {
     }
 
-  onRegister() {
-    //Checj if all forms are valid
-    if (this.nameGroup.valid && this.usernameGroup.valid && this.password1Group.valid && this.password2Group.valid && this.email1Group.valid && this.email2Group.valid && this.addresseGroup.valid && this.genderGroup.valid) {
-      if (this.password1Group.value.thirdCtrl !== this.password2Group.value.forthCtrl) {
-        this.stepper.selectedIndex = 3;
+    onRegister() {
+        //Checj if all forms are valid
+        if (this.nameGroup.valid && this.usernameGroup.valid && this.password1Group.valid && this.password2Group.valid && this.email1Group.valid && this.email2Group.valid && this.addresseGroup.valid && this.selectFormControl.valid) {
+            if (this.password1Group.value.thirdCtrl !== this.password2Group.value.forthCtrl) {
+                this.stepper.selectedIndex = 3;
 
             } else if (this.email1Group.value.fifthCtrl !== this.email2Group.value.sixthCtrl) {
                 this.stepper.selectedIndex = 5;
