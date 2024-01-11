@@ -1,4 +1,4 @@
-<div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 mx-3">
+<div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 max-w-screen-2xl mx-auto">
     <ng-container *ngFor="let item of productsWithAds">
         <ng-container *ngIf="item.id<1000; else adBlock">
             <app-product-card [product]="item"></app-product-card>
