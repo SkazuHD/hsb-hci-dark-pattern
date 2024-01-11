@@ -1,0 +1,19 @@
+<div class="p-3">
+    <h1 class="!text-center" mat-dialog-title>Advertisement</h1>
+    <div mat-dialog-content>
+        <div class="grid gap-3 justify-center ">
+            <h1 class="text-2xl font-bold">{{data.title}}</h1>
+            <img [src]="data.image" class="max-w-lg max-h-72">
+            <p class="font-semibold text-3xl flex gap-4 justify-self-end">
+                <span class="text-lg line-through ">{{unDiscountedPrice | currency:'EUR':'symbol'}} </span>
+                <span class="text-custom_scarlet">{{discountedPrice | currency:'EUR':'symbol'}} </span>
+            </p>
+        </div>
+    </div>
+    <div mat-dialog-actions>
+        <div class="flex w-full justify-end">
+            <button color="primary" mat-dialog-close mat-flat-button>Ok</button>
+        </div>
+    </div>
+
+</div>

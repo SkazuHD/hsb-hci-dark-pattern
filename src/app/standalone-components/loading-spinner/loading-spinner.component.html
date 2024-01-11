@@ -1,4 +1,7 @@
 <div [ngClass]="showLoading ? 'block' : 'hidden'"
      class="fixed w-screen h-screen top-0 left-0  z-10 bg-opacity-30 grid place-items-center bg-black">
-  <mat-spinner></mat-spinner>
+    <div class="place-self-center grid place-items-center gap-3">
+        <mat-spinner></mat-spinner>
+        <p class="text-white text-center text-3xl">{{text}}</p>
+    </div>
 </div>
