@@ -13,7 +13,7 @@ import { filter } from 'rxjs';
 import { StarRatingComponent } from '../products/star-rating/star-rating.component';
 import {CurrencyPipe, NgIf} from "@angular/common";
 import { LoadingSpinnerComponent } from "../standalone-components/loading-spinner/loading-spinner.component";
-import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatSnackBar, MatSnackBarConfig, MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 
@@ -23,10 +23,24 @@ import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
     standalone: true,
     templateUrl: './purchase.component.html',
     styleUrl: './purchase.component.css',
+     styles: [`
+      .custom-snackbar {
+        border-radius: 2px;
+        box-sizing: border-box;
+        display: block;
+        margin: 24px;
+        max-width: 568px;
+        min-width: 288px;
+        padding: 14px 24px;
+        transform: translateY(100%) translateY(24px);
+      }`
+    ],
+
     imports: [RouterLink, NgIf, CurrencyPipe, MatButtonModule, MatStepperModule, FormsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatIconModule, ReactiveFormsModule, StarRatingComponent, LoadingSpinnerComponent]
 })
 export class PurchaseComponent {
 
+  
 
   email = new FormControl('', [Validators.email, Validators.required]);
   plz = new FormControl('', [Validators.minLength(5)]);
@@ -46,6 +60,8 @@ export class PurchaseComponent {
   private route: ActivatedRoute = inject(ActivatedRoute);
   private userSerivce: UserService = inject(UserService);
   constructor(public snackBar: MatSnackBar) {}
+
+
 
 
 
@@ -100,9 +116,9 @@ export class PurchaseComponent {
         this.loadingTimer()
       }
       else{
-        this.snackBar.open("Invalide inputs", "close", {
-          duration: 2000,
-        });
+        const config = new MatSnackBarConfig();
+        config.panelClass = ['custom-snackbar'];
+        this.snackBar.open("Invalid inputs", "close", config);
       }
     }
 
