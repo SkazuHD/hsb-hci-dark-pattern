@@ -1,9 +1,10 @@
-<div class="grid grid-cols-3  bg-custom_lavender-200 p-6">
+<div class="grid grid-cols-3  bg-custom_lavender-200 p-3">
   <div class="">
 
   </div>
-  <div class="flex place-self-center">
-    <button (click)="navigateToHome()">Logo Hier/Home Button</button>
+  <div class="flex place-self-center align-middle">
+    <a class="w-16" (click)="navigateToHome()">    <img src="assets/images/logo.png" alt="Logo">
+    </a>
   </div>
   <div class="flex place-self-end">
     <button [matBadge]="productCountInCart" class="text-lg" mat-flat-button matBadgePosition="above after"
