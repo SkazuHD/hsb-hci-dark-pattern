@@ -1,6 +1,6 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormBuilder, FormControl, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatStepperModule} from '@angular/material/stepper';
@@ -13,6 +13,9 @@ import { filter } from 'rxjs';
 import { StarRatingComponent } from '../products/star-rating/star-rating.component';
 import {CurrencyPipe, NgIf} from "@angular/common";
 import { LoadingSpinnerComponent } from "../standalone-components/loading-spinner/loading-spinner.component";
+import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
+
+
 
 
 @Component({
@@ -25,6 +28,14 @@ import { LoadingSpinnerComponent } from "../standalone-components/loading-spinne
 export class PurchaseComponent {
 
 
+  email = new FormControl('', [Validators.email, Validators.required]);
+  plz = new FormControl('', [Validators.minLength(5)]);
+  ort = new FormControl('', [Validators.minLength(3)]);
+
+
+
+
+
   productId: number;
   product: Product; // Assuming you have a Product model
   furtherProducts: Product[];
@@ -34,8 +45,10 @@ export class PurchaseComponent {
   private router: Router = inject(Router);
   private route: ActivatedRoute = inject(ActivatedRoute);
   private userSerivce: UserService = inject(UserService);
+  constructor(public snackBar: MatSnackBar) {}
 
-  adresse = new FormControl('');
+
+
 
 
   get discountedPrice(): string {
@@ -83,8 +96,17 @@ export class PurchaseComponent {
     randomId = this.getRandomId();
 
     buy(){ 
-      this.loadingTimer()
+      if (this.email.valid && this.plz.valid && this.ort.valid){
+        this.loadingTimer()
+      }
+      else{
+        this.snackBar.open("Invalide inputs", "close", {
+          duration: 2000,
+        });
+      }
     }
+
+    
 
     addToCart() {
       this.userSerivce.addToCart(this.product, 1);
