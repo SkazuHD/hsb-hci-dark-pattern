@@ -49,8 +49,7 @@ export class ProductService {
             console.debug('Returning all cached products')
             return of(this.products);
         }
-        console.debug('Fetching all products from API')
-        return this.http.get<Product[]>('https://fakestoreapi.com/products').pipe(
+        return this.http.get<Product[]>('/assets/products.json').pipe(
             tap(products => this.products = products), map(products => products.map(product => {
                 product.count = Math.round(Math.random() * 15) + 1;
                 return product;
@@ -76,26 +75,22 @@ export class ProductService {
         if (this.products.length > 0) {
             console.debug('Returning cached product by id')
             return of(this.products.find(product => product.id === id));
+        } else {
+            return this.getProducts().pipe(map(products => products.find(product => product.id === id)));
         }
-        console.debug('Fetching product from API by id')
 
-        return this.http.get<Product>('https://fakestoreapi.com/products/' + id).pipe(tap(product => {
-            product.count = Math.round(Math.random() * 15);
-            return product;
-        }));
-    }
-
-    getAvailableCategories(): Observable<string[]> {
-        return this.http.get('https://fakestoreapi.com/products/categories') as Observable<string[]>;
     }
 
     getProductByCategory(category: string): Observable<Product[]> {
-        return this.http.get('https://fakestoreapi.com/products/category/' + category) as Observable<Product[]>;
+        if (this.products.length > 0) {
+            return of(this.products.filter(product => product.category === category));
+        } else {
+            return this.getProducts().pipe(map(products => products.filter(product => product.category === category)));
+        }
     }
 
     searchProducts(searchTerm: string): Observable<Product[]> {
         let result: Product[] = [];
-        console.debug('Query', searchTerm)
         this.products.forEach(product => {
             if (product.title.toLowerCase().includes(searchTerm.toLowerCase()) || product.description.toLowerCase().includes(searchTerm.toLowerCase()) || product.category.toLowerCase().includes(searchTerm.toLowerCase())) {
                 result.push(product);
@@ -103,6 +98,10 @@ export class ProductService {
         });
         console.debug(result)
         return of(result);
+    }
+
+    productsAmount(): number {
+        return this.products.length;
     }
 }
 
