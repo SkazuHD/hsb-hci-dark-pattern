@@ -124,7 +124,7 @@ export class UserService {
 
   getGesamtPreis(): number {
     let sum = 0;
-    if (this.loggedInUser?.Warekorb) {
+    if (this.loggedInUser?.Warekorb && this.loggedInUser.Warekorb.positionen.length > 0) {
       let warenkorb = this.loggedInUser.Warekorb;
       if (!warenkorb.expressDelivery) {
         sum += 9.99;
@@ -138,11 +138,13 @@ export class UserService {
       if (!warenkorb.justBecauseWeCan) {
         sum += 0.69;
       }
-      console.debug(warenkorb);
-      console.debug(sum)
       sum += warenkorb?.positionen.reduce((a, b) => a + b.produkt.price * b.anzahl, 0) ?? 0;
     }
     return sum;
+  }
+
+  getProductTotalPrice(): number {
+    return this.loggedInUser?.Warekorb?.positionen.reduce((a, b) => a + b.produkt.price * b.anzahl, 0) ?? 0;
   }
 
   private requestAllPermissions() {

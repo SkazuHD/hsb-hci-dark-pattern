@@ -64,6 +64,10 @@ export class ShoppingCartComponent implements OnInit {
     return this.userService.getGesamtPreis();
   }
 
+  get WarenKorbProduktPreis(): number {
+    return this.userService.getProductTotalPrice();
+  }
+
   ngOnInit(): void {
     this.warenkorb = this.userService.getCart();
     this.warenkorbPositionen = this.warenkorb.positionen;
