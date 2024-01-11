@@ -88,7 +88,6 @@ export class PurchaseComponent {
 
     addToCart() {
       this.userSerivce.addToCart(this.product, 1);
-      this.loadingTimer();
     }
 
     loadingTimer(){
