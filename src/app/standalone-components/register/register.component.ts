@@ -58,6 +58,10 @@ export class RegisterComponent {
     addresseGroup = this._formBuilder.group({
         seventhCtrl: ['', Validators.required],
     });
+    dateOfBirthGroup = this._formBuilder.group({
+        eighthCtrl: ['', Validators.required],
+    });
+
 
     selectFormControl = new FormControl('', Validators.required);
 
@@ -87,8 +91,11 @@ export class RegisterComponent {
                     email: this.email1Group.value.fifthCtrl ?? '',
                     adresse: this.addresseGroup.value.seventhCtrl ?? '',
                     geschlecht: this.selectFormControl.value ?? '',
+                    geburtsdatum: this.dateOfBirthGroup.value.eighthCtrl ?? '',
                 }
                 this.UserService.onRegister(this.nutzer);
+
+                console.log(this.nutzer);
                 this.router.navigate(['/login'])
             }
         }

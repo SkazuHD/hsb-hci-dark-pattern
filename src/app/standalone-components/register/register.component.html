@@ -106,20 +106,21 @@
                 </div>
             </form>
         </mat-step>
-        <mat-step>
+        <mat-step [stepControl]="dateOfBirthGroup">
             <ng-template matStepLabel>Gib deine Geburtsdatum ein</ng-template>
-
-            <mat-form-field>
-                <mat-label>Datum auswählen</mat-label>
-                <input [matDatepicker]="picker" matInput>
-                <mat-hint>DD/MM/YYYY</mat-hint>
-                <mat-datepicker-toggle [for]="picker" matIconSuffix></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
-            <div>
-                <button mat-button matStepperPrevious>Zurück</button>
-                <button mat-button matStepperNext>Weiter</button>
-            </div>
+            <form [formGroup]="dateOfBirthGroup">
+                <mat-form-field>
+                    <mat-label>Datum auswählen</mat-label>
+                    <input [matDatepicker]="picker" formControlName="eighthCtrl" matInput>
+                    <mat-hint>DD/MM/YYYY</mat-hint>
+                    <mat-datepicker-toggle [for]="picker" matIconSuffix></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <div>
+                    <button mat-button matStepperPrevious>Zurück</button>
+                    <button mat-button matStepperNext>Weiter</button>
+                </div>
+            </form>
         </mat-step>
         <mat-step>
             <form>

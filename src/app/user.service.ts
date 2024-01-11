@@ -9,6 +9,7 @@ export interface Nutzer {
     email: string;
     adresse: string;
     geschlecht: string;
+    geburtsdatum: string;
     Warekorb?: Warenkorb;
 
 }
@@ -43,6 +44,7 @@ export class UserService {
             name: 'Admin',
             passwort: 'admin',
             username: 'admin',
+            geburtsdatum: '01.01.2000'
         });
         //this.requestAllPermissions();
 

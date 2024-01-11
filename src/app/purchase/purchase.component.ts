@@ -70,7 +70,6 @@ export class PurchaseComponent implements OnInit {
     buy() {
         if (this.adresse.valid && this.plz.valid && this.ort.valid) {
             this.loadingTimer()
-            this.router.navigate(['/final']);
         } else {
             const config = new MatSnackBarConfig();
             config.panelClass = ['custom-snackbar'];
@@ -86,8 +85,10 @@ export class PurchaseComponent implements OnInit {
     loadingTimer() {
         this.showLoading = true;
         setTimeout(() => {
-            this.showLoading = false;
-        }, 500);
+            this.router.navigate(['/final']).then(() => {
+                this.showLoading = false;
+            });
+        }, 1500);
     }
 
     private getProduct() {
