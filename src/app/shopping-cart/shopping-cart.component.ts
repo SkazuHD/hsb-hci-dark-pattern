@@ -83,6 +83,9 @@ export class ShoppingCartComponent implements OnInit {
         if (value[pos.produkt.id] < 1) {
           this.getFormControl(pos.produkt.id.toString()).setValue(1);
           value[pos.produkt.id] = 1;
+        } else if (value[pos.produkt.id] > 10) {
+          this.getFormControl(pos.produkt.id.toString()).setValue(10);
+          value[pos.produkt.id] = 10;
         }
         pos.anzahl = value[pos.produkt.id];
         this.warenkorb.gesamtPreis = this.userService.getGesamtPreis()
