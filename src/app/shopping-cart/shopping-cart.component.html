@@ -26,7 +26,8 @@
                 <p>{{position.produkt.category}}</p>
               </div>
               <mat-form-field>
-                <input [formControl]="getFormControl(position.produkt.id.toString())" matInput max="10" min="1"
+                <input [formControl]="getFormControl(position.produkt.id.toString())" [max]="MAX_AMOUNT" matInput
+                       min="1"
                        type="number">
               </mat-form-field>
             </div>

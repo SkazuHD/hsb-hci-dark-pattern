@@ -14,6 +14,8 @@ export interface Nutzer {
 
 }
 
+export const MAX_AMOUNT = 10;
+
 export interface WarenkorbPosition {
   produkt: Product;
   anzahl: number;
@@ -101,8 +103,8 @@ export class UserService {
       if (position) {
         position.anzahl += amount;
         // Cap amount to 10
-        if (position.anzahl > 10) {
-          position.anzahl = 10;
+        if (position.anzahl > MAX_AMOUNT) {
+          position.anzahl = MAX_AMOUNT;
         }
       } else {
         this.loggedInUser.Warekorb?.positionen.push({produkt: product, anzahl: amount});

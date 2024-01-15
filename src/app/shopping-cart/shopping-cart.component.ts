@@ -1,5 +1,5 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {UserService, Warenkorb, WarenkorbPosition} from "../user.service";
+import {MAX_AMOUNT, UserService, Warenkorb, WarenkorbPosition} from "../user.service";
 import {CurrencyPipe, NgClass, NgForOf, NgIf} from "@angular/common";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
@@ -44,6 +44,7 @@ export class ShoppingCartComponent implements OnInit {
   kaufschutz: boolean = false;
   weilWirsKoennen: boolean = false;
   public showLoading: boolean = false;
+  protected readonly MAX_AMOUNT = MAX_AMOUNT;
   private router: Router = inject(Router);
   private userService: UserService = inject(UserService);
   private warenkorbPositionen: WarenkorbPosition[] = [];
@@ -83,9 +84,9 @@ export class ShoppingCartComponent implements OnInit {
         if (value[pos.produkt.id] < 1) {
           this.getFormControl(pos.produkt.id.toString()).setValue(1);
           value[pos.produkt.id] = 1;
-        } else if (value[pos.produkt.id] > 10) {
-          this.getFormControl(pos.produkt.id.toString()).setValue(10);
-          value[pos.produkt.id] = 10;
+        } else if (value[pos.produkt.id] > MAX_AMOUNT) {
+          this.getFormControl(pos.produkt.id.toString()).setValue(MAX_AMOUNT);
+          value[pos.produkt.id] = MAX_AMOUNT;
         }
         pos.anzahl = value[pos.produkt.id];
         this.warenkorb.gesamtPreis = this.userService.getGesamtPreis()
