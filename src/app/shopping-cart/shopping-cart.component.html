@@ -77,6 +77,8 @@
 
       </mat-expansion-panel>
     </mat-accordion>
+    <p *ngIf="WarenKorbProduktPreis < warenkorb.minOrderValue" class="self-end text-custom_scarlet text-xs">{{
+      warenkorb.minOrderValue - WarenKorbProduktPreis | currency:'EUR':'symbol'}} bis zum Mindestbestellwert</p>
     <p class="font-bold text-3xl self-end">
       {{WarenKorbGesamtPreis | currency:'EUR':'symbol'}} <!-- Hier dann neuen Preis berechnen mit den added costs-->
 

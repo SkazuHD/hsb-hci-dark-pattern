@@ -71,7 +71,7 @@ export class ShoppingCartComponent implements OnInit, AfterContentChecked {
   }
 
   continueButtonDisabled(): boolean {
-    this.buttonDisabled = !((this.warenkorb.positionen.length > 0) && (this.warenkorb.gesamtPreis > this.warenkorb.minOrderValue));
+    this.buttonDisabled = !((this.warenkorb.positionen.length > 0) && (this.WarenKorbProduktPreis > this.warenkorb.minOrderValue));
     return this.buttonDisabled;
   }
 
