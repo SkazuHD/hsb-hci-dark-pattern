@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {AfterContentChecked, AfterViewChecked, Component, inject, OnInit} from '@angular/core';
 import {MAX_AMOUNT, UserService, Warenkorb, WarenkorbPosition} from "../user.service";
 import {CurrencyPipe, NgClass, NgForOf, NgIf} from "@angular/common";
 import {MatButtonModule} from "@angular/material/button";
@@ -35,7 +35,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
   templateUrl: './shopping-cart.component.html',
   styleUrl: './shopping-cart.component.css'
 })
-export class ShoppingCartComponent implements OnInit {
+export class ShoppingCartComponent implements OnInit, AfterContentChecked {
   warenkorbFormGroup: FormGroup = new FormGroup({});
   warenkorb: Warenkorb;
   addedCosts: FormGroup = new FormGroup({})
@@ -72,32 +72,35 @@ export class ShoppingCartComponent implements OnInit {
   ngOnInit(): void {
     this.warenkorb = this.userService.getCart();
     this.warenkorbPositionen = this.warenkorb.positionen;
-    this.warenkorbPositionen.forEach((pos) => {
-      this.warenkorbFormGroup.addControl(pos.produkt.id.toString(), new FormControl(pos.anzahl));
-    });
     this.initAddedCosts();
 
 
-    this.warenkorbFormGroup.valueChanges.subscribe((value) => {
-      this.warenkorbPositionen.forEach((pos) => {
-        //Set formgroup to 0 if value is negative
-        if (value[pos.produkt.id] < 1) {
-          this.getFormControl(pos.produkt.id.toString()).setValue(1);
-          value[pos.produkt.id] = 1;
-        } else if (value[pos.produkt.id] > MAX_AMOUNT) {
-          this.getFormControl(pos.produkt.id.toString()).setValue(MAX_AMOUNT);
-          value[pos.produkt.id] = MAX_AMOUNT;
-        }
-        pos.anzahl = value[pos.produkt.id];
-        this.warenkorb.gesamtPreis = this.userService.getGesamtPreis()
-        this.userService.updateCart(this.warenkorb);
-      });
 
-    });
+    }
 
 
+
+  ngAfterContentChecked(): void{
+  this.warenkorbPositionen.forEach((pos) => {
+    this.warenkorbFormGroup.addControl(pos.produkt.id.toString(), new FormControl(pos.anzahl));
+  });
+
+
+  this.warenkorbFormGroup.valueChanges.subscribe((value) => {
+    this.warenkorbPositionen.forEach((pos) => {
+      //Set formgroup to 0 if value is negative
+      if (value[pos.produkt.id] < 1) {
+        this.getFormControl(pos.produkt.id.toString()).setValue(1);
+        value[pos.produkt.id] = 1;
+      } else if (value[pos.produkt.id] > MAX_AMOUNT) {
+        this.getFormControl(pos.produkt.id.toString()).setValue(MAX_AMOUNT);
+        value[pos.produkt.id] = MAX_AMOUNT;
+      }
+      pos.anzahl = value[pos.produkt.id];
+      this.warenkorb.gesamtPreis = this.userService.getGesamtPreis()
+      this.userService.updateCart(this.warenkorb);
+    })});
   }
-
   onRemoveFromCart(product: Product) {
     this.showLoading = true;
     setTimeout(() => {
