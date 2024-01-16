@@ -76,7 +76,19 @@
         </form>
 
       </mat-expansion-panel>
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Add Promo Code
+          </mat-panel-title>
+
+        </mat-expansion-panel-header>
+        <mat-form-field class="w-full">
+          <input matInput>
+        </mat-form-field>
+      </mat-expansion-panel>
     </mat-accordion>
+
     <p *ngIf="WarenKorbProduktPreis < warenkorb.minOrderValue" class="self-end text-custom_scarlet text-xs">{{
       warenkorb.minOrderValue - WarenKorbProduktPreis | currency:'EUR':'symbol'}} bis zum Mindestbestellwert</p>
     <p class="font-bold text-3xl self-end">
