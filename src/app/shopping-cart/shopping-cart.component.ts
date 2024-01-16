@@ -1,4 +1,4 @@
-import {AfterContentChecked, AfterViewChecked, Component, inject, OnInit} from '@angular/core';
+import {AfterContentChecked, Component, inject, OnInit} from '@angular/core';
 import {MAX_AMOUNT, UserService, Warenkorb, WarenkorbPosition} from "../user.service";
 import {CurrencyPipe, NgClass, NgForOf, NgIf} from "@angular/common";
 import {MatButtonModule} from "@angular/material/button";
@@ -44,6 +44,7 @@ export class ShoppingCartComponent implements OnInit, AfterContentChecked {
   kaufschutz: boolean = false;
   weilWirsKoennen: boolean = false;
   public showLoading: boolean = false;
+  buttonDisabled: boolean = true;
   protected readonly MAX_AMOUNT = MAX_AMOUNT;
   private router: Router = inject(Router);
   private userService: UserService = inject(UserService);
@@ -69,38 +70,40 @@ export class ShoppingCartComponent implements OnInit, AfterContentChecked {
     return this.userService.getProductTotalPrice();
   }
 
+  continueButtonDisabled(): boolean {
+    this.buttonDisabled = !((this.warenkorb.positionen.length > 0) && (this.warenkorb.gesamtPreis > this.warenkorb.minOrderValue));
+    return this.buttonDisabled;
+  }
+
   ngOnInit(): void {
     this.warenkorb = this.userService.getCart();
     this.warenkorbPositionen = this.warenkorb.positionen;
     this.initAddedCosts();
-
-
-
-    }
-
-
-
-  ngAfterContentChecked(): void{
-  this.warenkorbPositionen.forEach((pos) => {
-    this.warenkorbFormGroup.addControl(pos.produkt.id.toString(), new FormControl(pos.anzahl));
-  });
-
-
-  this.warenkorbFormGroup.valueChanges.subscribe((value) => {
-    this.warenkorbPositionen.forEach((pos) => {
-      //Set formgroup to 0 if value is negative
-      if (value[pos.produkt.id] < 1) {
-        this.getFormControl(pos.produkt.id.toString()).setValue(1);
-        value[pos.produkt.id] = 1;
-      } else if (value[pos.produkt.id] > MAX_AMOUNT) {
-        this.getFormControl(pos.produkt.id.toString()).setValue(MAX_AMOUNT);
-        value[pos.produkt.id] = MAX_AMOUNT;
-      }
-      pos.anzahl = value[pos.produkt.id];
-      this.warenkorb.gesamtPreis = this.userService.getGesamtPreis()
-      this.userService.updateCart(this.warenkorb);
-    })});
   }
+
+  ngAfterContentChecked(): void {
+    this.warenkorbPositionen.forEach((pos) => {
+      this.warenkorbFormGroup.addControl(pos.produkt.id.toString(), new FormControl(pos.anzahl));
+    });
+
+
+    this.warenkorbFormGroup.valueChanges.subscribe((value) => {
+      this.warenkorbPositionen.forEach((pos) => {
+        //Set formgroup to 0 if value is negative
+        if (value[pos.produkt.id] < 1) {
+          this.getFormControl(pos.produkt.id.toString()).setValue(1);
+          value[pos.produkt.id] = 1;
+        } else if (value[pos.produkt.id] > MAX_AMOUNT) {
+          this.getFormControl(pos.produkt.id.toString()).setValue(MAX_AMOUNT);
+          value[pos.produkt.id] = MAX_AMOUNT;
+        }
+        pos.anzahl = value[pos.produkt.id];
+        this.warenkorb.gesamtPreis = this.userService.getGesamtPreis()
+        this.userService.updateCart(this.warenkorb);
+      })
+    });
+  }
+
   onRemoveFromCart(product: Product) {
     this.showLoading = true;
     setTimeout(() => {

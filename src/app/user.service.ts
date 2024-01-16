@@ -15,6 +15,7 @@ export interface Nutzer {
 }
 
 export const MAX_AMOUNT = 10;
+export const DEFAULT_ORDER_VALUE = 49.99;
 
 export interface WarenkorbPosition {
   produkt: Product;
@@ -24,6 +25,7 @@ export interface WarenkorbPosition {
 export interface Warenkorb {
   positionen: WarenkorbPosition[];
   gesamtPreis: number;
+  minOrderValue: number;
   expressDelivery?: boolean;
   handleWithCare?: boolean;
   buyerProtection?: boolean;
@@ -89,7 +91,7 @@ export class UserService {
 
   onRegister(nutzer: Nutzer) {
 
-    nutzer.Warekorb = nutzer.Warekorb ?? {positionen: [], gesamtPreis: 0};
+    nutzer.Warekorb = nutzer.Warekorb ?? {positionen: [], gesamtPreis: 0, minOrderValue: DEFAULT_ORDER_VALUE};
     this.nutzerArray.push(nutzer);
   }
 
@@ -131,7 +133,7 @@ export class UserService {
       this.loggedInUser.Warekorb.gesamtPreis = this.getGesamtPreis();
       return this.loggedInUser.Warekorb;
     }
-    return {positionen: [], gesamtPreis: 0}
+    return {positionen: [], gesamtPreis: 0, minOrderValue: DEFAULT_ORDER_VALUE};
   }
 
   getGesamtPreis(): number {
