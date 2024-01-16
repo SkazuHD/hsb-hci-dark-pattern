@@ -13,7 +13,7 @@
             <p>Nur noch <span class="font-bold">{{ad.count}}</span> verfügbar</p>
         </ng-container>
     </a>
-    <button
+    <button (click)="onClick()"
             class="self-end uppercase text-lg !text-white !bg-custom_gunmetal" mat-flat-button>
         Visit more
         <!-- statt shopping_cart gibts auch add_shopping_cart maybe mal gucken was ihr besser findet-->
