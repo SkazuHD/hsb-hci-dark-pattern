@@ -39,7 +39,6 @@ export class ProductCardComponent {
     navigateToProductDetails(productId: number) {
         // Use the Router service to navigate to the product details page
         this.router.navigate(['/product', productId]).then(
-            () => window.scrollTo(0, 0)
         );
     }
 
