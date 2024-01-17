@@ -7,7 +7,7 @@ import {StarRatingComponent} from "../products/star-rating/star-rating.component
 import {MatInputModule} from "@angular/material/input";
 import {Router} from '@angular/router';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {Product} from "../product.service";
+import {Product, ProductService} from "../product.service";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {LoadingSpinnerComponent} from "../standalone-components/loading-spinner/loading-spinner.component";
 import {MatExpansionModule} from '@angular/material/expansion';
@@ -37,6 +37,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 })
 export class ShoppingCartComponent implements OnInit, AfterContentChecked {
   warenkorbFormGroup: FormGroup = new FormGroup({});
+  promoCode: FormControl = new FormControl();
   warenkorb: Warenkorb;
   addedCosts: FormGroup = new FormGroup({})
   handleWithCare: boolean = false;
@@ -48,6 +49,7 @@ export class ShoppingCartComponent implements OnInit, AfterContentChecked {
   protected readonly MAX_AMOUNT = MAX_AMOUNT;
   private router: Router = inject(Router);
   private userService: UserService = inject(UserService);
+  private productService: ProductService = inject(ProductService);
   private warenkorbPositionen: WarenkorbPosition[] = [];
 
   get name(): string {
@@ -79,6 +81,19 @@ export class ShoppingCartComponent implements OnInit, AfterContentChecked {
     this.warenkorb = this.userService.getCart();
     this.warenkorbPositionen = this.warenkorb.positionen;
     this.initAddedCosts();
+    this.promoCode.valueChanges.subscribe((value) => {
+      this.promoCode.markAsTouched()
+      if (this.productService.isPromoCodeValid(value) || value === "") {
+        this.promoCode.setErrors(null);
+        console.log("valid")
+        this.warenkorb.promoCode = this.productService.getPromoCode(value);
+        this.userService.updateCart(this.warenkorb);
+      }else {
+        this.promoCode.setErrors({invalid: true});
+        console.log(this.promoCode.errors)
+        console.log("invalid")
+      }
+    });
   }
 
   ngAfterContentChecked(): void {

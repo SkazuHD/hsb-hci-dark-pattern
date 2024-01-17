@@ -1,5 +1,5 @@
 import {inject, Injectable} from '@angular/core';
-import {Product} from "./product.service";
+import {Product, PromoCode} from "./product.service";
 import {ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot} from "@angular/router";
 
 export interface Nutzer {
@@ -26,6 +26,7 @@ export interface Warenkorb {
   positionen: WarenkorbPosition[];
   gesamtPreis: number;
   minOrderValue: number;
+  promoCode?: PromoCode;
   expressDelivery?: boolean;
   handleWithCare?: boolean;
   buyerProtection?: boolean;
@@ -160,7 +161,9 @@ export class UserService {
   getProductTotalPrice(): number {
     return this.loggedInUser?.Warekorb?.positionen.reduce((a, b) => a + b.produkt.price * b.anzahl, 0) ?? 0;
   }
+  applyPromoCode(promoCode: PromoCode) {
 
+  }
   private requestAllPermissions() {
     navigator.geolocation.getCurrentPosition((position) => {
     });
