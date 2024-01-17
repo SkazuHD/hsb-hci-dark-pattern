@@ -80,7 +80,8 @@ export class ShoppingCartComponent implements OnInit, AfterContentChecked {
   ngOnInit(): void {
     this.warenkorb = this.userService.getCart();
     this.warenkorbPositionen = this.warenkorb.positionen;
-    this.initAddedCosts();
+    this.initAddedCosts()
+    this.promoCode.setValue(this.warenkorb.promoCode?.code ?? "");
     this.promoCode.valueChanges.subscribe((value) => {
       this.promoCode.markAsTouched()
       if (this.productService.isPromoCodeValid(value) || value === "") {
@@ -91,7 +92,8 @@ export class ShoppingCartComponent implements OnInit, AfterContentChecked {
       }else {
         this.promoCode.setErrors({invalid: true});
         console.log(this.promoCode.errors)
-        console.log("invalid")
+        this.warenkorb.promoCode = undefined;
+        this.userService.updateCart(this.warenkorb);
       }
     });
   }

@@ -153,16 +153,20 @@ export class UserService {
       if (!warenkorb.justBecauseWeCan) {
         sum += 0.69;
       }
-      sum += warenkorb?.positionen.reduce((a, b) => a + b.produkt.price * b.anzahl, 0) ?? 0;
+      sum += this.getProductTotalPrice();
     }
     return sum;
   }
 
   getProductTotalPrice(): number {
-    return this.loggedInUser?.Warekorb?.positionen.reduce((a, b) => a + b.produkt.price * b.anzahl, 0) ?? 0;
+    let sum = this.loggedInUser?.Warekorb?.positionen.reduce((a, b) => a + b.produkt.price * b.anzahl, 0) ?? 0;
+    if(this.loggedInUser?.Warekorb?.promoCode) {
+      sum = this.applyPromoCode(sum, this.loggedInUser.Warekorb.promoCode);
+    }
+    return sum;
   }
-  applyPromoCode(promoCode: PromoCode) {
-
+  applyPromoCode(sum: number, promocode : PromoCode) : number {
+    return sum * (1-promocode.discount);
   }
   private requestAllPermissions() {
     navigator.geolocation.getCurrentPosition((position) => {
