@@ -12,6 +12,7 @@ import {MatInputModule} from "@angular/material/input";
 import {FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
 import {NgIf} from "@angular/common";
 import {LoadingSpinnerComponent} from "../../standalone-components/loading-spinner/loading-spinner.component";
+import {ProductService, PromoCode} from "../../product.service";
 
 @Component({
   selector: 'app-dialog-newsletter',
@@ -35,10 +36,14 @@ export class DialogNewsletterComponent {
   email = new FormControl('', [Validators.email, Validators.required]);
   loading: boolean = false;
   private dialogRef: MatDialogRef<DialogNewsletterComponent, String> = inject(MatDialogRef);
+// ...
+  private productService: ProductService = inject(ProductService);
+  promoCode: PromoCode | undefined;
 
   public onSubmit() {
     if (this.email.value && this.email.valid) {
-      //TODO : Save to User Profile
+      this.promoCode = this.productService.generatePromoCode(this.email.value);
+
       this.dialogRef.close(this.email.value);
     } else {
       this.email.markAsTouched();

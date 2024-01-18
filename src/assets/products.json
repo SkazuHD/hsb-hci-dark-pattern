@@ -266,7 +266,7 @@
   {
     "id": 23,
     "title": "Designer socks",
-    "price": 145.99,
+    "price": 25.99,
     "description": "designer striped socks made from organic cotton (kbA). GOTS-certified. Hand-linked toes prevent pressure points in the toe area. Soft cuffs.",
     "category": "clothing",
     "image": "https://assets.hans-natur.de/images/350x350/08/7a8d76cc_225080.jpg",
@@ -290,7 +290,7 @@
   {
     "id": 25,
     "title": "Adult diapers Unisize EXTRA",
-    "price": 917.99,
+    "price": 17.99,
     "description": "Adult diaper - especially for the night. 100% organic cotton (kbA), IVN-certified. With practical press studs and Velcro fastener to adjust the size.",
     "category": "clothing",
     "image": "https://assets.hans-natur.de/images/350x350/34/20df9081_3813.jpg",
@@ -302,7 +302,7 @@
   {
     "id": 26,
     "title": "Froggy the plush",
-    "price": 612.99,
+    "price": 61.99,
     "description": "Froggy is the ideal plush frog as a promotional item.The plush can be personalized at the level of its scarf.Offer it as a welcome gift or during an event, or simply for sale in your establishment.",
     "category": "froggy",
     "image": "https://peluchecreation.com/wp-content/uploads/2021/02/Froggy-la-grenouille-en-peluche-personnalisee-1.jpg",
@@ -352,7 +352,7 @@
     "title": "Basic stackable chair, set of 4",
     "price": 140.99,
     "description": "- Seat and backrest: beech plywood, 5-ply glued (7.5 mm), natural clear lacquer finish - Frame: tubular steel Ø 21 x 1.5 mm - Color: Polyester powder-coated in black   - Plastic floor glides",
-    "category": "froggy",
+    "category": "chair",
     "image": "https://www.tischkoenig-shop.de/media/catalog/product/cache/2ff60df06a02a60a86afb1df16900b17/s/t/stapelstuhl-warschau-s_2.jpg",
     "rating": {
       "rate": 4.4,
@@ -362,7 +362,7 @@
   {
     "id": 31,
     "title": "Ball Chair",
-    "price": 7.200,
+    "price": 72.00,
     "description": "The Ball Chair was designed in 1963 and debuted at the Cologne Furniture Fair in 1966. This chair is one of the most famous and popular Finnish design classics and was Eero Aarnio's international breakthrough.",
     "category": "chair",
     "image": "https://de.aarniooriginals.com/cdn/shop/products/aarnio_originals_ballchair_lime_green_07_2000x.png?v=1695743360",

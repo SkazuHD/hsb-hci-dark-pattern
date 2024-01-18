@@ -15,6 +15,12 @@
           <mat-error>Email is invalid</mat-error>
         </ng-container>
       </mat-form-field>
+
+      <div *ngIf="promoCode" class="mt-4">
+        <h2>Your Promo Code</h2>
+        <p>Use the following promo code to get a discount on your next purchase:</p>
+        <code>{{ promoCode.code }}</code>
+      </div>
     </div>
   </div>
   <div mat-dialog-actions>

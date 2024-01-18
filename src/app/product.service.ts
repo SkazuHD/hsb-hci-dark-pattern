@@ -32,23 +32,19 @@ export class ProductService {
     {code: 'DISCOUNT20', discount: 0.2},
   ];
   private adService: AdService = inject(AdService)
+  private promoCodeTimer: any;
 
   constructor(private http: HttpClient) {
     // Comment out to not use the API
-    /*this.products =[{
-      title: 'Debug Product',
-      description: 'This is a debug product',
-      category: 'Debug',
-      id: 0,
-      image: 'https://via.placeholder.com/150',
-      price: 0,
-      rating: {
-        rate: 0,
-        count: 0
-      },
-      count: 0,
-    }as Product];
-    */
+    this.promoCodeTimer = 5 * 60;
+    setInterval(() => {
+      this.promoCodeTimer--;
+      if (this.promoCodeTimer <= 0) {
+        this.promoCodes = this.promoCodes.filter(promoCode => promoCode.code !== 'DISCOUNT20');
+        console.debug('Removed promo code')
+      }
+    }, 1000);
+
   }
 
   getProducts(): Observable<Product[]> {
@@ -137,5 +133,18 @@ export class ProductService {
   }
   getPromoCode(code: string): PromoCode | undefined {
     return this.promoCodes.find(promoCode => promoCode.code === code);
+  }
+  getPromoCodeTimer(): number {
+    return this.promoCodeTimer;
+  }
+
+  generatePromoCode(email: string): PromoCode {
+    const newPromoCode: PromoCode = {
+      code: email.split('@')[0].toUpperCase() + Math.floor(Math.random() * 1000),
+      discount: 0.3
+    };
+    this.promoCodes.push(newPromoCode);
+    console.debug('Generated new promo code', newPromoCode)
+    return newPromoCode;
   }
 }

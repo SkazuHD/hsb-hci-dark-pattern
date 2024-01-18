@@ -86,7 +86,6 @@ export class ShoppingCartComponent implements OnInit, AfterContentChecked {
       this.promoCode.markAsTouched()
       if (this.productService.isPromoCodeValid(value) || value === "") {
         this.promoCode.setErrors(null);
-        console.log("valid")
         this.warenkorb.promoCode = this.productService.getPromoCode(value);
         this.userService.updateCart(this.warenkorb);
       }else {
