@@ -18,7 +18,7 @@ export class NewsletterService {
         //Can be changed to queue all requests instead of resetting
         this.request_count = 0;
       }
-    }, 15000)
+    }, 1000)
   }
 
   requestDialog() {

@@ -1,5 +1,6 @@
 import {Component, inject} from '@angular/core';
 import {
+  MatDialog,
   MatDialogActions,
   MatDialogClose,
   MatDialogContent,
@@ -13,6 +14,7 @@ import {FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
 import {NgIf} from "@angular/common";
 import {LoadingSpinnerComponent} from "../../standalone-components/loading-spinner/loading-spinner.component";
 import {ProductService, PromoCode} from "../../product.service";
+import {DialogPromocodeComponent} from "../../dialog-promocode/dialog-promocode.component";
 
 @Component({
   selector: 'app-dialog-newsletter',
@@ -38,12 +40,16 @@ export class DialogNewsletterComponent {
   private dialogRef: MatDialogRef<DialogNewsletterComponent, String> = inject(MatDialogRef);
 // ...
   private productService: ProductService = inject(ProductService);
+  private dialogService: MatDialog = inject(MatDialog);
   promoCode: PromoCode | undefined;
 
   public onSubmit() {
     if (this.email.value && this.email.valid) {
       this.promoCode = this.productService.generatePromoCode(this.email.value);
-
+      this.dialogService.open(DialogPromocodeComponent, {
+        data: this.promoCode,
+        disableClose: true,
+      });
       this.dialogRef.close(this.email.value);
     } else {
       this.email.markAsTouched();

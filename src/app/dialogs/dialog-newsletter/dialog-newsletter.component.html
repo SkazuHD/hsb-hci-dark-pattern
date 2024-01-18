@@ -6,7 +6,7 @@
     <div class="grid gap-3">
       <p>
         Data is good for all of us and we would like to keep you up to date. Please enter your email address here and we
-        will send you our newsletter.
+        will send you our newsletter and you will receive a Promocode for 30% Discount on your next purchase.
       </p>
       <mat-form-field class="w-full">
         <input [formControl]="email" matInput placeholder="max@mustermann.de">
@@ -15,12 +15,6 @@
           <mat-error>Email is invalid</mat-error>
         </ng-container>
       </mat-form-field>
-
-      <div *ngIf="promoCode" class="mt-4">
-        <h2>Your Promo Code</h2>
-        <p>Use the following promo code to get a discount on your next purchase:</p>
-        <code>{{ promoCode.code }}</code>
-      </div>
     </div>
   </div>
   <div mat-dialog-actions>

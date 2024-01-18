@@ -1,1 +1,15 @@
-<p>dialog-promocode works!</p>
+<div class="p-3">
+  <h1 mat-dialog-title class="text-center">Dein persönlicher Promocode</h1>
+  <div mat-dialog-content class="grid place-items-center">
+    <div class="grid place-items-center w-full p-3">
+    <mat-icon class="!text-green-600 !text-7xl !h-full !w-full !text-center">check_circle</mat-icon>
+    </div>
+    <p class="text-3xl font-bold !text-custom_gunmetal text-center w-full">{{promoCode}}</p>
+  </div>
+  <div mat-dialog-actions>
+    <div class="flex w-full justify-between">
+      <button mat-flat-button mat-dialog-close class="w-full !bg-custom_gunmetal !text-white" >OK</button>
+    </div>
+  </div>
+
+</div>
