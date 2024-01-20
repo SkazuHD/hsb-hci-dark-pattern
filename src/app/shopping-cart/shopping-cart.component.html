@@ -76,13 +76,31 @@
         </form>
 
       </mat-expansion-panel>
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Add Promo Code
+          </mat-panel-title>
+
+        </mat-expansion-panel-header>
+        <mat-form-field class="w-full" >
+          <input matInput [formControl]="promoCode" >
+          <mat-error *ngIf="promoCode.hasError('invalid')">
+            Promo Code is <strong>not valid</strong>
+          </mat-error>
+          <mat-hint class="!text-green-600" *ngIf="promoCode.valid && promoCode.value?.length > 0">Promocode is valid</mat-hint>
+        </mat-form-field>
+      </mat-expansion-panel>
     </mat-accordion>
+
+    <p *ngIf="WarenKorbProduktPreis < warenkorb.minOrderValue" class="self-end text-custom_scarlet text-xs">{{
+      warenkorb.minOrderValue - WarenKorbProduktPreis | currency:'EUR':'symbol'}} bis zum Mindestbestellwert</p>
     <p class="font-bold text-3xl self-end">
       {{WarenKorbGesamtPreis | currency:'EUR':'symbol'}} <!-- Hier dann neuen Preis berechnen mit den added costs-->
 
     </p>
-    <button (click)="navigateToPurchase()" [disabled]="warenkorb.positionen.length===0"
-            [ngClass]="warenkorb.positionen.length > 0? '!text-white !bg-custom_gunmetal':' '"
+    <button (click)="navigateToPurchase()" [disabled]="continueButtonDisabled()"
+            [ngClass]="continueButtonDisabled()? '':'!text-white !bg-custom_gunmetal'"
             class="font-bold uppercase text-lg"
             mat-flat-button>
       Kaufen

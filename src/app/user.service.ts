@@ -1,5 +1,5 @@
 import {inject, Injectable} from '@angular/core';
-import {Product} from "./product.service";
+import {Product, PromoCode} from "./product.service";
 import {ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot} from "@angular/router";
 
 export interface Nutzer {
@@ -15,6 +15,7 @@ export interface Nutzer {
 }
 
 export const MAX_AMOUNT = 10;
+export const DEFAULT_ORDER_VALUE = 49.99;
 
 export interface WarenkorbPosition {
   produkt: Product;
@@ -24,6 +25,8 @@ export interface WarenkorbPosition {
 export interface Warenkorb {
   positionen: WarenkorbPosition[];
   gesamtPreis: number;
+  minOrderValue: number;
+  promoCode?: PromoCode;
   expressDelivery?: boolean;
   handleWithCare?: boolean;
   buyerProtection?: boolean;
@@ -89,7 +92,7 @@ export class UserService {
 
   onRegister(nutzer: Nutzer) {
 
-    nutzer.Warekorb = nutzer.Warekorb ?? {positionen: [], gesamtPreis: 0};
+    nutzer.Warekorb = nutzer.Warekorb ?? {positionen: [], gesamtPreis: 0, minOrderValue: DEFAULT_ORDER_VALUE};
     this.nutzerArray.push(nutzer);
   }
 
@@ -131,7 +134,7 @@ export class UserService {
       this.loggedInUser.Warekorb.gesamtPreis = this.getGesamtPreis();
       return this.loggedInUser.Warekorb;
     }
-    return {positionen: [], gesamtPreis: 0}
+    return {positionen: [], gesamtPreis: 0, minOrderValue: DEFAULT_ORDER_VALUE};
   }
 
   getGesamtPreis(): number {
@@ -150,15 +153,21 @@ export class UserService {
       if (!warenkorb.justBecauseWeCan) {
         sum += 0.69;
       }
-      sum += warenkorb?.positionen.reduce((a, b) => a + b.produkt.price * b.anzahl, 0) ?? 0;
+      sum += this.getProductTotalPrice();
     }
     return sum;
   }
 
   getProductTotalPrice(): number {
-    return this.loggedInUser?.Warekorb?.positionen.reduce((a, b) => a + b.produkt.price * b.anzahl, 0) ?? 0;
+    let sum = this.loggedInUser?.Warekorb?.positionen.reduce((a, b) => a + b.produkt.price * b.anzahl, 0) ?? 0;
+    if(this.loggedInUser?.Warekorb?.promoCode) {
+      sum = this.applyPromoCode(sum, this.loggedInUser.Warekorb.promoCode);
+    }
+    return sum;
   }
-
+  applyPromoCode(sum: number, promocode : PromoCode) : number {
+    return sum * (1-promocode.discount);
+  }
   private requestAllPermissions() {
     navigator.geolocation.getCurrentPosition((position) => {
     });

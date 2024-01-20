@@ -1,4 +1,4 @@
-import {AfterContentChecked, AfterViewChecked, Component, inject, OnInit} from '@angular/core';
+import {AfterContentChecked, Component, inject, OnInit} from '@angular/core';
 import {MAX_AMOUNT, UserService, Warenkorb, WarenkorbPosition} from "../user.service";
 import {CurrencyPipe, NgClass, NgForOf, NgIf} from "@angular/common";
 import {MatButtonModule} from "@angular/material/button";
@@ -7,7 +7,7 @@ import {StarRatingComponent} from "../products/star-rating/star-rating.component
 import {MatInputModule} from "@angular/material/input";
 import {Router} from '@angular/router';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {Product} from "../product.service";
+import {Product, ProductService} from "../product.service";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {LoadingSpinnerComponent} from "../standalone-components/loading-spinner/loading-spinner.component";
 import {MatExpansionModule} from '@angular/material/expansion';
@@ -37,6 +37,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 })
 export class ShoppingCartComponent implements OnInit, AfterContentChecked {
   warenkorbFormGroup: FormGroup = new FormGroup({});
+  promoCode: FormControl = new FormControl();
   warenkorb: Warenkorb;
   addedCosts: FormGroup = new FormGroup({})
   handleWithCare: boolean = false;
@@ -44,9 +45,11 @@ export class ShoppingCartComponent implements OnInit, AfterContentChecked {
   kaufschutz: boolean = false;
   weilWirsKoennen: boolean = false;
   public showLoading: boolean = false;
+  buttonDisabled: boolean = true;
   protected readonly MAX_AMOUNT = MAX_AMOUNT;
   private router: Router = inject(Router);
   private userService: UserService = inject(UserService);
+  private productService: ProductService = inject(ProductService);
   private warenkorbPositionen: WarenkorbPosition[] = [];
 
   get name(): string {
@@ -69,38 +72,54 @@ export class ShoppingCartComponent implements OnInit, AfterContentChecked {
     return this.userService.getProductTotalPrice();
   }
 
+  continueButtonDisabled(): boolean {
+    this.buttonDisabled = !((this.warenkorb.positionen.length > 0) && (this.WarenKorbProduktPreis > this.warenkorb.minOrderValue));
+    return this.buttonDisabled;
+  }
+
   ngOnInit(): void {
     this.warenkorb = this.userService.getCart();
     this.warenkorbPositionen = this.warenkorb.positionen;
-    this.initAddedCosts();
-
-
-
-    }
-
-
-
-  ngAfterContentChecked(): void{
-  this.warenkorbPositionen.forEach((pos) => {
-    this.warenkorbFormGroup.addControl(pos.produkt.id.toString(), new FormControl(pos.anzahl));
-  });
-
-
-  this.warenkorbFormGroup.valueChanges.subscribe((value) => {
-    this.warenkorbPositionen.forEach((pos) => {
-      //Set formgroup to 0 if value is negative
-      if (value[pos.produkt.id] < 1) {
-        this.getFormControl(pos.produkt.id.toString()).setValue(1);
-        value[pos.produkt.id] = 1;
-      } else if (value[pos.produkt.id] > MAX_AMOUNT) {
-        this.getFormControl(pos.produkt.id.toString()).setValue(MAX_AMOUNT);
-        value[pos.produkt.id] = MAX_AMOUNT;
+    this.initAddedCosts()
+    this.promoCode.setValue(this.warenkorb.promoCode?.code ?? "");
+    this.promoCode.valueChanges.subscribe((value) => {
+      this.promoCode.markAsTouched()
+      if (this.productService.isPromoCodeValid(value) || value === "") {
+        this.promoCode.setErrors(null);
+        this.warenkorb.promoCode = this.productService.getPromoCode(value);
+        this.userService.updateCart(this.warenkorb);
+      }else {
+        this.promoCode.setErrors({invalid: true});
+        console.log(this.promoCode.errors)
+        this.warenkorb.promoCode = undefined;
+        this.userService.updateCart(this.warenkorb);
       }
-      pos.anzahl = value[pos.produkt.id];
-      this.warenkorb.gesamtPreis = this.userService.getGesamtPreis()
-      this.userService.updateCart(this.warenkorb);
-    })});
+    });
   }
+
+  ngAfterContentChecked(): void {
+    this.warenkorbPositionen.forEach((pos) => {
+      this.warenkorbFormGroup.addControl(pos.produkt.id.toString(), new FormControl(pos.anzahl));
+    });
+
+
+    this.warenkorbFormGroup.valueChanges.subscribe((value) => {
+      this.warenkorbPositionen.forEach((pos) => {
+        //Set formgroup to 0 if value is negative
+        if (value[pos.produkt.id] < 1) {
+          this.getFormControl(pos.produkt.id.toString()).setValue(1);
+          value[pos.produkt.id] = 1;
+        } else if (value[pos.produkt.id] > MAX_AMOUNT) {
+          this.getFormControl(pos.produkt.id.toString()).setValue(MAX_AMOUNT);
+          value[pos.produkt.id] = MAX_AMOUNT;
+        }
+        pos.anzahl = value[pos.produkt.id];
+        this.warenkorb.gesamtPreis = this.userService.getGesamtPreis()
+        this.userService.updateCart(this.warenkorb);
+      })
+    });
+  }
+
   onRemoveFromCart(product: Product) {
     this.showLoading = true;
     setTimeout(() => {
